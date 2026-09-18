@@ -1,8 +1,17 @@
+const path = require("path");
+
 const nextConfig = {
   reactStrictMode: true,
   transpilePackages: ["next-sanity"],
   compiler: {
     styledComponents: true,
+  },
+  webpack: (config) => {
+    config.resolve.alias = {
+      ...config.resolve.alias,
+      "@": path.resolve(__dirname, "src"),
+    };
+    return config;
   },
 
   images: {

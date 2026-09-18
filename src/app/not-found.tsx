@@ -1,12 +1,10 @@
-'use client'
-
 import Link from 'next/link'
-import Header from '@/components/Header'
-import Footer from '@/components/Footer'
-import { useCategories } from '@/components/CategoriesProvider'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import { getCategories } from '../sanity/fetch'
 
-export default function NotFound() {
-  const categories = useCategories()
+export default async function NotFound() {
+  const categories = await getCategories()
 
   return (
     <>
