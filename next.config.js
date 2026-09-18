@@ -1,5 +1,9 @@
 const nextConfig = {
   reactStrictMode: true,
+  transpilePackages: ["next-sanity"],
+  compiler: {
+    styledComponents: true,
+  },
 
   images: {
     remotePatterns: [
@@ -8,13 +12,36 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         pathname: "/**",
       },
+      {
+        protocol: "https",
+        hostname: "cdn.sanity.io",
+        pathname: "/**",
+      },
     ],
   },
 
   async headers() {
     return [
       {
-        source: "/(.*)",
+        source: "/studio/:path*",
+        headers: [
+          {
+            key: "Content-Security-Policy",
+            value: [
+              "default-src 'self' https: data: blob: 'unsafe-inline' 'unsafe-eval'",
+              "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:",
+              "style-src 'self' 'unsafe-inline' https:",
+              "img-src 'self' data: blob: https:",
+              "font-src 'self' data: https:",
+              "connect-src 'self' https: wss:",
+              "frame-src 'self' https:",
+              "worker-src 'self' blob:",
+            ].join("; "),
+          },
+        ],
+      },
+      {
+        source: "/((?!studio).*)",
         headers: [
           {
             key: "Content-Security-Policy",
@@ -28,7 +55,9 @@ const nextConfig = {
                 " https://translate-pa.googleapis.com" +
                 " https://www.gstatic.com" +
                 " https://www.googletagmanager.com" +
-                " https://www.google-analytics.com",
+                " https://www.google-analytics.com" +
+                " https://core.sanity.io" +
+                " https://*.sanity.io",
 
               // Translate injects a <link> stylesheet from translate.googleapis.com
               "style-src 'self' 'unsafe-inline'" +
@@ -46,7 +75,8 @@ const nextConfig = {
                 " https://ssl.gstatic.com" +
                 " https://fonts.gstatic.com" +
                 " https://lh3.googleusercontent.com" +
-                " https://images.unsplash.com",
+                " https://images.unsplash.com" +
+                " https://cdn.sanity.io",
 
               "font-src 'self'" +
                 " https://fonts.gstatic.com" +
@@ -59,7 +89,8 @@ const nextConfig = {
                 " https://translate-pa.googleapis.com" +
                 " https://www.google.com" +
                 " https://www.google.com/maps" +
-                " https://maps.google.com",
+                " https://maps.google.com" +
+                " https://core.sanity.io",
 
               // XHR/fetch calls go to translate-pa.googleapis.com (newer API)
               // as well as the classic translate.googleapis.com endpoint
@@ -69,7 +100,11 @@ const nextConfig = {
                 " https://translate-pa.googleapis.com" +
                 " https://translate.google.com" +
                 " https://www.googleapis.com" +
-                " https://www.google-analytics.com",
+                " https://www.google-analytics.com" +
+                " https://*.api.sanity.io" +
+                " https://*.apicdn.sanity.io" +
+                " https://cdn.sanity.io" +
+                " wss://*.api.sanity.io",
 
               "worker-src 'self' blob:",
             ].join("; "),

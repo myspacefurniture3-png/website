@@ -1,21 +1,12 @@
 "use client";
 
-import React, { useRef } from 'react';
+import React from 'react';
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import GoogleReviews from '@/components/GoogleReviews';
 import Link from 'next/link';
 import Typewriter from '@/components/Typewriter';
-
-const categoriesBeforeWhyChoose = [
-  { href: '/loveseats', title: 'Sofa & Loveseats', image: '/products/sofa.webp' },
-  { href: '/bedroom-sets', title: 'Bedroom Sets', image: '/products/bedroom.webp' },
-  { href: '/dining-tables', title: 'Dining', image: '/products/dining-table-2.webp' },
-  { href: '/mattresses', title: 'Mattresses', image: '/products/custom-furniture/custom%20(18).jpeg' },
-  { href: '/bunk-beds', title: 'Bunk Beds', image: '/products/bunk-bed-3.webp' },
-  { href: '/vanities', title: 'Vanities', image: '/products/vanity-31.webp' },
-  { href: '/leather-sectionals', title: 'Leather Sectionals', image: '/products/leather-sectional-9.webp' },
-];
+import { useCategories } from '@/components/CategoriesProvider';
 
 // ── Moved outside Home so it's a proper component, not a function inside JSX ──
 function EnableSoundButton() {
@@ -57,6 +48,8 @@ function EnableSoundButton() {
 
 // ── Main page ─────────────────────────────────────────────────────────────────
 export default function Home() {
+  const categories = useCategories();
+  const featured = categories.filter((item) => item.slug !== 'fabric-sectionals' && item.slug !== 'custom-furniture');
   return (
     <>
       {/* Hero Section */}
@@ -222,28 +215,28 @@ export default function Home() {
         </section>
 
         {/* Featured Categories */}
-        <section className="py-20 md:py-28 bg-white">
+        <section className="py-24 md:py-32 bg-[#f8f6f3]">
           <div className="max-w-7xl mx-auto px-6 lg:px-12">
             <div className="text-center mb-16">
-              <p className="text-[11px] uppercase tracking-[0.3em] text-[#b8845c] mb-4">Our Collections</p>
-              <h2 className="text-3xl md:text-4xl font-playfair font-light text-gray-900 mb-4">
+              <p className="text-[11px] uppercase tracking-[0.3em] text-[#1a1a1a]/50 mb-4">Our Collections</p>
+              <h2 className="text-3xl md:text-4xl font-playfair font-light text-[#1a1a1a] mb-4">
                 Explore Our Furniture
               </h2>
-              <div className="w-12 h-[1px] bg-[#b8845c] mx-auto" />
+              <div className="w-12 h-[1px] bg-[#1a1a1a]/30 mx-auto" />
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
-              {categoriesBeforeWhyChoose.map((category, idx) => (
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
+              {featured.map((category, idx) => (
                 <Link
-                  key={category.href}
-                  href={category.href}
+                  key={category.slug}
+                  href={`/${category.slug}`}
                   className={`group relative overflow-hidden ${
-                    idx === 0 ? 'md:col-span-2 h-[50vh] md:h-[70vh]' : 'h-[40vh] md:h-[50vh]'
+                    idx === 0 ? 'md:col-span-2 xl:col-span-3 h-[50vh] md:h-[72vh]' : 'h-[42vh] md:h-[54vh]'
                   }`}
                 >
                   <div
                     className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700"
-                    style={{ backgroundImage: `url('${category.image}')` }}
+                    style={{ backgroundImage: `url('${category.menuImage || category.heroImage}')` }}
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500" />
                   <div className="absolute inset-0 flex items-end z-10">

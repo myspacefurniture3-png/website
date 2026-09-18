@@ -7,19 +7,26 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "studio": "next dev",
+    "seed:sanity": "npx tsx scripts/seed-sanity.ts",
     "vercel-build": "npm install --legacy-peer-deps && next build"
   },
   "dependencies": {
+    "@sanity/image-url": "^1.1.0",
+    "@sanity/vision": "^3.68.0",
     "@tailwindcss/typography": "^0.5.19",
     "classnames": "^2.5.1",
     "framer-motion": "^12.23.25",
     "leaflet": "^1.9.4",
     "next": "^14.0.0",
     "next-pwa": "^5.6.0",
+    "next-sanity": "^9.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-phone-input-2": "^2.15.1",
-    "source-map-js": "^1.2.1"
+    "sanity": "^3.68.0",
+    "source-map-js": "^1.2.1",
+    "styled-components": "^6.5.3"
   },
   "devDependencies": {
     "@types/leaflet": "^1.9.21",

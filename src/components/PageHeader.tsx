@@ -1,37 +1,38 @@
-'use client'
-
-import Image from 'next/image'
-
 interface PageHeaderProps {
   title: string
   subtitle?: string
   heroImage?: string
+  kicker?: string
   compact?: boolean
 }
 
-export default function PageHeader({ title, subtitle, heroImage, compact = false }: PageHeaderProps) {
-  const heightClass = compact ? 'h-32 md:h-40' : 'h-64 md:h-96'
-  const titleClass = compact ? 'text-2xl md:text-3xl' : 'text-4xl md:text-5xl'
-  const subtitleClass = compact ? 'text-sm md:text-base' : 'text-lg md:text-xl'
-
+export default function PageHeader({
+  title,
+  subtitle,
+  heroImage,
+  kicker = 'Collection',
+  compact = false,
+}: PageHeaderProps) {
   return (
-    <div className={`relative w-full ${heightClass} overflow-hidden`}>
+    <section
+      className={`relative w-full overflow-hidden bg-[#1a1a1a] ${
+        compact ? 'h-[36vh] min-h-[260px] md:h-[46vh]' : 'h-[48vh] min-h-[320px] md:h-[62vh]'
+      }`}
+    >
       {heroImage && (
-        <Image
-          src={heroImage}
-          alt={title}
-          fill
-          className="object-cover"
-          priority
-        />
+        // eslint-disable-next-line @next/next/no-img-element
+        <img src={heroImage} alt="" className="absolute inset-0 w-full h-full object-cover" />
       )}
-      <div className={`absolute inset-0 ${heroImage ? 'bg-black/40' : 'bg-[#a0725a]'}`} />
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white w-full">
-          <h1 className={`${titleClass} font-playfair font-bold mb-2 uppercase`}>{title}</h1>
-          {subtitle && <p className={`${subtitleClass} text-blue-100`}>{subtitle}</p>}
-        </div>
+      <div className="absolute inset-0 bg-black/35" />
+      <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
+        {kicker && (
+          <p className="text-[11px] uppercase tracking-[0.28em] text-white/70 mb-4">{kicker}</p>
+        )}
+        <h1 className="font-playfair text-4xl md:text-6xl font-light text-white tracking-wide">{title}</h1>
+        {subtitle && (
+          <p className="mt-5 max-w-xl text-sm md:text-base text-white/80 font-light leading-relaxed">{subtitle}</p>
+        )}
       </div>
-    </div>
+    </section>
   )
 }

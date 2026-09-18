@@ -4,22 +4,11 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
+import { useCategories } from '@/components/CategoriesProvider';
 
 interface HeaderProps {
   transparent?: boolean;
 }
-
-const shopLinks = [
-  { href: '/loveseats', label: 'Sofas' },
-  { href: '/bedroom-sets', label: 'Bedroom' },
-  { href: '/dining-tables', label: 'Dining' },
-  { href: '/leather-sectionals', label: 'Leather' },
-  { href: '/fabric-sectionals', label: 'Fabric Selections' },
-  { href: '/mattresses', label: 'Mattresses' },
-  { href: '/vanities', label: 'Vanities' },
-  { href: '/bunk-beds', label: 'Bunk Beds' },
-  { href: '/custom-furniture', label: 'Custom' },
-];
 
 const menuSections = [
   {
@@ -76,14 +65,32 @@ const utilityLinks = [
   { href: '/financing', label: 'Financing' },
 ];
 
-const allSearchLinks = [
-  ...shopLinks,
-  ...menuSections.flatMap((section) => section.links),
-  ...utilityLinks,
-].filter((item, index, list) => list.findIndex((entry) => entry.href === item.href) === index);
-
 export default function Header({ transparent = false }: HeaderProps) {
   const pathname = usePathname();
+  const categories = useCategories();
+  const shopLinks = categories.map((item) => ({
+    href: `/${item.slug}`,
+    label: item.navLabel,
+  }));
+  const productLinks = categories.map((item) => ({
+    href: `/${item.slug}`,
+    label: item.title,
+  }));
+  const menuColumns = [
+    {
+      title: 'Our Products',
+      href: shopLinks[0]?.href || '/loveseats',
+      image: categories[0]?.menuImage || '/products/sofa.webp',
+      links: productLinks,
+    },
+    ...menuSections.slice(1),
+  ];
+  const allSearchLinks = [
+    ...shopLinks,
+    ...productLinks,
+    ...menuColumns.flatMap((section) => section.links),
+    ...utilityLinks,
+  ].filter((item, index, list) => list.findIndex((entry) => entry.href === item.href) === index);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
@@ -149,7 +156,7 @@ export default function Header({ transparent = false }: HeaderProps) {
         } ${
           isTransparent
             ? 'bg-transparent'
-            : 'bg-white border-b border-black/10'
+            : 'bg-[#f8f6f3] border-b border-black/10'
         }`}
       >
         <div className="flex items-center justify-between h-[96px] sm:h-[112px] lg:h-[140px] px-5 sm:px-8 lg:px-12">
@@ -453,7 +460,7 @@ export default function Header({ transparent = false }: HeaderProps) {
 
         <div className="flex-1 overflow-y-auto">
           <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-10 xl:gap-8 px-6 sm:px-10 lg:px-14 py-8 lg:py-10">
-            {menuSections.map((section) => (
+            {menuColumns.map((section) => (
               <div key={section.title}>
                 <Link href={section.href} onClick={() => setMenuOpen(false)} className="block group">
                   <div className="relative w-full aspect-[16/10] overflow-hidden mb-5">

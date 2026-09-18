@@ -7,7 +7,7 @@ import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
   title: 'Contact My Space Furniture | Get in Touch',
-  description: 'Contact My Space Furniture for inquiries, support, or to schedule a showroom visit. We\'re here to help with all your furniture needs.',
+  description: "Contact My Space Furniture for inquiries, support, or to schedule a showroom visit. We're here to help with all your furniture needs.",
   keywords: 'contact us, furniture store contact, customer service, showroom',
   openGraph: {
     title: 'Contact My Space Furniture',
@@ -20,68 +20,65 @@ export default function Contact() {
   return (
     <>
       <Header />
-      <PageHeader 
+      <PageHeader
         title="Contact Us"
         subtitle="We'd love to hear from you. Reach out with any questions or inquiries."
         heroImage="/images/heroes/contact-hero.jpg"
+        kicker="Visit"
         compact
       />
 
-      <main className="py-16 md:py-24 bg-[#b8845c]">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
-            {/* Contact Info */}
+      <main className="py-20 md:py-28 bg-[#f8f6f3] text-[#1a1a1a]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
             <div>
-              <h2 className="text-3xl font-playfair font-bold text-[#ebebeb] mb-8 uppercase">Get In Touch</h2>
-              <div className="space-y-6">
+              <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/50 mb-4">Showroom</p>
+              <h2 className="text-3xl font-playfair font-light mb-10">Get In Touch</h2>
+              <div className="space-y-8 text-[#1a1a1a]/75 font-light">
                 <div>
-                  <h3 className="text-xl font-playfair font-bold text-[#ebebeb] mb-3">Phone</h3>
-                  <p className="text-[#ebebeb] text-lg">(916) 661-1073</p>
-                  <p className="text-[#ebebeb] text-lg">(916) 994-0612</p>
-                  <p className="text-[#ebebeb] text-base mt-2">Mon-Sat: 10:00 AM - 7:00 PM, Sun: 10:00 AM - 5:00 PM</p>
+                  <h3 className="text-[11px] uppercase tracking-[0.18em] text-[#1a1a1a] mb-3 font-bold">Phone</h3>
+                  <p className="text-lg">(916) 661-1073</p>
+                  <p className="text-lg">(916) 994-0612</p>
+                  <p className="text-sm mt-2">Mon-Sat: 10:00 AM - 7:00 PM, Sun: 10:00 AM - 5:00 PM</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-playfair font-bold text-[#ebebeb] mb-3">Email</h3>
-                  <p className="text-[#ebebeb] text-lg">info@myyspacefurniture.com</p>
-                  <p className="text-[#ebebeb] text-base">We respond within 24 hours</p>
+                  <h3 className="text-[11px] uppercase tracking-[0.18em] text-[#1a1a1a] mb-3 font-bold">Email</h3>
+                  <p className="text-lg">info@myyspacefurniture.com</p>
+                  <p className="text-sm">We respond within 24 hours</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-playfair font-bold text-[#ebebeb] mb-3">Address</h3>
-                  <p className="text-[#ebebeb] text-lg">1811 Douglas Blvd</p>
-                  <p className="text-[#ebebeb] text-lg">Roseville, CA 95661</p>
+                  <h3 className="text-[11px] uppercase tracking-[0.18em] text-[#1a1a1a] mb-3 font-bold">Address</h3>
+                  <p className="text-lg">1811 Douglas Blvd</p>
+                  <p className="text-lg">Roseville, CA 95661</p>
                 </div>
                 <div>
-                  <h3 className="text-xl font-playfair font-bold text-[#ebebeb] mb-3">Hours</h3>
-                  <p className="text-[#ebebeb] text-lg">Monday - Saturday: 10:00 AM - 7:00 PM</p>
-                  <p className="text-[#ebebeb] text-lg">Sunday: 10:00 AM - 5:00 PM</p>
+                  <h3 className="text-[11px] uppercase tracking-[0.18em] text-[#1a1a1a] mb-3 font-bold">Hours</h3>
+                  <p>Monday - Saturday: 10:00 AM - 7:00 PM</p>
+                  <p>Sunday: 10:00 AM - 5:00 PM</p>
                 </div>
               </div>
             </div>
 
-            {/* Contact Form */}
             <div>
-              <h2 className="text-3xl font-playfair font-bold text-[#ebebeb] mb-8 uppercase">Send us a Message</h2>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/50 mb-4">Inquiry</p>
+              <h2 className="text-3xl font-playfair font-light mb-10">Send us a Message</h2>
               <ContactForm />
             </div>
           </div>
 
-          {/* Map Section */}
-          <div className="w-full rounded-lg overflow-hidden shadow-lg bg-white">
-            <div className="p-4 sm:p-6 bg-white border-b border-gray-100 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+          <div className="w-full overflow-hidden bg-white border border-black/10">
+            <div className="p-4 sm:p-6 border-b border-black/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
               <div>
-                <h3 className="text-lg font-playfair font-bold text-gray-900">Our Showroom</h3>
-                <p className="text-sm text-gray-500 mt-1">1811 Douglas Blvd, Roseville, CA 95661</p>
+                <h3 className="text-lg font-playfair font-light">Our Showroom</h3>
+                <p className="text-sm text-[#1a1a1a]/60 mt-1">1811 Douglas Blvd, Roseville, CA 95661</p>
               </div>
               <a
                 href="https://www.google.com/maps/place/MyySpace+Furniture+%26+Mattress/@38.7465805,-121.2606694,17z/data=!4m8!3m7!1s0x678ab9b0c002b107:0xbff9cbf87975ed3c!8m2!3d38.7465805!4d-121.2606694!9m1!1b1!16s%2Fg%2F11yjlt_j7s"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#b8845c] hover:bg-[#a0725a] text-white text-xs uppercase tracking-widest font-semibold rounded-sm transition-colors"
+                className="inline-flex items-center gap-2 px-5 py-2.5 border border-[#1a1a1a] text-[11px] uppercase tracking-[0.18em] hover:bg-[#1a1a1a] hover:text-white transition-colors"
               >
                 Get Directions
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                </svg>
               </a>
             </div>
             <iframe

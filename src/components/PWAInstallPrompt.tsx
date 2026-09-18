@@ -1,8 +1,10 @@
 
 "use client";
 import React, { useEffect, useState } from 'react';
+import { usePathname } from 'next/navigation';
 
 export default function PWAInstallPrompt() {
+  const pathname = usePathname();
   const [deferredPrompt, setDeferredPrompt] = useState<any>(null);
   const [showPrompt, setShowPrompt] = useState(false);
 
@@ -26,7 +28,7 @@ export default function PWAInstallPrompt() {
     }
   };
 
-  if (!showPrompt) return null;
+  if (!showPrompt || pathname?.startsWith('/studio')) return null;
 
   return (
     <div style={{

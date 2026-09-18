@@ -1,6 +1,11 @@
 'use client'
 
+import { usePathname } from 'next/navigation'
+
 export default function WhatsAppChat() {
+  const pathname = usePathname()
+  if (pathname?.startsWith('/studio')) return null
+
   return (
     <a
       href="https://wa.me/+19166611073?text=Hello%21%20I%20am%20interested%20in%20learning%20more%20about%20your%20furniture%20products."

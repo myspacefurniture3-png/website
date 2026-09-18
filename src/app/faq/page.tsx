@@ -71,37 +71,35 @@ export default function FAQ() {
   return (
     <>
       <Header />
-      <PageHeader 
+      <PageHeader
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions about our products and services"
         heroImage="/images/heroes/faq-hero.webp"
+        kicker="Help"
       />
 
-      <main className="py-16 md:py-24 bg-[#b8845c]">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <main className="py-20 md:py-28 bg-[#f8f6f3] text-[#1a1a1a]">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8">
           {faqCategories.map((category, catIndex) => (
-            <section key={catIndex} className="mb-12">
-              <h2 className="text-2xl font-playfair font-bold text-primary-blue mb-6 uppercase">{category.title}</h2>
-              <div className="space-y-3">
+            <section key={catIndex} className="mb-14">
+              <h2 className="text-[11px] uppercase tracking-[0.22em] mb-6 font-bold">{category.title}</h2>
+              <div className="border-t border-black/10">
                 {category.items.map((item, itemIndex) => {
                   const itemId = `faq-${catIndex}-${itemIndex}`
                   const isActive = activeItems.includes(itemId)
                   return (
-                    <div
-                      key={itemIndex}
-                      className="border border-light-gray rounded-lg overflow-hidden"
-                    >
+                    <div key={itemIndex} className="border-b border-black/10">
                       <button
                         onClick={() => toggleItem(itemId)}
-                        className="w-full px-6 py-4 bg-white hover:bg-[#b8845c] text-left font-semibold text-[#b8845c] hover:text-white transition flex justify-between items-center border border-[#b8845c]"
+                        className="w-full py-5 text-left font-playfair text-lg font-light flex justify-between items-center gap-6"
                       >
                         <span>{item.question}</span>
-                        <span className={`transition-transform ${isActive ? 'rotate-180' : ''}`}>
+                        <span className={`text-sm transition-transform ${isActive ? 'rotate-180' : ''}`}>
                           ▼
                         </span>
                       </button>
                       {isActive && (
-                        <div className="px-6 py-4 bg-white text-gray-700 border-t border-light-gray">
+                        <div className="pb-6 text-[#1a1a1a]/70 font-light leading-relaxed">
                           {item.answer}
                         </div>
                       )}
@@ -112,17 +110,14 @@ export default function FAQ() {
             </section>
           ))}
 
-          {/* Contact Section */}
-          <section className="mt-16 bg-light-gray rounded-lg p-12 text-center">
-            <h2 className="text-3xl font-playfair font-bold text-primary-blue mb-4 uppercase">
-              Still Have Questions?
-            </h2>
-            <p className="text-lg text-gray-700 mb-8">
-              Can't find the answer you're looking for? Our customer service team is here to help!
+          <section className="mt-16 text-center py-12 border-t border-black/10">
+            <h2 className="text-3xl font-playfair font-light mb-4">Still Have Questions?</h2>
+            <p className="text-[#1a1a1a]/70 mb-8 font-light">
+              Can&apos;t find the answer you&apos;re looking for? Our customer service team is here to help!
             </p>
             <Link
               href="/contact"
-              className="inline-block px-8 py-3 bg-white text-[#b8845c] font-semibold rounded-lg border-2 border-[#b8845c] hover:bg-[#b8845c] hover:text-white transition"
+              className="inline-block px-10 py-3.5 border border-[#1a1a1a] text-[12px] uppercase tracking-[0.2em] hover:bg-[#1a1a1a] hover:text-white transition"
             >
               Contact Us
             </Link>

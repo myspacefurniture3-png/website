@@ -4,6 +4,10 @@ import { useState, FormEvent } from 'react'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
+const fieldClass =
+  'w-full px-0 py-3 text-base bg-transparent border-0 border-b border-black/20 focus:border-[#1a1a1a] focus:ring-0 outline-none text-[#1a1a1a] placeholder:text-[#1a1a1a]/40'
+const labelClass = 'block text-[11px] uppercase tracking-[0.18em] text-[#1a1a1a] mb-2'
+
 export default function ContactForm() {
   const [formData, setFormData] = useState({
     name: '',
@@ -28,7 +32,7 @@ export default function ContactForm() {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'Accept': 'application/json',
+          Accept: 'application/json',
         },
         body: JSON.stringify({
           access_key: '33a0d229-8224-4903-b708-cccc64f2ade7',
@@ -40,7 +44,6 @@ export default function ContactForm() {
         }),
       })
       const result = await response.json()
-      console.log('Web3Forms result:', result)
       if (result.success) {
         setStatus('success')
         setFormData({ name: '', email: '', countryCode: '+1', phone: '', subject: '', message: '' })
@@ -58,16 +61,11 @@ export default function ContactForm() {
   if (status === 'success') {
     return (
       <div className="text-center py-12">
-        <div className="w-16 h-16 bg-white/20 rounded-full flex items-center justify-center mx-auto mb-6">
-          <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M4.5 12.75l6 6 9-13.5" />
-          </svg>
-        </div>
-        <h3 className="text-2xl font-playfair font-bold text-white mb-3">Message Sent!</h3>
-        <p className="text-[#ebebeb] mb-6">Thank you for reaching out. We&apos;ll get back to you within 24 hours.</p>
+        <h3 className="text-2xl font-playfair font-light text-[#1a1a1a] mb-3">Message Sent</h3>
+        <p className="text-[#1a1a1a]/70 mb-6 font-light">Thank you for reaching out. We&apos;ll get back to you within 24 hours.</p>
         <button
           onClick={() => setStatus('idle')}
-          className="px-6 py-2.5 border border-white/40 text-white text-sm uppercase tracking-widest hover:bg-white hover:text-[#b8845c] transition-all duration-300"
+          className="px-8 py-3 border border-[#1a1a1a] text-[11px] uppercase tracking-[0.18em] hover:bg-[#1a1a1a] hover:text-white transition"
         >
           Send Another Message
         </button>
@@ -76,74 +74,72 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-6">
       <div>
-        <label className="block text-base font-semibold text-[#ebebeb] mb-3">Name *</label>
+        <label className={labelClass}>Name *</label>
         <input
           type="text"
           required
           value={formData.name}
           onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-          className="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b8845c] focus:border-transparent outline-none text-black"
+          className={fieldClass}
           placeholder="Your name"
         />
       </div>
       <div>
-        <label className="block text-base font-semibold text-[#ebebeb] mb-3">Email *</label>
+        <label className={labelClass}>Email *</label>
         <input
           type="email"
           required
           value={formData.email}
           onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-          className="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b8845c] focus:border-transparent outline-none text-black"
+          className={fieldClass}
           placeholder="your@email.com"
         />
       </div>
       <div>
-        <label className="block text-base font-semibold text-[#ebebeb] mb-3">Phone *</label>
+        <label className={labelClass}>Phone *</label>
         <PhoneInput
           country={'us'}
           value={formData.phone}
-          onChange={phone => setFormData({ ...formData, phone })}
-          inputClass="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b8845c] focus:border-transparent outline-none text-black"
-          buttonClass="bg-white"
+          onChange={(phone) => setFormData({ ...formData, phone })}
+          inputClass="!w-full !bg-transparent !border-0 !border-b !border-black/20 !rounded-none !text-[#1a1a1a]"
+          buttonClass="!bg-transparent !border-0 !border-b !border-black/20"
           dropdownClass="bg-white text-black"
           inputProps={{ required: true, name: 'phone', autoFocus: false }}
           enableSearch
         />
       </div>
       <div>
-        <label className="block text-base font-semibold text-[#ebebeb] mb-3">Subject</label>
+        <label className={labelClass}>Subject</label>
         <input
           type="text"
           value={formData.subject}
           onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-          className="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b8845c] focus:border-transparent outline-none text-black"
+          className={fieldClass}
           placeholder="Subject"
         />
       </div>
       <div>
-        <label className="block text-base font-semibold text-[#ebebeb] mb-3">Message *</label>
+        <label className={labelClass}>Message *</label>
         <textarea
           rows={5}
           required
           value={formData.message}
           onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-          className="w-full px-4 py-3 text-lg border border-gray-300 rounded-lg focus:ring-2 focus:ring-[#b8845c] focus:border-transparent outline-none resize-none text-black"
+          className={`${fieldClass} resize-none`}
           placeholder="Your message..."
         />
       </div>
 
       {status === 'error' && (
-        <div className="p-3 bg-red-500/20 border border-red-400/30 rounded-lg text-white text-sm">
-          {errorMsg}
-        </div>
+        <div className="text-sm text-red-700">{errorMsg}</div>
       )}
 
       <button
         type="submit"
         disabled={status === 'sending'}
-        className="w-full px-6 py-3 bg-white text-[#b8845c] font-semibold rounded-lg hover:bg-[#ebebeb] transition font-playfair uppercase disabled:opacity-60 disabled:cursor-not-allowed"
+        className="w-full px-6 py-3.5 border border-[#1a1a1a] text-[12px] uppercase tracking-[0.2em] hover:bg-[#1a1a1a] hover:text-white transition disabled:opacity-60 disabled:cursor-not-allowed"
       >
         {status === 'sending' ? 'Sending...' : 'Send Message'}
       </button>

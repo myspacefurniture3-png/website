@@ -1,0 +1,32 @@
+export type GalleryItem = {
+  src: string
+  alt: string
+}
+
+export type Category = {
+  _id?: string
+  title: string
+  navLabel: string
+  slug: string
+  subtitle: string
+  heroImage: string
+  menuImage: string
+  order: number
+  showInNav: boolean
+  gallery: GalleryItem[]
+}
+
+export type Post = {
+  _id?: string
+  title: string
+  slug: string
+  excerpt: string
+  coverImage: string
+  category: string
+  date: string
+  publishedAt?: string
+  readTime: string
+  author: string
+  content: string
+  body?: unknown[]
+}

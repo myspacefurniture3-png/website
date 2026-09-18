@@ -5,6 +5,8 @@ import WhatsAppChat from '@/components/WhatsAppChat';
 import GoogleAnalytics from '@/components/GoogleAnalytics';
 import ScrollToTop from '@/components/ScrollToTop';
 import PWAInstallPrompt from '@/components/PWAInstallPrompt';
+import { CategoriesProvider } from '@/components/CategoriesProvider';
+import { getCategories } from '@/sanity/fetch';
 
 
 export const metadata: Metadata = {
@@ -42,11 +44,15 @@ export const viewport = {
   initialScale: 1,
 }
 
-export default function RootLayout({
+export const revalidate = 60
+
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode
 }) {
+  const categories = await getCategories()
+
   return (
     <html lang="en">
       <head>
@@ -57,8 +63,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Mulish:wght@400;600;700&display=swap" rel="stylesheet" />
-        <meta name="theme-color" content="#b8845c" />
-        {/* Google Translate scripts removed as requested */}
+        <meta name="theme-color" content="#f8f6f3" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="My Space Furniture" />
@@ -81,14 +86,15 @@ export default function RootLayout({
             }),
           }}
         />
-        {/* Google Analytics now loaded conditionally in body via component */}
       </head>
-      <body className="bg-white text-[#ebebeb] font-playfair">
-        <GoogleAnalytics />
-        <PWAInstallPrompt />
-        {children}
-        <WhatsAppChat />
-        <ScrollToTop />
+      <body className="bg-[#f8f6f3] text-[#1a1a1a] font-playfair">
+        <CategoriesProvider categories={categories}>
+          <GoogleAnalytics />
+          <PWAInstallPrompt />
+          {children}
+          <WhatsAppChat />
+          <ScrollToTop />
+        </CategoriesProvider>
       </body>
     </html>
   )
