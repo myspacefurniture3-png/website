@@ -1,5 +1,7 @@
 'use client'
 
+import React from 'react'
+
 const SITE = 'https://www.celestialwebsolutions.net'
 const CONTACTS = [
   { label: 'Website', value: 'celestialwebsolutions.net', href: SITE },
@@ -7,6 +9,15 @@ const CONTACTS = [
   { label: 'Phone', value: '+233 53 050 5031', href: 'tel:+233530505031' },
   { label: 'WhatsApp', value: '+233 245 709 341', href: 'https://wa.me/233245709341' },
 ]
+
+export function SupportIcon() {
+  return (
+    <svg viewBox="0 0 25 25" fill="none" stroke="currentColor" strokeWidth="1.2">
+      <circle cx="12.5" cy="12.5" r="8.25" />
+      <path d="M12.5 11.2v5.3M12.5 8.2v.8" />
+    </svg>
+  )
+}
 
 export default function SupportTool() {
   return (

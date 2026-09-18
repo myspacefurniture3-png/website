@@ -89,7 +89,7 @@ export const post = defineType({
       initialValue: true,
     }),
     defineField({ name: 'publishedAt', title: 'Published at', type: 'datetime', group: 'display' }),
-    defineField({ name: 'readTime', title: 'Read time', type: 'string', group: 'display', placeholder: '8 min read' }),
+    defineField({ name: 'readTime', title: 'Read time', type: 'string', group: 'display' }),
     defineField({
       name: 'author',
       title: 'Author',
