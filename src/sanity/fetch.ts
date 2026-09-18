@@ -1,6 +1,7 @@
 import { client } from './client'
 import { categoriesQuery, categoryBySlugQuery, postBySlugQuery, postsQuery } from './queries'
 import { FALLBACK_CATEGORIES } from '@/lib/fallbackCategories'
+import { filterAvailableImages, publicImageExists } from '@/lib/publicImages'
 import { blogs } from '@/data/blogs'
 import type { Category, Post } from '@/lib/types'
 
@@ -14,11 +15,11 @@ function normalizeCategory(item: Category): Category {
     ...item,
     navLabel: item.navLabel || item.title,
     subtitle: item.subtitle || '',
-    heroImage: item.heroImage || item.menuImage || '',
-    menuImage: item.menuImage || item.heroImage || '',
+    heroImage: [item.heroImage, item.menuImage].find((src) => src && publicImageExists(src)) || '',
+    menuImage: [item.menuImage, item.heroImage].find((src) => src && publicImageExists(src)) || '',
     order: item.order ?? 0,
     showInNav: item.showInNav !== false,
-    gallery: (item.gallery || []).filter((entry) => entry?.src),
+    gallery: filterAvailableImages((item.gallery || []).filter((entry) => entry?.src)),
   }
 }
 
@@ -33,7 +34,9 @@ function formatPost(post: Post): Post {
   return {
     ...post,
     date: date || '',
-    coverImage: post.coverImage || '',
+    coverImage: post.coverImage && publicImageExists(post.coverImage)
+      ? post.coverImage
+      : '/products/loveseat (9).jpeg',
     content: post.content || '',
     body: post.body || [],
     author: post.author || 'My Space Furniture',
@@ -50,7 +53,7 @@ export async function getCategories(): Promise<Category[]> {
   } catch (error) {
     console.error('Sanity categories fetch failed, using fallback', error)
   }
-  return FALLBACK_CATEGORIES
+  return FALLBACK_CATEGORIES.map(normalizeCategory)
 }
 
 export async function getCategoryBySlug(slug: string): Promise<Category | null> {
@@ -60,7 +63,8 @@ export async function getCategoryBySlug(slug: string): Promise<Category | null> 
   } catch (error) {
     console.error('Sanity category fetch failed, using fallback', error)
   }
-  return FALLBACK_CATEGORIES.find((item) => item.slug === slug) || null
+  const fallback = FALLBACK_CATEGORIES.find((item) => item.slug === slug)
+  return fallback ? normalizeCategory(fallback) : null
 }
 
 export async function getPosts(): Promise<Post[]> {

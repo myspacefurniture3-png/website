@@ -53,7 +53,6 @@ export default function Financing() {
       <PageHeader
         title="Flexible Financing"
         subtitle="Make your furniture purchase affordable with our financing options"
-        heroImage="/images/heroes/financing-hero.webp"
         kicker="Services"
       />
 

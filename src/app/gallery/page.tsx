@@ -8,15 +8,11 @@ export const metadata = {
 }
 
 const images = [
-  { src: '/images/heroes/gallery-hero.webp', alt: 'Gallery' },
-  ...Array.from({ length: 84 }, (_, i) => `/products/gallery/gallery-${i + 1}.webp`),
-  '/products/gallery/gallery (1).jpeg',
-  '/products/gallery/gallery (2).jpeg',
-  '/products/gallery/gallery (3).jpeg',
-  '/products/gallery/gallery (4).jpeg',
-  '/products/gallery/gallery (5).jpeg',
-  '/products/gallery/gallery (6).jpeg',
-].map((src) => (typeof src === 'string' ? { src, alt: 'Gallery' } : src))
+  { src: '/products/gallery/gallery (1).jpeg', alt: 'Vanity' },
+  { src: '/products/gallery/gallery (2).jpeg', alt: 'Living room' },
+  { src: '/products/gallery/gallery (5).jpeg', alt: 'Bedroom set' },
+  { src: '/products/gallery/gallery (6).jpeg', alt: 'Sectional' },
+]
 
 export default function Gallery() {
   return (

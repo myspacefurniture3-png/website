@@ -23,7 +23,6 @@ export default function Contact() {
       <PageHeader
         title="Contact Us"
         subtitle="We'd love to hear from you. Reach out with any questions or inquiries."
-        heroImage="/images/heroes/contact-hero.jpg"
         kicker="Visit"
         compact
       />

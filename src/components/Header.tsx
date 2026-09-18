@@ -14,7 +14,7 @@ const menuSections = [
   {
     title: 'Our Products',
     href: '/loveseats',
-    image: '/products/sofa.webp',
+    image: '/products/loveseat (2).jpeg',
     links: [
       { href: '/loveseats', label: 'Sofas & Loveseats' },
       { href: '/leather-sectionals', label: 'Leather Sectionals' },
@@ -37,7 +37,7 @@ const menuSections = [
   {
     title: 'Our Services',
     href: '/custom-furniture',
-    image: '/products/custom-furniture/custom (1).jpeg',
+    image: '/products/custom-furniture/custom-new (1).jpeg',
     links: [
       { href: '/custom-furniture', label: 'Custom Furniture' },
       { href: '/financing', label: 'Financing' },
@@ -47,7 +47,7 @@ const menuSections = [
   {
     title: 'Our Spaces',
     href: '/bedroom-sets',
-    image: '/products/bedroom.webp',
+    image: '/products/gallery/gallery (5).jpeg',
     links: [
       { href: '/loveseats', label: 'Living' },
       { href: '/bedroom-sets', label: 'Bedroom' },
@@ -80,7 +80,7 @@ export default function Header({ transparent = false }: HeaderProps) {
     {
       title: 'Our Products',
       href: shopLinks[0]?.href || '/loveseats',
-      image: categories[0]?.menuImage || '/products/sofa.webp',
+      image: categories[0]?.menuImage || '/products/loveseat (2).jpeg',
       links: productLinks,
     },
     ...menuSections.slice(1),
@@ -140,21 +140,22 @@ export default function Header({ transparent = false }: HeaderProps) {
     setSearchOpen(true);
   };
 
+  const line = isTransparent ? 'bg-white' : 'bg-[#1a1a1a]';
+  const linkClass = `hidden md:inline text-[10px] lg:text-[11px] uppercase tracking-[0.22em] font-sans font-normal hover:opacity-60 ${iconClass}`;
+
   return (
     <>
       <header
         className={`w-full z-[60] relative ${
           transparent ? 'absolute top-0 left-0 right-0' : ''
-        } ${
-          isTransparent
-            ? 'bg-transparent'
-            : 'bg-[#f8f6f3] border-b border-black/10'
-        }`}
+        } ${isTransparent ? 'bg-transparent' : 'bg-[#f8f6f3]'}`}
       >
-        <div className="flex items-center justify-between h-[96px] sm:h-[112px] lg:h-[140px] px-5 sm:px-8 lg:px-12">
-          <div className="flex items-center flex-1">
+        <div className={`relative flex items-center justify-between h-14 sm:h-16 lg:h-[68px] px-4 sm:px-8 lg:px-10 ${
+          isTransparent ? 'border-b border-white/25' : 'border-b border-black/10'
+        }`}>
+          <div className="flex items-center gap-5 flex-1">
             <button
-              className="p-2 -ml-2"
+              className="p-1"
               onClick={() => {
                 setSearchOpen(false);
                 setMenuOpen(true);
@@ -162,45 +163,42 @@ export default function Header({ transparent = false }: HeaderProps) {
               aria-label="Open menu"
               aria-expanded={menuOpen}
             >
-              <div className="flex flex-col gap-[5px]">
-                <span className={`block w-5 h-[1px] transition-colors duration-500 ${isTransparent ? 'bg-white' : 'bg-[#1a1a1a]'}`} />
-                <span className={`block w-5 h-[1px] transition-colors duration-500 ${isTransparent ? 'bg-white' : 'bg-[#1a1a1a]'}`} />
-                <span className={`block w-5 h-[1px] transition-colors duration-500 ${isTransparent ? 'bg-white' : 'bg-[#1a1a1a]'}`} />
+              <div className="flex flex-col gap-[6px]">
+                <span className={`block w-5 h-px ${line}`} />
+                <span className={`block w-5 h-px ${line}`} />
               </div>
+            </button>
+            <button
+              onClick={openSearch}
+              className={`${iconClass} p-1`}
+              aria-label="Search"
+              aria-expanded={searchOpen}
+            >
+              <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.3" viewBox="0 0 24 24">
+                <circle cx="11" cy="11" r="7" />
+                <path strokeLinecap="round" d="M20 20l-3-3" />
+              </svg>
             </button>
           </div>
 
-          <Link href="/" className="flex-shrink-0">
+          <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex-shrink-0">
             <Image
               src="/logo.png"
               alt="My Space Furniture"
-              width={280}
-              height={100}
-              className={`h-20 sm:h-28 lg:h-32 xl:h-36 w-auto object-contain transition-all duration-500 ${
+              width={180}
+              height={56}
+              className={`h-9 sm:h-10 lg:h-11 w-auto object-contain ${
                 isTransparent ? 'brightness-0 invert' : ''
               }`}
               priority
             />
           </Link>
 
-          <div className="flex items-center justify-end gap-3 sm:gap-5 flex-1">
-            <button
-              onClick={openSearch}
-              className={`${iconClass} transition-colors duration-500 p-1`}
-              aria-label="Search"
-              aria-expanded={searchOpen}
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.4" viewBox="0 0 24 24">
-                <circle cx="11" cy="11" r="7" />
-                <path strokeLinecap="round" d="M20 20l-3-3" />
-              </svg>
-            </button>
-            <a
-              href="tel:+19166611073"
-              className={`${iconClass} transition-colors duration-500 p-1 hidden sm:block`}
-              aria-label="Call us"
-            >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.4" viewBox="0 0 24 24">
+          <div className="flex items-center justify-end gap-5 lg:gap-7 flex-1">
+            <Link href="/about" className={linkClass}>Showroom</Link>
+            <Link href="/contact" className={linkClass}>Contact</Link>
+            <a href="tel:+19166611073" className={`${iconClass} p-1`} aria-label="Call us">
+              <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" strokeWidth="1.3" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
               </svg>
             </a>
@@ -208,8 +206,8 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         <nav
-          className={`hidden lg:flex items-center justify-center gap-6 xl:gap-8 pb-4 transition-colors duration-500 ${
-            isTransparent ? 'text-white/80' : 'text-[#1a1a1a]'
+          className={`hidden lg:flex items-center justify-center flex-wrap gap-x-5 xl:gap-x-7 gap-y-2 px-6 py-3 ${
+            isTransparent ? 'text-white' : 'text-[#1a1a1a]'
           }`}
           aria-label="Shop categories"
         >
@@ -219,27 +217,21 @@ export default function Header({ transparent = false }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative text-[12px] xl:text-[13px] uppercase tracking-[0.2em] font-normal font-sans transition-opacity duration-300 hover:opacity-100 ${
-                  active ? 'opacity-100' : 'opacity-70'
+                className={`text-[10px] xl:text-[11px] uppercase tracking-[0.2em] font-sans font-normal hover:opacity-100 ${
+                  active ? 'opacity-100' : 'opacity-80'
                 }`}
               >
                 {item.label}
-                <span
-                  className={`absolute left-0 -bottom-1 h-px w-full transition-opacity duration-300 ${
-                    isTransparent ? 'bg-white' : 'bg-[#1a1a1a]'
-                  } ${active ? 'opacity-100' : 'opacity-0'}`}
-                />
               </Link>
             );
           })}
         </nav>
-      </header>
 
-      <div
-        className={`absolute inset-x-0 top-full z-[60] bg-[#f8f6f3] border-b border-black/10 transition-all duration-300 ${
-          searchOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
-        }`}
-      >
+        <div
+          className={`absolute inset-x-0 top-full z-[61] bg-[#f8f6f3] border-b border-black/10 transition-all duration-300 ${
+            searchOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
+          }`}
+        >
         <div className="max-w-2xl mx-auto px-6 py-8">
           <div className="flex items-center gap-4 border-b border-black/20 pb-3">
             <svg className="w-5 h-5 text-[#1a1a1a] flex-shrink-0" fill="none" stroke="currentColor" strokeWidth="1.4" viewBox="0 0 24 24">
@@ -280,6 +272,7 @@ export default function Header({ transparent = false }: HeaderProps) {
           </ul>
         </div>
       </div>
+      </header>
       {searchOpen && (
         <div
           className="fixed inset-0 z-[55] bg-black/20"
@@ -376,7 +369,7 @@ export default function Header({ transparent = false }: HeaderProps) {
           menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        <div className="relative flex items-center justify-between h-[96px] sm:h-[112px] lg:h-[140px] px-5 sm:px-8 lg:px-12 shrink-0">
+        <div className="relative flex items-center justify-between h-14 sm:h-16 lg:h-[68px] px-4 sm:px-8 lg:px-10 shrink-0 border-b border-black/10">
           <div className="flex items-center gap-4 flex-1">
             <button
               onClick={() => setMenuOpen(false)}
@@ -405,7 +398,7 @@ export default function Header({ transparent = false }: HeaderProps) {
               alt="My Space Furniture"
               width={200}
               height={70}
-              className="h-20 sm:h-28 lg:h-32 w-auto object-contain"
+              className="h-9 sm:h-10 lg:h-11 w-auto object-contain"
             />
           </Link>
 
@@ -413,14 +406,14 @@ export default function Header({ transparent = false }: HeaderProps) {
             <Link
               href="/custom-furniture"
               onClick={() => setMenuOpen(false)}
-              className="hidden md:block text-[11px] font-sans font-normal uppercase tracking-[0.2em] text-[#1a1a1a] hover:opacity-50"
+              className="hidden md:block text-[10px] font-sans font-normal uppercase tracking-[0.22em] text-[#1a1a1a] hover:opacity-50"
             >
               Custom
             </Link>
             <Link
               href="/gallery"
               onClick={() => setMenuOpen(false)}
-              className="hidden md:block text-[11px] font-sans font-normal uppercase tracking-[0.2em] text-[#1a1a1a] hover:opacity-50"
+              className="hidden md:block text-[10px] font-sans font-normal uppercase tracking-[0.22em] text-[#1a1a1a] hover:opacity-50"
             >
               Gallery
             </Link>
@@ -433,7 +426,7 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         <nav
-          className="hidden lg:flex items-center justify-center gap-6 xl:gap-8 pb-5 px-8 text-[#1a1a1a] shrink-0"
+          className="hidden lg:flex items-center justify-center flex-wrap gap-x-5 xl:gap-x-7 gap-y-2 px-8 py-3 text-[#1a1a1a] shrink-0"
           aria-label="Shop categories"
         >
           {shopLinks.map((item) => (
@@ -441,7 +434,7 @@ export default function Header({ transparent = false }: HeaderProps) {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className={`text-[12px] xl:text-[13px] uppercase tracking-[0.2em] font-sans font-normal transition-opacity duration-300 hover:opacity-50 ${
+              className={`text-[10px] xl:text-[11px] uppercase tracking-[0.2em] font-sans font-normal transition-opacity duration-300 hover:opacity-50 ${
                 pathname === item.href ? 'opacity-100' : 'opacity-80'
               }`}
             >

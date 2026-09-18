@@ -3,6 +3,7 @@ import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import CategoryGallery from '@/components/CategoryGallery'
 import { getCategories, getCategoryBySlug } from '@/sanity/fetch'
+import { filterAvailableImages } from '@/lib/publicImages'
 
 export const revalidate = 60
 
@@ -39,12 +40,15 @@ export default async function CategoryPage({ params }: { params: { slug: string 
   const category = await getCategoryBySlug(params.slug)
   if (!category) notFound()
 
-  const images = [
-    ...(category.heroImage && !category.gallery.some((item) => item.src === category.heroImage)
-      ? [{ src: category.heroImage, alt: category.title }]
-      : []),
-    ...category.gallery,
-  ]
+  const images = filterAvailableImages(
+    [
+      ...(category.heroImage && !category.gallery.some((item) => item.src === category.heroImage)
+        ? [{ src: category.heroImage, alt: category.title }]
+        : []),
+      ...category.gallery,
+    ],
+    12
+  )
 
   return (
     <>

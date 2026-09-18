@@ -74,7 +74,6 @@ export default function FAQ() {
       <PageHeader
         title="Frequently Asked Questions"
         subtitle="Find answers to common questions about our products and services"
-        heroImage="/images/heroes/faq-hero.webp"
         kicker="Help"
       />
 

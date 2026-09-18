@@ -426,7 +426,7 @@ export const blogs: Blog[] = [
     title: "How to Care for Wood Furniture: Keep It Beautiful for Decades",
     excerpt:
       "A quality wood piece is a long-term investment. With the right care habits, it will outlast trends, moves, and generations. Here's everything you need to know.",
-    coverImage: "/images/heroes/bedroom-sets-hero.webp",
+    coverImage: "/products/dinning-table (10).jpeg",
     category: "Care & Maintenance",
     date: "March 15, 2026",
     readTime: "10 min read",

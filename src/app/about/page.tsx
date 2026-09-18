@@ -21,7 +21,7 @@ export default function About() {
 
       <section className="relative w-full min-h-[60vh] md:min-h-[80vh] flex items-center justify-center overflow-hidden">
         <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover">
-          <source src="/videos/hero1.mp4" type="video/mp4" />
+          <source src="/videos/hero2.mp4" type="video/mp4" />
         </video>
         <div className="absolute inset-0 bg-black/50 z-10" />
         <div className="relative z-20 w-full flex flex-col items-center justify-center text-center px-4">
