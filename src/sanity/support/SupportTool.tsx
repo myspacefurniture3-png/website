@@ -55,7 +55,7 @@ export default function SupportTool() {
         </h1>
         <p style={{ fontSize: 16, lineHeight: 1.7, color: 'rgba(26,26,26,0.7)', fontWeight: 300, maxWidth: 560 }}>
           For help with this website — content, layout, or technical issues — contact the studio that built and
-          maintains My Space Furniture.
+          maintains Myy Space Furniture.
         </p>
 
         <div

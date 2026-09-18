@@ -30,22 +30,22 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/25 z-10 pointer-events-none" />
 
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white px-6 pointer-events-none">
-          <p className="text-[10px] md:text-[11px] uppercase tracking-[0.42em] font-sans mb-5 text-white/80">Roseville</p>
-          <h1 className="font-serif font-light leading-none tracking-[0.18em] text-[52px] md:text-[88px] lg:text-[104px]">
-            MY SPACE
+          <p className="text-[12px] md:text-[14px] uppercase tracking-[0.36em] font-sans mb-5 text-white/80">Roseville</p>
+          <h1 className="font-serif font-light leading-none tracking-[0.16em] text-[56px] md:text-[92px] lg:text-[112px]">
+            MYY SPACE
           </h1>
-          <p className="mt-4 text-[11px] md:text-[13px] uppercase tracking-[0.38em] font-serif font-light text-white/90">
+          <p className="mt-5 text-[16px] md:text-[22px] lg:text-[24px] uppercase tracking-[0.28em] font-serif font-light text-white/90">
             Furniture
           </p>
         </div>
 
-        <p className="absolute bottom-8 md:bottom-12 left-0 right-0 z-20 text-center px-6 text-[10px] md:text-[12px] uppercase tracking-[0.28em] text-white/85 font-sans">
+        <p className="absolute bottom-8 md:bottom-12 left-0 right-0 z-20 text-center px-6 text-[13px] md:text-[15px] uppercase tracking-[0.22em] text-white/85 font-sans">
           Premium furniture for every room in your home
         </p>
       </section>
 
       <section className="bg-[#f8f6f3] border-y border-black/10">
-        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8 text-[10px] uppercase tracking-[0.22em] text-[#1a1a1a]/70 font-sans">
+        <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-8 text-[12px] uppercase tracking-[0.18em] text-[#1a1a1a]/70 font-sans">
           <span>50% off select pieces</span>
           <span className="hidden sm:inline text-black/20">·</span>
           <span>Financing available</span>
@@ -67,9 +67,9 @@ export default function Home() {
             />
             <div className="absolute inset-0 bg-black/20" />
             <div className="relative z-10 h-full min-h-[52vh] md:min-h-[64vh] flex flex-col items-center justify-center text-center text-white px-6">
-              <p className="text-[10px] uppercase tracking-[0.36em] text-white/70 mb-4 font-sans">Bespoke</p>
-              <h2 className="text-4xl md:text-6xl font-serif font-light tracking-[0.16em]">CUSTOM</h2>
-              <p className="mt-3 text-[12px] uppercase tracking-[0.32em] font-serif font-light text-white/85">Furniture</p>
+              <p className="text-[12px] uppercase tracking-[0.3em] text-white/70 mb-4 font-sans">Bespoke</p>
+              <h2 className="text-5xl md:text-7xl font-serif font-light tracking-[0.14em]">CUSTOM</h2>
+              <p className="mt-3 text-[16px] md:text-[18px] uppercase tracking-[0.26em] font-serif font-light text-white/85">Furniture</p>
             </div>
           </Link>
 
@@ -94,10 +94,10 @@ export default function Home() {
                   <div className="absolute inset-0 bg-black/15 group-hover:bg-black/35 transition-all duration-500" />
                   <div className="absolute inset-0 flex items-end z-10">
                     <div className="w-full p-6 md:p-10">
-                      <p className="text-[10px] uppercase tracking-[0.28em] text-white/70 mb-2 font-sans">
+                      <p className="text-[12px] uppercase tracking-[0.22em] text-white/70 mb-2 font-sans">
                         Collection
                       </p>
-                      <h3 className="text-2xl md:text-4xl font-serif font-light text-white tracking-wide">
+                      <h3 className="text-3xl md:text-5xl font-serif font-light text-white tracking-wide">
                         {category.title}
                       </h3>
                     </div>
@@ -116,9 +116,9 @@ export default function Home() {
             <div className="absolute inset-0 bg-black/20" />
             <div className="absolute inset-0 flex items-center justify-center z-10">
               <div className="text-center text-white px-6">
-                <p className="text-[10px] uppercase tracking-[0.36em] text-white/70 mb-4 font-sans">Collection</p>
-                <h2 className="text-4xl md:text-6xl font-serif font-light tracking-[0.14em]">FABRIC</h2>
-                <p className="mt-3 text-[12px] uppercase tracking-[0.32em] font-serif font-light text-white/85">Selections</p>
+                <p className="text-[12px] uppercase tracking-[0.3em] text-white/70 mb-4 font-sans">Collection</p>
+                <h2 className="text-5xl md:text-7xl font-serif font-light tracking-[0.12em]">FABRIC</h2>
+                <p className="mt-3 text-[16px] md:text-[18px] uppercase tracking-[0.26em] font-serif font-light text-white/85">Selections</p>
               </div>
             </div>
           </Link>
@@ -127,8 +127,8 @@ export default function Home() {
         <section className="py-20 md:py-28 bg-[#f8f6f3]">
           <div className="max-w-6xl mx-auto px-6 lg:px-12">
             <div className="text-center mb-16">
-              <p className="text-[11px] uppercase tracking-[0.3em] text-[#1a1a1a]/50 mb-4 font-sans">The My Space Difference</p>
-              <h2 className="text-3xl md:text-4xl font-serif font-light text-[#1a1a1a] mb-4">
+              <p className="text-[12px] uppercase tracking-[0.26em] text-[#1a1a1a]/50 mb-4 font-sans">The Myy Space Difference</p>
+              <h2 className="text-4xl md:text-5xl font-serif font-light text-[#1a1a1a] mb-4">
                 Why Choose Us
               </h2>
             </div>
@@ -144,7 +144,7 @@ export default function Home() {
               ].map((feature) => (
                 <div key={feature.title} className="text-center">
                   <div className="w-10 h-px bg-[#1a1a1a]/30 mx-auto mb-6" />
-                  <h3 className="text-lg font-serif font-light text-[#1a1a1a] mb-3">{feature.title}</h3>
+                  <h3 className="text-xl font-serif font-light text-[#1a1a1a] mb-3">{feature.title}</h3>
                   <p className="text-sm text-[#1a1a1a]/60 leading-relaxed font-light">{feature.description}</p>
                 </div>
               ))}
@@ -156,7 +156,7 @@ export default function Home() {
 
         <section className="py-24 md:py-32 bg-[#f8f6f3] border-t border-black/10">
           <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="text-[11px] uppercase tracking-[0.3em] text-[#1a1a1a]/50 mb-6 font-sans">Visit</p>
+            <p className="text-[12px] uppercase tracking-[0.26em] text-[#1a1a1a]/50 mb-6 font-sans">Visit</p>
             <h2 className="text-3xl md:text-5xl font-serif font-light text-[#1a1a1a] mb-6 leading-tight">
               Ready to Transform Your Space?
             </h2>
@@ -166,13 +166,13 @@ export default function Home() {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/contact"
-                className="px-10 py-3.5 border border-[#1a1a1a] text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
+                className="px-10 py-3.5 border border-[#1a1a1a] text-[12px] uppercase tracking-[0.18em] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
               >
                 Get in Touch
               </Link>
               <Link
                 href="/financing"
-                className="px-10 py-3.5 border border-[#1a1a1a] text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
+                className="px-10 py-3.5 border border-[#1a1a1a] text-[12px] uppercase tracking-[0.18em] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition-all duration-300"
               >
                 Financing Options
               </Link>

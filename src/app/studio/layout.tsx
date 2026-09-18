@@ -4,7 +4,7 @@ export const dynamic = 'force-dynamic'
 export const revalidate = 0
 
 export const metadata: Metadata = {
-  title: 'Sanity Studio | My Space Furniture',
+  title: 'Sanity Studio | Myy Space Furniture',
   robots: 'noindex',
 }
 

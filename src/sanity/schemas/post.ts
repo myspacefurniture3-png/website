@@ -95,7 +95,7 @@ export const post = defineType({
       title: 'Author',
       type: 'string',
       group: 'display',
-      initialValue: 'My Space Furniture',
+      initialValue: 'Myy Space Furniture',
     }),
     defineField({
       name: 'featuredQuote',

@@ -16,9 +16,9 @@ export default function PageHeader({
     return (
       <section className="bg-[#f8f6f3] text-center px-6 pt-16 md:pt-24 pb-10 md:pb-14">
         {kicker && (
-          <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/50 mb-4 font-sans">{kicker}</p>
+          <p className="text-[12px] uppercase tracking-[0.22em] text-[#1a1a1a]/50 mb-4 font-sans">{kicker}</p>
         )}
-        <h1 className="font-serif text-4xl md:text-6xl font-light tracking-wide text-[#1a1a1a]">{title}</h1>
+        <h1 className="font-serif text-5xl md:text-7xl font-light tracking-wide text-[#1a1a1a]">{title}</h1>
         {subtitle && (
           <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/65 font-light leading-relaxed">
             {subtitle}
@@ -35,9 +35,9 @@ export default function PageHeader({
       <div className="absolute inset-0 bg-black/35" />
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         {kicker && (
-          <p className="text-[11px] uppercase tracking-[0.28em] text-white/70 mb-4">{kicker}</p>
+          <p className="text-[12px] uppercase tracking-[0.22em] text-white/70 mb-4">{kicker}</p>
         )}
-        <h1 className="font-serif text-4xl md:text-6xl font-light text-white tracking-wide">{title}</h1>
+        <h1 className="font-serif text-5xl md:text-7xl font-light text-white tracking-wide">{title}</h1>
         {subtitle && (
           <p className="mt-5 max-w-xl text-sm md:text-base text-white/80 font-light leading-relaxed">{subtitle}</p>
         )}

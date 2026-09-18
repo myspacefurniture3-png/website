@@ -17,9 +17,9 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = await getPostBySlug(params.slug)
-  if (!post) return { title: 'Journal | My Space Furniture' }
+  if (!post) return { title: 'Journal | Myy Space Furniture' }
   return {
-    title: `${post.seoTitle || post.title} | My Space Furniture`,
+    title: `${post.seoTitle || post.title} | Myy Space Furniture`,
     description: post.seoDescription || post.excerpt,
     openGraph: {
       title: post.seoTitle || post.title,

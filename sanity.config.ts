@@ -7,7 +7,7 @@ import SupportTool, { SupportIcon } from './src/sanity/support/SupportTool'
 
 export default defineConfig({
   name: 'my-space-furniture',
-  title: 'My Space Furniture',
+  title: 'Myy Space Furniture',
   projectId,
   dataset,
   basePath: '/studio',

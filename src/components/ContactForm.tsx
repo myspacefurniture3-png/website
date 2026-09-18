@@ -39,7 +39,7 @@ export default function ContactForm() {
           name: formData.name,
           email: formData.email,
           phone,
-          subject: formData.subject ? `My Space Furniture: ${formData.subject}` : `New Contact from ${formData.name}`,
+          subject: formData.subject ? `Myy Space Furniture: ${formData.subject}` : `New Contact from ${formData.name}`,
           message: formData.message,
         }),
       })

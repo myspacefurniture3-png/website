@@ -65,6 +65,23 @@ const utilityLinks = [
   { href: '/financing', label: 'Financing' },
 ];
 
+function BrandLogo({ invert = false, onClick }: { invert?: boolean; onClick?: () => void }) {
+  return (
+    <Link href="/" onClick={onClick} className="absolute left-1/2 -translate-x-1/2">
+      <span className="relative block h-[70px] w-[196px] sm:h-[84px] sm:w-[236px] lg:h-[96px] lg:w-[280px] overflow-hidden">
+        <Image
+          src="/logo.png"
+          alt="Myy Space Furniture"
+          fill
+          sizes="280px"
+          className={`object-contain scale-[1.72] ${invert ? 'brightness-0 invert' : ''}`}
+          priority
+        />
+      </span>
+    </Link>
+  );
+}
+
 export default function Header({ transparent = false }: HeaderProps) {
   const pathname = usePathname();
   const categories = useCategories();
@@ -141,7 +158,7 @@ export default function Header({ transparent = false }: HeaderProps) {
   };
 
   const line = isTransparent ? 'bg-white' : 'bg-[#1a1a1a]';
-  const linkClass = `hidden md:inline text-[10px] lg:text-[11px] uppercase tracking-[0.22em] font-sans font-normal hover:opacity-60 ${iconClass}`;
+  const linkClass = `hidden md:inline text-[12px] lg:text-[13px] uppercase tracking-[0.16em] font-sans font-normal hover:opacity-60 ${iconClass}`;
 
   return (
     <>
@@ -150,7 +167,7 @@ export default function Header({ transparent = false }: HeaderProps) {
           transparent ? 'absolute top-0 left-0 right-0' : ''
         } ${isTransparent ? 'bg-transparent' : 'bg-[#f8f6f3]'}`}
       >
-        <div className={`relative flex items-center justify-between h-14 sm:h-16 lg:h-[68px] px-4 sm:px-8 lg:px-10 ${
+        <div className={`relative flex items-center justify-between h-[84px] sm:h-[96px] lg:h-[108px] px-4 sm:px-8 lg:px-10 ${
           isTransparent ? 'border-b border-white/25' : 'border-b border-black/10'
         }`}>
           <div className="flex items-center gap-5 flex-1">
@@ -163,9 +180,9 @@ export default function Header({ transparent = false }: HeaderProps) {
               aria-label="Open menu"
               aria-expanded={menuOpen}
             >
-              <div className="flex flex-col gap-[6px]">
-                <span className={`block w-5 h-px ${line}`} />
-                <span className={`block w-5 h-px ${line}`} />
+              <div className="flex flex-col gap-[7px]">
+                <span className={`block w-6 h-[1.5px] ${line}`} />
+                <span className={`block w-6 h-[1.5px] ${line}`} />
               </div>
             </button>
             <button
@@ -174,31 +191,20 @@ export default function Header({ transparent = false }: HeaderProps) {
               aria-label="Search"
               aria-expanded={searchOpen}
             >
-              <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.3" viewBox="0 0 24 24">
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.3" viewBox="0 0 24 24">
                 <circle cx="11" cy="11" r="7" />
                 <path strokeLinecap="round" d="M20 20l-3-3" />
               </svg>
             </button>
           </div>
 
-          <Link href="/" className="absolute left-1/2 -translate-x-1/2 flex-shrink-0">
-            <Image
-              src="/logo.png"
-              alt="My Space Furniture"
-              width={180}
-              height={56}
-              className={`h-9 sm:h-10 lg:h-11 w-auto object-contain ${
-                isTransparent ? 'brightness-0 invert' : ''
-              }`}
-              priority
-            />
-          </Link>
+          <BrandLogo invert={isTransparent} />
 
           <div className="flex items-center justify-end gap-5 lg:gap-7 flex-1">
             <Link href="/about" className={linkClass}>Showroom</Link>
             <Link href="/contact" className={linkClass}>Contact</Link>
             <a href="tel:+19166611073" className={`${iconClass} p-1`} aria-label="Call us">
-              <svg className="w-[16px] h-[16px]" fill="none" stroke="currentColor" strokeWidth="1.3" viewBox="0 0 24 24">
+              <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.3" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z" />
               </svg>
             </a>
@@ -206,7 +212,7 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         <nav
-          className={`hidden lg:flex items-center justify-center flex-wrap gap-x-5 xl:gap-x-7 gap-y-2 px-6 py-3 ${
+          className={`hidden lg:flex items-center justify-center flex-wrap gap-x-6 xl:gap-x-8 gap-y-2 px-6 py-3.5 ${
             isTransparent ? 'text-white' : 'text-[#1a1a1a]'
           }`}
           aria-label="Shop categories"
@@ -217,7 +223,7 @@ export default function Header({ transparent = false }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-[10px] xl:text-[11px] uppercase tracking-[0.2em] font-sans font-normal hover:opacity-100 ${
+                className={`text-[13px] xl:text-[14px] uppercase tracking-[0.14em] font-sans font-normal hover:opacity-100 ${
                   active ? 'opacity-100' : 'opacity-80'
                 }`}
               >
@@ -320,7 +326,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                     <Link
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-center justify-between py-3.5 text-[14px] md:text-[15px] font-sans font-normal uppercase tracking-[0.18em] text-[#1a1a1a]"
+                      className="flex items-center justify-between py-3.5 text-[16px] md:text-[17px] font-sans font-normal uppercase tracking-[0.14em] text-[#1a1a1a]"
                     >
                       <span>{item.label}</span>
                       <svg className="w-4 h-4 text-[#1a1a1a]/70" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
@@ -333,7 +339,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                   <Link
                     href="/gallery"
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center justify-between py-3.5 text-[14px] md:text-[15px] font-sans font-normal uppercase tracking-[0.18em] text-[#1a1a1a]"
+                    className="flex items-center justify-between py-3.5 text-[16px] md:text-[17px] font-sans font-normal uppercase tracking-[0.14em] text-[#1a1a1a]"
                   >
                     <span>Gallery</span>
                     <svg className="w-4 h-4 text-[#1a1a1a]/70" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
@@ -350,7 +356,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                       <Link
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block py-3 text-[13px] md:text-[14px] font-sans font-normal uppercase tracking-[0.16em] text-[#1a1a1a]/80"
+                        className="block py-3 text-[15px] md:text-[16px] font-sans font-normal uppercase tracking-[0.14em] text-[#1a1a1a]/80"
                       >
                         {item.label}
                       </Link>
@@ -369,7 +375,7 @@ export default function Header({ transparent = false }: HeaderProps) {
           menuOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
         }`}
       >
-        <div className="relative flex items-center justify-between h-14 sm:h-16 lg:h-[68px] px-4 sm:px-8 lg:px-10 shrink-0 border-b border-black/10">
+        <div className="relative flex items-center justify-between h-[84px] sm:h-[96px] lg:h-[108px] px-4 sm:px-8 lg:px-10 shrink-0 border-b border-black/10">
           <div className="flex items-center gap-4 flex-1">
             <button
               onClick={() => setMenuOpen(false)}
@@ -392,28 +398,20 @@ export default function Header({ transparent = false }: HeaderProps) {
             </button>
           </div>
 
-          <Link href="/" onClick={() => setMenuOpen(false)} className="absolute left-1/2 -translate-x-1/2">
-            <Image
-              src="/logo.png"
-              alt="My Space Furniture"
-              width={200}
-              height={70}
-              className="h-9 sm:h-10 lg:h-11 w-auto object-contain"
-            />
-          </Link>
+          <BrandLogo onClick={() => setMenuOpen(false)} />
 
           <div className="flex items-center justify-end gap-6 flex-1">
             <Link
               href="/custom-furniture"
               onClick={() => setMenuOpen(false)}
-              className="hidden md:block text-[10px] font-sans font-normal uppercase tracking-[0.22em] text-[#1a1a1a] hover:opacity-50"
+              className="hidden md:block text-[12px] lg:text-[13px] font-sans font-normal uppercase tracking-[0.16em] text-[#1a1a1a] hover:opacity-50"
             >
               Custom
             </Link>
             <Link
               href="/gallery"
               onClick={() => setMenuOpen(false)}
-              className="hidden md:block text-[10px] font-sans font-normal uppercase tracking-[0.22em] text-[#1a1a1a] hover:opacity-50"
+              className="hidden md:block text-[12px] lg:text-[13px] font-sans font-normal uppercase tracking-[0.16em] text-[#1a1a1a] hover:opacity-50"
             >
               Gallery
             </Link>
@@ -426,7 +424,7 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         <nav
-          className="hidden lg:flex items-center justify-center flex-wrap gap-x-5 xl:gap-x-7 gap-y-2 px-8 py-3 text-[#1a1a1a] shrink-0"
+          className="hidden lg:flex items-center justify-center flex-wrap gap-x-6 xl:gap-x-8 gap-y-2 px-8 py-3.5 text-[#1a1a1a] shrink-0"
           aria-label="Shop categories"
         >
           {shopLinks.map((item) => (
@@ -434,7 +432,7 @@ export default function Header({ transparent = false }: HeaderProps) {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className={`text-[10px] xl:text-[11px] uppercase tracking-[0.2em] font-sans font-normal transition-opacity duration-300 hover:opacity-50 ${
+              className={`text-[13px] xl:text-[14px] uppercase tracking-[0.14em] font-sans font-normal transition-opacity duration-300 hover:opacity-50 ${
                 pathname === item.href ? 'opacity-100' : 'opacity-80'
               }`}
             >
@@ -461,7 +459,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                 <Link
                   href={section.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block font-serif text-[18px] lg:text-[22px] font-light uppercase tracking-[0.12em] text-[#1a1a1a] mb-4 hover:opacity-50"
+                  className="block font-serif text-[22px] lg:text-[26px] font-light uppercase tracking-[0.1em] text-[#1a1a1a] mb-4 hover:opacity-50"
                 >
                   {section.title}
                 </Link>
@@ -471,7 +469,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                       <Link
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="font-sans text-[14px] lg:text-[15px] font-light text-[#1a1a1a] hover:opacity-50 transition-opacity"
+                        className="font-sans text-[15px] lg:text-[16px] font-light text-[#1a1a1a] hover:opacity-50 transition-opacity"
                       >
                         {item.label}
                       </Link>
@@ -490,13 +488,13 @@ export default function Header({ transparent = false }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-[11px] sm:text-[12px] font-sans uppercase tracking-[0.16em] text-[#1a1a1a]/80 hover:text-[#1a1a1a] hover:underline underline-offset-4"
+                className="text-[12px] sm:text-[13px] font-sans uppercase tracking-[0.14em] text-[#1a1a1a]/80 hover:text-[#1a1a1a] hover:underline underline-offset-4"
               >
                 {item.label}
               </Link>
             ))}
           </div>
-          <p className="text-[11px] font-sans uppercase tracking-[0.16em] text-[#1a1a1a]/70">Roseville, CA</p>
+          <p className="text-[12px] font-sans uppercase tracking-[0.14em] text-[#1a1a1a]/70">Roseville, CA</p>
         </div>
       </div>
     </>

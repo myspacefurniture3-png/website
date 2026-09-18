@@ -31,8 +31,8 @@ export async function POST(req: NextRequest) {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
-        from_name: 'My Space Furniture Website',
-        subject: subject ? `My Space Furniture: ${subject}` : `New Contact from ${name}`,
+        from_name: 'Myy Space Furniture Website',
+        subject: subject ? `Myy Space Furniture: ${subject}` : `New Contact from ${name}`,
         name,
         email,
         phone: phone || 'Not provided',

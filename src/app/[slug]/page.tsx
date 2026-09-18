@@ -28,10 +28,10 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const category = await getCategoryBySlug(params.slug)
-  if (!category) return { title: 'Collection | My Space Furniture' }
+  if (!category) return { title: 'Collection | Myy Space Furniture' }
   return {
-    title: `${category.title} | My Space Furniture`,
-    description: category.subtitle || `Explore ${category.title} at My Space Furniture.`,
+    title: `${category.title} | Myy Space Furniture`,
+    description: category.subtitle || `Explore ${category.title} at Myy Space Furniture.`,
   }
 }
 
@@ -55,8 +55,8 @@ export default async function CategoryPage({ params }: { params: { slug: string 
       <Header />
       <main className="bg-[#f8f6f3]">
         <div className="text-center px-6 pt-16 md:pt-24 pb-10 md:pb-14">
-          <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/50 mb-4 font-sans">Collection</p>
-          <h1 className="font-serif text-4xl md:text-6xl font-light tracking-wide">{category.title}</h1>
+          <p className="text-[12px] uppercase tracking-[0.22em] text-[#1a1a1a]/50 mb-4 font-sans">Collection</p>
+          <h1 className="font-serif text-5xl md:text-7xl font-light tracking-wide">{category.title}</h1>
           {category.subtitle && (
             <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/65 font-light leading-relaxed">
               {category.subtitle}

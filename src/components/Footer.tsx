@@ -15,15 +15,15 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto px-6 sm:px-8 lg:px-14 py-16">
         <div className="flex justify-center pb-12">
           <Link href="/" className="inline-block">
-            <div className="w-64 h-24 relative">
-              <Image src="/logo.png" alt="My Space Furniture" fill className="object-contain" />
+            <div className="relative w-80 h-32 overflow-hidden">
+              <Image src="/logo.png" alt="Myy Space Furniture" fill className="object-contain scale-[1.55]" />
             </div>
           </Link>
         </div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12 pb-14">
           <div>
-            <h4 className="text-[11px] uppercase tracking-[0.22em] mb-6 font-bold">Collections</h4>
+            <h4 className="text-[13px] uppercase tracking-[0.18em] mb-6 font-bold">Collections</h4>
             <ul className="space-y-3">
               {categories.map((item) => (
                 <li key={item.slug}>
@@ -36,7 +36,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] uppercase tracking-[0.22em] mb-6 font-bold">Visit</h4>
+            <h4 className="text-[13px] uppercase tracking-[0.18em] mb-6 font-bold">Visit</h4>
             <ul className="space-y-3 text-sm text-[#1a1a1a]/70">
               <li>
                 <Link href="/about" className="hover:text-[#1a1a1a]">About Us</Link>
@@ -57,7 +57,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] uppercase tracking-[0.22em] mb-6 font-bold">Contact</h4>
+            <h4 className="text-[13px] uppercase tracking-[0.18em] mb-6 font-bold">Contact</h4>
             <ul className="space-y-3 text-sm text-[#1a1a1a]/70">
               <li>
                 <a href="tel:+19166611073" className="hover:text-[#1a1a1a]">(916) 661-1073</a>
@@ -82,7 +82,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="text-[11px] uppercase tracking-[0.22em] mb-6 font-bold">Follow</h4>
+            <h4 className="text-[13px] uppercase tracking-[0.18em] mb-6 font-bold">Follow</h4>
             <div className="flex gap-4 mb-8">
               <a href="https://www.facebook.com/Myyspacefurniture/" target="_blank" rel="noopener noreferrer" className="text-sm uppercase tracking-[0.16em] hover:opacity-50">Facebook</a>
               <a href="https://www.instagram.com/myyspacefurniture/" target="_blank" rel="noopener noreferrer" className="text-sm uppercase tracking-[0.16em] hover:opacity-50">Instagram</a>
@@ -94,7 +94,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-black/10 pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[12px] uppercase tracking-[0.16em] text-[#1a1a1a]/50">
-          <p>© {year} My Space Furniture</p>
+          <p>© {year} Myy Space Furniture</p>
           <Link href="/contact" className="hover:text-[#1a1a1a]">Contact</Link>
         </div>
       </div>

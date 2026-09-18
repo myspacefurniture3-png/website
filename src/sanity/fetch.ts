@@ -40,7 +40,7 @@ function formatPost(post: Post): Post {
       : '/products/loveseat (9).jpeg',
     content: post.content || '',
     body: post.body || [],
-    author: post.author || 'My Space Furniture',
+    author: post.author || 'Myy Space Furniture',
     readTime: post.readTime || '',
     category: post.category || 'Journal',
     kicker: post.kicker || '',

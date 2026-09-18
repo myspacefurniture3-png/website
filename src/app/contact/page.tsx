@@ -6,11 +6,11 @@ import GoogleReviews from '@/components/GoogleReviews'
 import ContactForm from '@/components/ContactForm'
 
 export const metadata: Metadata = {
-  title: 'Contact My Space Furniture | Get in Touch',
-  description: "Contact My Space Furniture for inquiries, support, or to schedule a showroom visit. We're here to help with all your furniture needs.",
+  title: 'Contact Myy Space Furniture | Get in Touch',
+  description: "Contact Myy Space Furniture for inquiries, support, or to schedule a showroom visit. We're here to help with all your furniture needs.",
   keywords: 'contact us, furniture store contact, customer service, showroom',
   openGraph: {
-    title: 'Contact My Space Furniture',
+    title: 'Contact Myy Space Furniture',
     description: 'Get in touch with our furniture experts',
     type: 'website',
   },

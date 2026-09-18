@@ -40,7 +40,7 @@ const faqCategories: FAQCategory[] = [
     items: [
       {
         question: 'What brands of furniture and mattresses do you sell?',
-        answer: 'My Space Furniture offers top-quality furniture and mattresses. We carry premium brands including Sealy, Beauty Rest, Sapphire, and others at amazing prices! According to consumer research, 81% of consumers ranked quality as the top factor in furniture purchases. We match prices too, ensuring you get the best value for premium quality furniture.',
+        answer: 'Myy Space Furniture offers top-quality furniture and mattresses. We carry premium brands including Sealy, Beauty Rest, Sapphire, and others at amazing prices! According to consumer research, 81% of consumers ranked quality as the top factor in furniture purchases. We match prices too, ensuring you get the best value for premium quality furniture.',
       },
     ],
   },

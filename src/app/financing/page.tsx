@@ -5,11 +5,11 @@ import PageHeader from '@/components/PageHeader'
 import Link from 'next/link'
 
 export const metadata: Metadata = {
-  title: 'Flexible Financing Options | My Space Furniture',
-  description: 'Explore financing options at My Space Furniture. Flexible payment plans, special rates, and easy approvals for your furniture purchase.',
+  title: 'Flexible Financing Options | Myy Space Furniture',
+  description: 'Explore financing options at Myy Space Furniture. Flexible payment plans, special rates, and easy approvals for your furniture purchase.',
   keywords: 'financing, payment plans, flexible payments, furniture financing',
   openGraph: {
-    title: 'Financing Options - My Space Furniture',
+    title: 'Financing Options - Myy Space Furniture',
     description: 'Make your furniture purchase affordable with flexible financing',
     type: 'website',
   },
@@ -61,7 +61,7 @@ export default function Financing() {
           <section className="text-center mb-16">
             <h2 className="text-3xl font-playfair font-light mb-6">Flexible Payment Options</h2>
             <p className="text-lg text-[#1a1a1a]/70 max-w-3xl mx-auto font-light">
-              At My Space Furniture, we offer various flexible payment options. Choose the best option for your needs and make your furniture purchase affordable today!
+              At Myy Space Furniture, we offer various flexible payment options. Choose the best option for your needs and make your furniture purchase affordable today!
             </p>
           </section>
 

@@ -7,8 +7,8 @@ import { getPosts } from '@/sanity/fetch'
 export const revalidate = 60
 
 export const metadata = {
-  title: 'Journal | My Space Furniture',
-  description: 'Furniture buying guides, interior design trends, and home styling tips from My Space Furniture in Roseville, CA.',
+  title: 'Journal | Myy Space Furniture',
+  description: 'Furniture buying guides, interior design trends, and home styling tips from Myy Space Furniture in Roseville, CA.',
 }
 
 export default async function BlogIndex() {
@@ -19,8 +19,8 @@ export default async function BlogIndex() {
       <Header />
       <main className="min-h-screen bg-[#f8f6f3]">
         <section className="px-6 pt-16 md:pt-24 pb-12 md:pb-16 text-center">
-          <p className="uppercase tracking-[0.28em] text-[11px] mb-4 text-[#1a1a1a]/50 font-sans">Journal</p>
-          <h1 className="font-serif text-4xl md:text-6xl font-light text-[#1a1a1a] tracking-wide">Stories for the home</h1>
+          <p className="uppercase tracking-[0.22em] text-[12px] mb-4 text-[#1a1a1a]/50 font-sans">Journal</p>
+          <h1 className="font-serif text-5xl md:text-7xl font-light text-[#1a1a1a] tracking-wide">Stories for the home</h1>
           <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/65 font-light leading-relaxed">
             Buying guides, styling notes, and care from the Roseville showroom.
           </p>

@@ -4,11 +4,11 @@ import Footer from '@/components/Footer'
 import Typewriter from '@/components/Typewriter'
 
 export const metadata: Metadata = {
-  title: 'About My Space Furniture | Quality Furniture Since 2016',
-  description: 'My Space Furniture provides premium mattresses and furniture to Roseville, Sacramento, Davis, Chico, and Yuba City, CA. We offer mattresses, bedroom sets, sectionals, sofas, dining room furniture, and custom pieces.',
+  title: 'About Myy Space Furniture | Quality Furniture Since 2016',
+  description: 'Myy Space Furniture provides premium mattresses and furniture to Roseville, Sacramento, Davis, Chico, and Yuba City, CA. We offer mattresses, bedroom sets, sectionals, sofas, dining room furniture, and custom pieces.',
   keywords: 'furniture store, mattresses, bedroom sets, sectionals, dining room furniture, Roseville, Sacramento',
   openGraph: {
-    title: 'About My Space Furniture',
+    title: 'About Myy Space Furniture',
     description: 'Premium furniture and mattress retailer serving Northern California',
     type: 'website',
   },
@@ -26,7 +26,7 @@ export default function About() {
         <div className="absolute inset-0 bg-black/50 z-10" />
         <div className="relative z-20 w-full flex flex-col items-center justify-center text-center px-4">
           <p className="text-[11px] uppercase tracking-[0.28em] text-white/70 mb-4">Our Showroom</p>
-          <h1 className="text-3xl md:text-5xl font-playfair font-light text-white mb-4 tracking-wide">My Space Furniture</h1>
+          <h1 className="text-3xl md:text-5xl font-playfair font-light text-white mb-4 tracking-wide">Myy Space Furniture</h1>
           <span className="text-lg md:text-2xl font-playfair font-light text-white/90 mb-6">
             <Typewriter
               words={[
@@ -50,10 +50,10 @@ export default function About() {
         <div className="max-w-6xl mx-auto px-6 lg:px-12">
           <section className="mb-20 text-center max-w-3xl mx-auto">
             <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/50 mb-4">Est. 2016</p>
-            <h2 className="text-3xl md:text-4xl font-playfair font-light mb-6">About My Space Furniture</h2>
+            <h2 className="text-3xl md:text-4xl font-playfair font-light mb-6">About Myy Space Furniture</h2>
             <div className="w-12 h-px bg-[#1a1a1a]/30 mx-auto mb-8" />
             <p className="text-base md:text-lg text-[#1a1a1a]/75 mb-4 font-light leading-relaxed">
-              My Space Furniture provides premium mattress and furniture sales to Roseville, Sacramento, Davis, Chico, and Yuba City, CA. Since 2016, we have been committed to offering quality furniture and exceptional customer service to our valued customers throughout Northern California.
+              Myy Space Furniture provides premium mattress and furniture sales to Roseville, Sacramento, Davis, Chico, and Yuba City, CA. Since 2016, we have been committed to offering quality furniture and exceptional customer service to our valued customers throughout Northern California.
             </p>
             <p className="text-base md:text-lg text-[#1a1a1a]/75 font-light leading-relaxed">
               We are your trusted partner for creating beautiful, comfortable spaces. Whether you&apos;re looking for the perfect mattress, a stunning bedroom set, elegant dining room furniture, or custom pieces, we have something for every style and budget.
@@ -92,7 +92,7 @@ export default function About() {
           </section>
 
           <section className="mb-20">
-            <h2 className="text-2xl md:text-3xl font-playfair font-light mb-12 text-center">Why Choose My Space Furniture?</h2>
+            <h2 className="text-2xl md:text-3xl font-playfair font-light mb-12 text-center">Why Choose Myy Space Furniture?</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
               {[
                 {

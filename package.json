@@ -1,7 +1,7 @@
 {
   "name": "myspacefurniture-nextjs",
   "version": "1.0.0",
-  "description": "My Space Furniture - Next.js Web Application",
+  "description": "Myy Space Furniture - Next.js Web Application",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

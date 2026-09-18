@@ -10,29 +10,29 @@ import { getCategories } from '@/sanity/fetch';
 
 
 export const metadata: Metadata = {
-  title: 'My Space Furniture - Quality Furniture for Every Room',
-  description: 'Transform your space with My Space Furniture. Explore premium mattresses, sectionals, sofas, bedroom sets, dining room furniture, and custom furniture solutions.',
+  title: 'Myy Space Furniture - Quality Furniture for Every Room',
+  description: 'Transform your space with Myy Space Furniture. Explore premium mattresses, sectionals, sofas, bedroom sets, dining room furniture, and custom furniture solutions.',
   keywords: 'furniture, mattresses, sofas, sectionals, bedroom sets, dining room, custom furniture, home decor',
-  authors: [{ name: 'My Space Furniture' }],
+  authors: [{ name: 'Myy Space Furniture' }],
   openGraph: {
     type: 'website',
     locale: 'en_US',
     url: 'https://myyspacefurniture.com',
-    siteName: 'My Space Furniture',
-    title: 'My Space Furniture - Quality Furniture for Every Room',
+    siteName: 'Myy Space Furniture',
+    title: 'Myy Space Furniture - Quality Furniture for Every Room',
     description: 'Transform your space with premium furniture including mattresses, sofas, sectionals, and custom options.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'My Space Furniture',
+        alt: 'Myy Space Furniture',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'My Space Furniture',
+    title: 'Myy Space Furniture',
     description: 'Premium furniture solutions for every room',
     images: ['/og-image.jpg'],
   },
@@ -66,7 +66,7 @@ export default async function RootLayout({
         <meta name="theme-color" content="#f8f6f3" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <meta name="apple-mobile-web-app-title" content="My Space Furniture" />
+        <meta name="apple-mobile-web-app-title" content="Myy Space Furniture" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="robots" content="index, follow" />
         <script
@@ -75,7 +75,7 @@ export default async function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'Organization',
-              name: 'My Space Furniture',
+              name: 'Myy Space Furniture',
               url: 'https://myyspacefurniture.com',
               logo: 'https://myyspacefurniture.com/logo.png',
               description: 'Premium furniture retailer offering mattresses, sofas, sectionals, bedroom sets, and custom furniture solutions.',
