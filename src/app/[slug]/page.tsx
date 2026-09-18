@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
-import PageHeader from '@/components/PageHeader'
 import CategoryGallery from '@/components/CategoryGallery'
 import { getCategories, getCategoryBySlug } from '@/sanity/fetch'
 
@@ -40,13 +39,28 @@ export default async function CategoryPage({ params }: { params: { slug: string 
   const category = await getCategoryBySlug(params.slug)
   if (!category) notFound()
 
+  const images = [
+    ...(category.heroImage && !category.gallery.some((item) => item.src === category.heroImage)
+      ? [{ src: category.heroImage, alt: category.title }]
+      : []),
+    ...category.gallery,
+  ]
+
   return (
     <>
       <Header />
-      <PageHeader title={category.title} subtitle={category.subtitle} heroImage={category.heroImage || category.menuImage} />
       <main className="bg-[#f8f6f3]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-16 md:py-24">
-          <CategoryGallery images={category.gallery} title={category.title} />
+        <div className="text-center px-6 pt-16 md:pt-24 pb-10 md:pb-14">
+          <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/50 mb-4 font-sans">Collection</p>
+          <h1 className="font-serif text-4xl md:text-6xl font-light tracking-wide">{category.title}</h1>
+          {category.subtitle && (
+            <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/65 font-light leading-relaxed">
+              {category.subtitle}
+            </p>
+          )}
+        </div>
+        <div className="px-2 md:px-4 pb-20 md:pb-28">
+          <CategoryGallery images={images} title={category.title} />
         </div>
       </main>
       <Footer />

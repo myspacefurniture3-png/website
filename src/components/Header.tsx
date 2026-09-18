@@ -94,15 +94,7 @@ export default function Header({ transparent = false }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
-  const [scrolled, setScrolled] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    if (!transparent) return;
-    const onScroll = () => setScrolled(window.scrollY > 60);
-    window.addEventListener('scroll', onScroll, { passive: true });
-    return () => window.removeEventListener('scroll', onScroll);
-  }, [transparent]);
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
@@ -135,7 +127,7 @@ export default function Header({ transparent = false }: HeaderProps) {
     setSearchOpen(false);
   }, [pathname]);
 
-  const isTransparent = transparent && !scrolled && !menuOpen && !searchOpen;
+  const isTransparent = transparent && !menuOpen && !searchOpen;
   const iconClass = isTransparent ? 'text-white' : 'text-[#1a1a1a]';
   const searchResults = searchQuery.trim()
     ? allSearchLinks.filter((item) =>
@@ -151,8 +143,8 @@ export default function Header({ transparent = false }: HeaderProps) {
   return (
     <>
       <header
-        className={`w-full z-[60] transition-all duration-500 ${
-          transparent ? 'fixed top-0 left-0 right-0' : 'sticky top-0'
+        className={`w-full z-[60] relative ${
+          transparent ? 'absolute top-0 left-0 right-0' : ''
         } ${
           isTransparent
             ? 'bg-transparent'
@@ -227,7 +219,7 @@ export default function Header({ transparent = false }: HeaderProps) {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`relative text-[14px] xl:text-[15px] uppercase tracking-[0.14em] font-bold transition-opacity duration-300 hover:opacity-100 ${
+                className={`relative text-[12px] xl:text-[13px] uppercase tracking-[0.2em] font-normal font-sans transition-opacity duration-300 hover:opacity-100 ${
                   active ? 'opacity-100' : 'opacity-70'
                 }`}
               >
@@ -244,9 +236,9 @@ export default function Header({ transparent = false }: HeaderProps) {
       </header>
 
       <div
-        className={`fixed inset-x-0 z-[60] bg-white border-b border-black/10 transition-all duration-300 ${
+        className={`absolute inset-x-0 top-full z-[60] bg-[#f8f6f3] border-b border-black/10 transition-all duration-300 ${
           searchOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'
-        } top-[96px] sm:top-[112px] lg:top-[180px]`}
+        }`}
       >
         <div className="max-w-2xl mx-auto px-6 py-8">
           <div className="flex items-center gap-4 border-b border-black/20 pb-3">
@@ -335,7 +327,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                     <Link
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-center justify-between py-3.5 text-[15px] md:text-base font-bold uppercase tracking-[0.12em] text-[#1a1a1a]"
+                      className="flex items-center justify-between py-3.5 text-[14px] md:text-[15px] font-sans font-normal uppercase tracking-[0.18em] text-[#1a1a1a]"
                     >
                       <span>{item.label}</span>
                       <svg className="w-4 h-4 text-[#1a1a1a]/70" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
@@ -348,7 +340,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                   <Link
                     href="/gallery"
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center justify-between py-3.5 text-[15px] md:text-base font-bold uppercase tracking-[0.12em] text-[#1a1a1a]"
+                    className="flex items-center justify-between py-3.5 text-[14px] md:text-[15px] font-sans font-normal uppercase tracking-[0.18em] text-[#1a1a1a]"
                   >
                     <span>Gallery</span>
                     <svg className="w-4 h-4 text-[#1a1a1a]/70" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
@@ -365,7 +357,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                       <Link
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block py-3 text-[14px] md:text-[15px] font-semibold uppercase tracking-[0.12em] text-[#1a1a1a]/80"
+                        className="block py-3 text-[13px] md:text-[14px] font-sans font-normal uppercase tracking-[0.16em] text-[#1a1a1a]/80"
                       >
                         {item.label}
                       </Link>
@@ -421,14 +413,14 @@ export default function Header({ transparent = false }: HeaderProps) {
             <Link
               href="/custom-furniture"
               onClick={() => setMenuOpen(false)}
-              className="hidden md:block text-[12px] font-playfair font-bold uppercase tracking-[0.16em] text-[#1a1a1a] hover:opacity-50"
+              className="hidden md:block text-[11px] font-sans font-normal uppercase tracking-[0.2em] text-[#1a1a1a] hover:opacity-50"
             >
               Custom
             </Link>
             <Link
               href="/gallery"
               onClick={() => setMenuOpen(false)}
-              className="hidden md:block text-[12px] font-playfair font-bold uppercase tracking-[0.16em] text-[#1a1a1a] hover:opacity-50"
+              className="hidden md:block text-[11px] font-sans font-normal uppercase tracking-[0.2em] text-[#1a1a1a] hover:opacity-50"
             >
               Gallery
             </Link>
@@ -449,7 +441,7 @@ export default function Header({ transparent = false }: HeaderProps) {
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className={`text-[14px] xl:text-[15px] uppercase tracking-[0.14em] font-bold transition-opacity duration-300 hover:opacity-50 ${
+              className={`text-[12px] xl:text-[13px] uppercase tracking-[0.2em] font-sans font-normal transition-opacity duration-300 hover:opacity-50 ${
                 pathname === item.href ? 'opacity-100' : 'opacity-80'
               }`}
             >
@@ -476,7 +468,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                 <Link
                   href={section.href}
                   onClick={() => setMenuOpen(false)}
-                  className="block font-playfair text-[18px] lg:text-[20px] font-bold uppercase tracking-[0.08em] text-[#1a1a1a] mb-4 hover:opacity-50"
+                  className="block font-serif text-[18px] lg:text-[22px] font-light uppercase tracking-[0.12em] text-[#1a1a1a] mb-4 hover:opacity-50"
                 >
                   {section.title}
                 </Link>
@@ -486,7 +478,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                       <Link
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="font-playfair text-[15px] lg:text-base text-[#1a1a1a] hover:opacity-50 transition-opacity"
+                        className="font-sans text-[14px] lg:text-[15px] font-light text-[#1a1a1a] hover:opacity-50 transition-opacity"
                       >
                         {item.label}
                       </Link>
@@ -505,13 +497,13 @@ export default function Header({ transparent = false }: HeaderProps) {
                 key={item.href}
                 href={item.href}
                 onClick={() => setMenuOpen(false)}
-                className="text-[12px] sm:text-[13px] font-playfair text-[#1a1a1a]/80 hover:text-[#1a1a1a] hover:underline underline-offset-4"
+                className="text-[11px] sm:text-[12px] font-sans uppercase tracking-[0.16em] text-[#1a1a1a]/80 hover:text-[#1a1a1a] hover:underline underline-offset-4"
               >
                 {item.label}
               </Link>
             ))}
           </div>
-          <p className="text-[12px] font-playfair text-[#1a1a1a]/70">Roseville, CA</p>
+          <p className="text-[11px] font-sans uppercase tracking-[0.16em] text-[#1a1a1a]/70">Roseville, CA</p>
         </div>
       </div>
     </>

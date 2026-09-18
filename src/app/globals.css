@@ -20,13 +20,13 @@
 /* Blog readability improvements: headings and body */
 .prose h1, .prose h2, .prose h3, .prose h4, .prose h5, .prose h6 {
   color: #181818 !important;
-  font-family: 'Mulish', Arial, sans-serif !important;
-  font-weight: 700 !important;
+  font-family: 'Cormorant Garamond', serif !important;
+  font-weight: 400 !important;
   letter-spacing: -0.01em;
 }
 .prose p, .prose li, .prose span, .prose strong, .prose em, .prose ul, .prose ol, .prose blockquote {
   color: #232323 !important;
-  font-family: 'Mulish', Arial, sans-serif !important;
+  font-family: 'Jost', Helvetica Neue, Arial, sans-serif !important;
   font-size: 1.13rem !important;
   font-weight: 400 !important;
   letter-spacing: 0.01em;
@@ -145,13 +145,14 @@ html {
 }
 
 body {
-  font-family: 'Mulish', sans-serif;
+  font-family: 'Jost', Helvetica Neue, Arial, sans-serif;
   color: #1a1a1a;
   background-color: #f8f6f3;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Cormorant Garamond', Times New Roman, serif;
+  font-weight: 400;
 }
 
 a {
@@ -205,7 +206,7 @@ a {
 }
 
 .google-translate-container .goog-te-combo {
-  font-family: 'Mulish', sans-serif;
+  font-family: 'Jost', Helvetica Neue, Arial, sans-serif;
   font-size: 13px;
   letter-spacing: 0.05em;
   padding: 6px 12px;

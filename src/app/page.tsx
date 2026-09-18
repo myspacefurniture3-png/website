@@ -185,8 +185,9 @@ export default function Home() {
       </section>
 
       <main>
+        <div className="bg-[#f8f6f3] px-2 md:px-3 py-2 md:py-3 space-y-2 md:space-y-3">
         {/* Custom Furniture */}
-        <section className="relative w-full min-h-[70vh] flex items-center justify-center overflow-hidden">
+        <section className="relative w-full min-h-[72vh] md:min-h-[85vh] flex items-center justify-center overflow-hidden">
           <img
             src="/products/custom-furniture/custom%20(3).jpeg"
             alt="Custom Furniture Hero"
@@ -195,7 +196,7 @@ export default function Home() {
             height={800}
             loading="eager"
           />
-          <div className="absolute inset-0 bg-black/40" />
+          <div className="absolute inset-0 bg-black/25" />
           <div className="relative z-10 text-center text-white px-6 py-28 max-w-3xl mx-auto">
             <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-6">Bespoke Craftsmanship</p>
             <h2 className="text-3xl md:text-5xl font-playfair font-light mb-6 leading-tight">
@@ -214,55 +215,41 @@ export default function Home() {
           </div>
         </section>
 
-        {/* Featured Categories */}
-        <section className="py-24 md:py-32 bg-[#f8f6f3]">
-          <div className="max-w-7xl mx-auto px-6 lg:px-12">
-            <div className="text-center mb-16">
-              <p className="text-[11px] uppercase tracking-[0.3em] text-[#1a1a1a]/50 mb-4">Our Collections</p>
-              <h2 className="text-3xl md:text-4xl font-playfair font-light text-[#1a1a1a] mb-4">
-                Explore Our Furniture
-              </h2>
-              <div className="w-12 h-[1px] bg-[#1a1a1a]/30 mx-auto" />
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-8">
-              {featured.map((category, idx) => (
-                <Link
-                  key={category.slug}
-                  href={`/${category.slug}`}
-                  className={`group relative overflow-hidden ${
-                    idx === 0 ? 'md:col-span-2 xl:col-span-3 h-[50vh] md:h-[72vh]' : 'h-[42vh] md:h-[54vh]'
-                  }`}
-                >
-                  <div
-                    className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700"
-                    style={{ backgroundImage: `url('${category.menuImage || category.heroImage}')` }}
-                  />
-                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-all duration-500" />
-                  <div className="absolute inset-0 flex items-end z-10">
-                    <div className="w-full p-8 md:p-10">
-                      <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-2 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
-                        Collection
-                      </p>
-                      <h3 className="text-2xl md:text-3xl font-playfair font-light text-white mb-3">
-                        {category.title}
-                      </h3>
-                      <div className="flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-white/70 group-hover:text-white transition-colors duration-300">
-                        <span>Discover</span>
-                        <svg className="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-                        </svg>
-                      </div>
-                    </div>
+        {/* Featured Collections — RH full-bleed mosaic */}
+        <section>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-3">
+            {featured.map((category, idx) => (
+              <Link
+                key={category.slug}
+                href={`/${category.slug}`}
+                className={`group relative overflow-hidden ${
+                  idx === 0 || idx === featured.length - 1
+                    ? 'md:col-span-2 h-[62vh] md:h-[82vh]'
+                    : 'h-[48vh] md:h-[64vh]'
+                }`}
+              >
+                <div
+                  className="absolute inset-0 bg-cover bg-center group-hover:scale-105 transition-transform duration-700"
+                  style={{ backgroundImage: `url('${category.menuImage || category.heroImage}')` }}
+                />
+                <div className="absolute inset-0 bg-black/15 group-hover:bg-black/35 transition-all duration-500" />
+                <div className="absolute inset-0 flex items-end z-10">
+                  <div className="w-full p-6 md:p-10">
+                    <p className="text-[10px] uppercase tracking-[0.28em] text-white/70 mb-2 font-sans">
+                      Collection
+                    </p>
+                    <h3 className="text-2xl md:text-4xl font-serif font-light text-white tracking-wide">
+                      {category.title}
+                    </h3>
                   </div>
-                </Link>
-              ))}
-            </div>
+                </div>
+              </Link>
+            ))}
           </div>
         </section>
 
         {/* Fabric Selections */}
-        <section className="relative w-full h-[60vh] md:h-[80vh] overflow-hidden">
+        <section className="relative w-full h-[62vh] md:h-[85vh] overflow-hidden">
           <video
             autoPlay
             muted
@@ -274,7 +261,7 @@ export default function Home() {
           >
             <source src="/videos/hero3.mp4" type="video/mp4" />
           </video>
-          <div className="absolute inset-0 bg-black/30" />
+          <div className="absolute inset-0 bg-black/20" />
           <div className="absolute inset-0 flex items-center justify-center z-10">
             <div className="text-center text-white px-6 max-w-2xl">
               <p className="text-[11px] uppercase tracking-[0.3em] text-white/60 mb-6">Handcrafted Collection</p>
@@ -291,6 +278,7 @@ export default function Home() {
             </div>
           </div>
         </section>
+        </div>
 
         {/* Why Choose Us */}
         <section className="py-20 md:py-28 bg-[#f8f6f3]">

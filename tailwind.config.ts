@@ -15,7 +15,9 @@ const config: Config = {
         'dark-gray': '#333333',
       },
       fontFamily: {
-        'playfair': ['Playfair Display', 'serif'],
+        sans: ['Jost', 'Helvetica Neue', 'Arial', 'sans-serif'],
+        serif: ['Cormorant Garamond', 'Times New Roman', 'serif'],
+        playfair: ['Cormorant Garamond', 'Times New Roman', 'serif'],
       },
     },
   },
