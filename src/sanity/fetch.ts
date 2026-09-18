@@ -31,6 +31,7 @@ function formatPost(post: Post): Post {
         year: 'numeric',
       })
     : post.date
+  const tags = (post.tags || []).filter(Boolean)
   return {
     ...post,
     date: date || '',
@@ -42,6 +43,13 @@ function formatPost(post: Post): Post {
     author: post.author || 'My Space Furniture',
     readTime: post.readTime || '',
     category: post.category || 'Journal',
+    kicker: post.kicker || '',
+    featured: Boolean(post.featured),
+    featuredQuote: post.featuredQuote || '',
+    tags: tags.length ? tags : post.category ? [post.category] : [],
+    seoTitle: post.seoTitle || post.title,
+    seoDescription: post.seoDescription || post.excerpt || '',
+    relatedCategories: (post.relatedCategories || []).filter((item) => item?.slug && item?.title),
   }
 }
 
@@ -75,7 +83,13 @@ export async function getPosts(): Promise<Post[]> {
   } catch (error) {
     console.error('Sanity posts fetch failed, using fallback', error)
   }
-  return blogs
+  return blogs.map((item, index) =>
+    formatPost({
+      ...item,
+      featured: index === 0,
+      tags: item.tags || [item.category],
+    })
+  )
 }
 
 export async function getPostBySlug(slug: string): Promise<Post | null> {
@@ -85,5 +99,6 @@ export async function getPostBySlug(slug: string): Promise<Post | null> {
   } catch (error) {
     console.error('Sanity post fetch failed, using fallback', error)
   }
-  return blogs.find((item) => item.slug === slug) || null
+  const fallback = blogs.find((item) => item.slug === slug)
+  return fallback ? formatPost({ ...fallback, tags: fallback.tags || [fallback.category] }) : null
 }

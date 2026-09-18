@@ -30,30 +30,50 @@ export const categoryBySlugQuery = `*[_type == "category" && slug.current == $sl
   }
 }`
 
-export const postsQuery = `*[_type == "post"] | order(publishedAt desc) {
+export const postsQuery = `*[_type == "post" && published != false] | order(publishedAt desc) {
   _id,
   title,
   "slug": slug.current,
   excerpt,
+  kicker,
+  featured,
+  featuredQuote,
+  tags,
+  seoTitle,
+  seoDescription,
   "coverImage": coalesce(coverImage.asset->url, coverImageUrl),
   category,
   publishedAt,
   readTime,
   author,
   "content": bodyHtml,
-  body
+  body,
+  "relatedCategories": relatedCategories[]->{
+    title,
+    "slug": slug.current
+  }
 }`
 
-export const postBySlugQuery = `*[_type == "post" && slug.current == $slug][0] {
+export const postBySlugQuery = `*[_type == "post" && slug.current == $slug && published != false][0] {
   _id,
   title,
   "slug": slug.current,
   excerpt,
+  kicker,
+  featured,
+  featuredQuote,
+  tags,
+  seoTitle,
+  seoDescription,
   "coverImage": coalesce(coverImage.asset->url, coverImageUrl),
   category,
   publishedAt,
   readTime,
   author,
   "content": bodyHtml,
-  body
+  body,
+  "relatedCategories": relatedCategories[]->{
+    title,
+    "slug": slug.current
+  }
 }`

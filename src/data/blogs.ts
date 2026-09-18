@@ -8,6 +8,10 @@ export interface Blog {
   date: string;
   readTime: string;
   author: string;
+  tags?: string[];
+  featured?: boolean;
+  kicker?: string;
+  featuredQuote?: string;
 }
 
 export const blogs: Blog[] = [

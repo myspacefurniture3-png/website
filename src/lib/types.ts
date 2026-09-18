@@ -16,6 +16,11 @@ export type Category = {
   gallery: GalleryItem[]
 }
 
+export type RelatedCategory = {
+  title: string
+  slug: string
+}
+
 export type Post = {
   _id?: string
   title: string
@@ -29,4 +34,11 @@ export type Post = {
   author: string
   content: string
   body?: unknown[]
+  kicker?: string
+  featured?: boolean
+  featuredQuote?: string
+  tags?: string[]
+  seoTitle?: string
+  seoDescription?: string
+  relatedCategories?: RelatedCategory[]
 }

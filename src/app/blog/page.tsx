@@ -1,7 +1,7 @@
 import Link from 'next/link'
-import Image from 'next/image'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import JournalList from '@/components/JournalList'
 import { getPosts } from '@/sanity/fetch'
 
 export const revalidate = 60
@@ -13,45 +13,46 @@ export const metadata = {
 
 export default async function BlogIndex() {
   const posts = await getPosts()
-  const [featured, ...rest] = posts
 
   return (
     <>
       <Header />
       <main className="min-h-screen bg-[#f8f6f3]">
-        <section className="py-20 px-6 text-center border-b border-black/10">
-          <p className="uppercase tracking-[0.25em] text-[11px] mb-4 text-[#1a1a1a]/50">Our Journal</p>
-          <h1 className="font-playfair text-4xl md:text-5xl font-light text-[#1a1a1a]">Furniture & Home Interiors</h1>
+        <section className="px-6 pt-16 md:pt-24 pb-12 md:pb-16 text-center">
+          <p className="uppercase tracking-[0.28em] text-[11px] mb-4 text-[#1a1a1a]/50 font-sans">Journal</p>
+          <h1 className="font-serif text-4xl md:text-6xl font-light text-[#1a1a1a] tracking-wide">Stories for the home</h1>
+          <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/65 font-light leading-relaxed">
+            Buying guides, styling notes, and care from the Roseville showroom.
+          </p>
         </section>
 
-        <div className="max-w-6xl mx-auto px-6 py-16">
-          {featured && (
-            <Link href={`/blog/${featured.slug}`} className="group block mb-16">
-              <div className="relative h-80 md:h-[460px] w-full overflow-hidden">
-                <Image src={featured.coverImage} alt={featured.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" priority />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 p-8 md:p-12">
-                  <span className="text-[11px] uppercase tracking-[0.2em] text-white/70">{featured.category}</span>
-                  <h2 className="text-white font-playfair text-2xl md:text-4xl font-light max-w-2xl leading-tight mt-3 mb-3">{featured.title}</h2>
-                  <p className="text-white/70 text-sm hidden md:block max-w-xl">{featured.excerpt}</p>
-                </div>
-              </div>
-            </Link>
-          )}
-
-          <div className="grid md:grid-cols-2 gap-10">
-            {rest.map((post) => (
-              <Link key={post.slug} href={`/blog/${post.slug}`} className="group">
-                <div className="relative h-56 w-full overflow-hidden mb-5">
-                  <Image src={post.coverImage} alt={post.title} fill className="object-cover group-hover:scale-105 transition-transform duration-700" />
-                </div>
-                <p className="text-[11px] uppercase tracking-[0.18em] text-[#1a1a1a]/50 mb-2">{post.category}</p>
-                <h2 className="font-playfair text-xl font-light text-[#1a1a1a] mb-2">{post.title}</h2>
-                <p className="text-sm text-[#1a1a1a]/60 leading-relaxed">{post.excerpt}</p>
-              </Link>
-            ))}
-          </div>
+        <div className="max-w-6xl mx-auto px-6 pb-20 md:pb-28">
+          <JournalList posts={posts} />
         </div>
+
+        <section className="border-t border-black/10 py-20 md:py-24">
+          <div className="max-w-3xl mx-auto px-6 text-center">
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/50 mb-4 font-sans">Visit</p>
+            <h2 className="font-serif text-3xl md:text-4xl font-light mb-5">See the pieces in person</h2>
+            <p className="text-[#1a1a1a]/65 font-light leading-relaxed mb-8">
+              Our team can help you measure, choose fabrics, and plan a room around the ideas in these articles.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Link
+                href="/contact"
+                className="px-10 py-3.5 border border-[#1a1a1a] text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition"
+              >
+                Contact the showroom
+              </Link>
+              <Link
+                href="/gallery"
+                className="px-10 py-3.5 border border-[#1a1a1a] text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white transition"
+              >
+                View the gallery
+              </Link>
+            </div>
+          </div>
+        </section>
       </main>
       <Footer />
     </>
