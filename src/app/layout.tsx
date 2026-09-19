@@ -10,7 +10,11 @@ import { getCategories } from '@/sanity/fetch';
 
 
 export const metadata: Metadata = {
-  title: 'Myy Space Furniture - Quality Furniture for Every Room',
+  metadataBase: new URL('https://myyspacefurniture.com'),
+  title: {
+    default: 'Myy Space Furniture - Quality Furniture for Every Room',
+    template: '%s | Myy Space Furniture',
+  },
   description:
     'Transform your space with Myy Space Furniture in Roseville, CA. Premium mattresses, sectionals, sofas, bedroom sets, dining furniture, vanities, bunk beds, and custom pieces for Sacramento and Northern California.',
   keywords: [
@@ -31,6 +35,9 @@ export const metadata: Metadata = {
     'Northern California furniture',
   ],
   authors: [{ name: 'Myy Space Furniture' }],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     type: 'website',
     locale: 'en_US',
@@ -54,7 +61,10 @@ export const metadata: Metadata = {
     description: 'Premium furniture and custom pieces for every room — Roseville showroom.',
     images: ['/og-image.jpg'],
   },
-  robots: 'index, follow',
+  robots: {
+    index: true,
+    follow: true,
+  },
 }
 
 export const viewport = {
@@ -79,7 +89,6 @@ export default async function RootLayout({
         <link rel="icon" type="image/png" sizes="32x32" href="/icon.png?v=7" />
         <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" />
         <link rel="manifest" href="/manifest.json" />
-        <link rel="canonical" href="https://myyspacefurniture.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />

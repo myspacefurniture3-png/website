@@ -1,11 +1,12 @@
 /**
- * Export all local journal posts from src/data/blogs.ts into Sanity.
- * - Creates missing posts
- * - Updates existing posts with content + SEO fields
- * - Marks every post published + featured (sitemap + journal)
+ * Export missing local journal posts from src/data/blogs.ts into Sanity.
+ * SAFE by default: never overwrites title/excerpt/body/bodyHtml on existing docs
+ * (Studio edits are preserved). Only creates missing posts and can ensure
+ * published+featured flags.
  *
  *   npm run seed:posts
  *   npx tsx scripts/seed-posts.ts
+ *   npx tsx scripts/seed-posts.ts --force   # dangerous: overwrite content from local
  *
  * Requires SANITY_API_WRITE_TOKEN (Editor) in .env.local
  */
@@ -39,6 +40,7 @@ function loadEnvLocal() {
 
 loadEnvLocal()
 
+const FORCE = process.argv.includes('--force')
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'p3lp3hwm'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
 const token =
@@ -61,6 +63,10 @@ if (!process.env.SANITY_API_WRITE_TOKEN?.trim()) {
   console.warn('SANITY_API_WRITE_TOKEN empty — using SANITY_API_READ_TOKEN (needs Editor access).')
 }
 
+if (FORCE) {
+  console.warn('WARNING: --force will overwrite existing post content from local blogs.ts')
+}
+
 const client = createClient({
   projectId,
   dataset,
@@ -73,7 +79,6 @@ const client = createClient({
 function parsePublishedAt(date: string, index: number) {
   const parsed = Date.parse(date)
   if (!Number.isNaN(parsed)) return new Date(parsed).toISOString()
-  // Stable fallback so newer local entries still sort later when date is invalid
   const fallback = new Date('2026-01-01T12:00:00.000Z')
   fallback.setDate(fallback.getDate() + index)
   return fallback.toISOString()
@@ -82,26 +87,41 @@ function parsePublishedAt(date: string, index: number) {
 type ExistingPost = {
   _id: string
   slug?: string
+  title?: string
   coverImage?: unknown
   coverImageUrl?: string | null
   body?: unknown[] | null
+  bodyHtml?: string | null
+  published?: boolean | null
+  featured?: boolean | null
 }
 
 async function seedPosts() {
   const existing = await client.fetch<ExistingPost[]>(
-    `*[_type == "post"]{ _id, "slug": slug.current, coverImage, coverImageUrl, body }`
+    `*[_type == "post"]{
+      _id,
+      "slug": slug.current,
+      title,
+      coverImage,
+      coverImageUrl,
+      body,
+      bodyHtml,
+      published,
+      featured
+    }`
   )
   const bySlug = new Map(
-    existing
-      .filter((doc) => doc.slug)
-      .map((doc) => [doc.slug as string, doc])
+    existing.filter((doc) => doc.slug).map((doc) => [doc.slug as string, doc])
   )
 
   console.log(`Local blogs: ${blogs.length}`)
   console.log(`Existing Sanity posts: ${existing.length}`)
+  console.log(`Mode: ${FORCE ? 'FORCE overwrite' : 'safe (create missing only)'}`)
 
   let created = 0
-  let updated = 0
+  let skipped = 0
+  let flagged = 0
+  let forced = 0
 
   for (let index = 0; index < blogs.length; index += 1) {
     const post = blogs[index]
@@ -137,36 +157,57 @@ async function seedPosts() {
       continue
     }
 
-    // Update content fields; keep Studio-uploaded coverImage / portable body if present
-    const patch: Record<string, unknown> = {
-      title: payload.title,
-      slug: payload.slug,
-      excerpt: payload.excerpt,
-      kicker: payload.kicker,
-      featuredQuote: payload.featuredQuote,
-      category: payload.category,
-      tags: payload.tags,
-      author: payload.author,
-      readTime: payload.readTime,
-      publishedAt: payload.publishedAt,
-      featured: true,
-      published: true,
-      bodyHtml: payload.bodyHtml,
-      seoTitle: payload.seoTitle,
-      seoDescription: payload.seoDescription,
+    if (FORCE) {
+      const patch: Record<string, unknown> = {
+        title: payload.title,
+        slug: payload.slug,
+        excerpt: payload.excerpt,
+        kicker: payload.kicker,
+        featuredQuote: payload.featuredQuote,
+        category: payload.category,
+        tags: payload.tags,
+        author: payload.author,
+        readTime: payload.readTime,
+        publishedAt: payload.publishedAt,
+        featured: true,
+        published: true,
+        bodyHtml: payload.bodyHtml,
+        seoTitle: payload.seoTitle,
+        seoDescription: payload.seoDescription,
+      }
+      if (!found.coverImageUrl && post.coverImage) {
+        patch.coverImageUrl = post.coverImage
+      }
+      await client.patch(found._id).set(patch).commit()
+      forced += 1
+      console.log(`Forced   ${post.slug} (${found._id})`)
+      continue
     }
 
-    if (!found.coverImageUrl && post.coverImage) {
-      patch.coverImageUrl = post.coverImage
+    // Safe mode: never touch Studio content — only ensure visibility flags
+    const flagPatch: Record<string, unknown> = {}
+    if (found.published === false) flagPatch.published = true
+    if (found.featured !== true) flagPatch.featured = true
+    if (!found.coverImageUrl && !found.coverImage && post.coverImage) {
+      flagPatch.coverImageUrl = post.coverImage
     }
 
-    await client.patch(found._id).set(patch).commit()
-    updated += 1
-    console.log(`Updated  ${post.slug} (${found._id})`)
+    if (Object.keys(flagPatch).length > 0) {
+      await client.patch(found._id).set(flagPatch).commit()
+      flagged += 1
+      console.log(`Flagged  ${post.slug} (${found._id}) ${JSON.stringify(flagPatch)}`)
+    } else {
+      skipped += 1
+      console.log(`Skipped  ${post.slug} (keeping Studio content)`)
+    }
   }
 
-  const after = await client.fetch<Array<{ slug: string; featured?: boolean; published?: boolean }>>(
+  const after = await client.fetch<
+    Array<{ _id: string; slug: string; title?: string; featured?: boolean; published?: boolean }>
+  >(
     `*[_type == "post"] | order(publishedAt desc) {
+      _id,
+      title,
       "slug": slug.current,
       featured,
       published
@@ -174,10 +215,12 @@ async function seedPosts() {
   )
 
   console.log('')
-  console.log(`Done. created=${created} updated=${updated} totalInSanity=${after.length}`)
+  console.log(
+    `Done. created=${created} skipped=${skipped} flagged=${flagged} forced=${forced} totalInSanity=${after.length}`
+  )
   for (const doc of after) {
     console.log(
-      `  - ${doc.slug}  featured=${doc.featured !== false}  published=${doc.published !== false}`
+      `  - ${doc.slug || '(no-slug)'}  "${doc.title || ''}"  featured=${doc.featured !== false}  published=${doc.published !== false}  id=${doc._id}`
     )
   }
 }

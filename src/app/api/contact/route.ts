@@ -40,19 +40,17 @@ export async function POST(req: NextRequest) {
       }),
     })
 
-    const rawText = await response.text();
-    console.log('Web3Forms raw response:', rawText);
-    let data;
+    const rawText = await response.text()
+    let data
     try {
-      data = JSON.parse(rawText);
-    } catch (err) {
-      console.error('Failed to parse Web3Forms response as JSON:', err);
+      data = JSON.parse(rawText)
+    } catch {
+      console.error('Failed to parse Web3Forms response as JSON')
       return NextResponse.json(
         { error: 'Invalid response from Web3Forms.' },
         { status: 500 }
-      );
+      )
     }
-    console.log('Web3Forms response:', data);
 
     if (data.success) {
       return NextResponse.json({ success: true })
