@@ -91,23 +91,21 @@ type Props = {
 export default function HomeCollections({ categories }: Props) {
   const ordered = [...categories].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
 
-  const panels: Panel[] = ordered
-    .map((item, index) => {
-      const parts = splitTitle(item.title)
-      const image =
-        HOMEPAGE_HEROES[item.slug] || item.heroImage || item.menuImage || ''
-      if (!image) return null
-      return {
-        href: `/${item.slug}`,
-        image,
-        kicker: index === 0 ? 'Featured' : 'Collection',
-        title: parts.main,
-        subtitle: parts.sub,
-        line: item.subtitle || undefined,
-        tall: index % 3 === 0,
-      }
+  const panels: Panel[] = []
+  ordered.forEach((item, index) => {
+    const parts = splitTitle(item.title)
+    const image = HOMEPAGE_HEROES[item.slug] || item.heroImage || item.menuImage || ''
+    if (!image) return
+    panels.push({
+      href: `/${item.slug}`,
+      image,
+      kicker: index === 0 ? 'Featured' : 'Collection',
+      title: parts.main,
+      subtitle: parts.sub,
+      line: item.subtitle || undefined,
+      tall: index % 3 === 0,
     })
-    .filter((panel): panel is Panel => Boolean(panel))
+  })
 
   if (!panels.length) return null
 
