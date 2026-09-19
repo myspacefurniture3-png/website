@@ -10,11 +10,28 @@ const CONTACTS = [
   { label: 'WhatsApp', value: '+233 245 709 341', href: 'https://wa.me/233245709341' },
 ]
 
-export function SupportIcon() {
+/** Navbar tool icon — clean circular question mark */
+export function SupportIcon(props: { active?: boolean }) {
+  const stroke = props.active ? 'currentColor' : 'currentColor'
   return (
-    <svg viewBox="0 0 25 25" fill="none" stroke="currentColor" strokeWidth="1.2">
-      <circle cx="12.5" cy="12.5" r="8.25" />
-      <path d="M12.5 11.2v5.3M12.5 8.2v.8" />
+    <svg
+      viewBox="0 0 25 25"
+      width="1em"
+      height="1em"
+      fill="none"
+      aria-hidden
+      focusable="false"
+      style={{ display: 'block' }}
+    >
+      <circle cx="12.5" cy="12.5" r="9" stroke={stroke} strokeWidth="1.25" />
+      <path
+        d="M10.15 9.85c0-1.35 1.05-2.35 2.4-2.35 1.3 0 2.35.95 2.35 2.2 0 1.05-.55 1.65-1.45 2.2-.85.5-1.15.85-1.15 1.65v.35"
+        stroke={stroke}
+        strokeWidth="1.35"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+      <circle cx="12.5" cy="17.35" r="0.85" fill={stroke} />
     </svg>
   )
 }
@@ -24,24 +41,46 @@ export default function SupportTool() {
     <div
       style={{
         minHeight: '100%',
-        background: '#f8f6f3',
+        background: 'linear-gradient(180deg, #f8f6f3 0%, #f0ebe4 100%)',
         color: '#1a1a1a',
         fontFamily: 'Jost, Helvetica Neue, Arial, sans-serif',
-        padding: '48px 24px 72px',
+        padding: '48px 24px 96px',
+        position: 'relative',
       }}
     >
       <div style={{ maxWidth: 720, margin: '0 auto' }}>
-        <p
-          style={{
-            fontSize: 11,
-            letterSpacing: '0.28em',
-            textTransform: 'uppercase',
-            color: 'rgba(26,26,26,0.45)',
-            marginBottom: 16,
-          }}
-        >
-          Website support
-        </p>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 20 }}>
+          <span
+            aria-hidden
+            style={{
+              width: 40,
+              height: 40,
+              borderRadius: '50%',
+              border: '1px solid rgba(26,26,26,0.2)',
+              display: 'inline-flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              fontFamily: 'Cormorant Garamond, Georgia, serif',
+              fontSize: 22,
+              fontWeight: 400,
+              lineHeight: 1,
+              background: '#fff',
+            }}
+          >
+            ?
+          </span>
+          <p
+            style={{
+              fontSize: 11,
+              letterSpacing: '0.28em',
+              textTransform: 'uppercase',
+              color: 'rgba(26,26,26,0.45)',
+              margin: 0,
+            }}
+          >
+            Website support
+          </p>
+        </div>
         <h1
           style={{
             fontFamily: 'Cormorant Garamond, Georgia, serif',
@@ -86,7 +125,15 @@ export default function SupportTool() {
                 rel={item.href.startsWith('http') ? 'noopener noreferrer' : undefined}
                 style={{ color: 'inherit', textDecoration: 'none' }}
               >
-                <div style={{ fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', opacity: 0.5, marginBottom: 4 }}>
+                <div
+                  style={{
+                    fontSize: 10,
+                    letterSpacing: '0.2em',
+                    textTransform: 'uppercase',
+                    opacity: 0.5,
+                    marginBottom: 4,
+                  }}
+                >
                   {item.label}
                 </div>
                 <div style={{ fontSize: 18, fontFamily: 'Cormorant Garamond, Georgia, serif', fontWeight: 400 }}>
@@ -162,6 +209,39 @@ export default function SupportTool() {
             WhatsApp
           </a>
         </div>
+      </div>
+
+      {/* Bottom help mark — matches the navbar ? tool */}
+      <div
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 28,
+          display: 'flex',
+          justifyContent: 'center',
+          pointerEvents: 'none',
+        }}
+      >
+        <span
+          style={{
+            width: 44,
+            height: 44,
+            borderRadius: '50%',
+            background: '#1a1a1a',
+            color: '#f8f6f3',
+            display: 'inline-flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            fontFamily: 'Cormorant Garamond, Georgia, serif',
+            fontSize: 24,
+            fontWeight: 400,
+            boxShadow: '0 8px 24px rgba(26,26,26,0.18)',
+            letterSpacing: 0,
+          }}
+        >
+          ?
+        </span>
       </div>
     </div>
   )

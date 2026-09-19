@@ -9,6 +9,7 @@ export type Category = {
   navLabel: string
   slug: string
   subtitle: string
+  pageUrl?: string
   heroImage: string
   menuImage: string
   order: number

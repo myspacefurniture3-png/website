@@ -1,9 +1,9 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { PortableText } from 'next-sanity'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import ShareButtons from '@/components/ShareButtons'
+import JournalBody from '@/components/JournalBody'
 import { notFound } from 'next/navigation'
 import { getPostBySlug, getPosts } from '@/sanity/fetch'
 import { absoluteUrl } from '@/lib/site'
@@ -86,8 +86,8 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           )}
 
           {post.body && post.body.length > 0 ? (
-            <article className="prose prose-lg max-w-none prose-headings:font-serif prose-headings:font-light prose-headings:text-[#1a1a1a] prose-p:text-[#1a1a1a]">
-              <PortableText value={post.body as never} />
+            <article className="max-w-none">
+              <JournalBody value={post.body as unknown[]} />
             </article>
           ) : (
             <article

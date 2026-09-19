@@ -1,5 +1,5 @@
 /**
- * Seed Sanity with original My Space categories and blog posts.
+ * Seed Sanity with original Myy Space categories and blog posts.
  * Requires SANITY_API_WRITE_TOKEN with Editor access.
  *
  *   npx tsx scripts/seed-sanity.ts
@@ -35,6 +35,7 @@ async function seed() {
       navLabel: category.navLabel,
       slug: { _type: 'slug', current: category.slug },
       subtitle: category.subtitle,
+      pageUrl: `https://myyspacefurniture.com/${category.slug}`,
       heroImageUrl: category.heroImage,
       menuImageUrl: category.menuImage,
       order: category.order,
