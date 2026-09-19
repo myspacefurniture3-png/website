@@ -43,12 +43,14 @@ export default function GalleryExplorer({ products, filters }: Props) {
   return (
     <>
       <div className="max-w-6xl mx-auto px-6 mb-12 md:mb-16">
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 border-y border-black/10 py-5">
+        <div className="flex flex-wrap items-center justify-center gap-x-5 md:gap-x-7 gap-y-3 border-y border-black/15 py-5">
           <button
             type="button"
             onClick={() => startTransition(() => setActiveFilter('all'))}
-            className={`text-[11px] uppercase tracking-[0.2em] font-sans transition ${
-              activeFilter === 'all' ? 'text-[#1a1a1a]' : 'text-[#1a1a1a]/40 hover:text-[#1a1a1a]'
+            className={`text-[11px] md:text-[12px] uppercase tracking-[0.18em] font-sans font-medium transition ${
+              activeFilter === 'all'
+                ? 'text-[#1a1a1a] underline underline-offset-8 decoration-black/80'
+                : 'text-[#1a1a1a]/75 hover:text-[#1a1a1a]'
             }`}
           >
             All{counts.all ? ` (${counts.all})` : ''}
@@ -58,8 +60,10 @@ export default function GalleryExplorer({ products, filters }: Props) {
               key={filter.slug}
               type="button"
               onClick={() => startTransition(() => setActiveFilter(filter.slug))}
-              className={`text-[11px] uppercase tracking-[0.2em] font-sans transition ${
-                activeFilter === filter.slug ? 'text-[#1a1a1a]' : 'text-[#1a1a1a]/40 hover:text-[#1a1a1a]'
+              className={`text-[11px] md:text-[12px] uppercase tracking-[0.18em] font-sans font-medium transition ${
+                activeFilter === filter.slug
+                  ? 'text-[#1a1a1a] underline underline-offset-8 decoration-black/80'
+                  : 'text-[#1a1a1a]/75 hover:text-[#1a1a1a]'
               }`}
             >
               {filter.label}

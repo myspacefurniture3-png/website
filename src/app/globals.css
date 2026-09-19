@@ -176,6 +176,39 @@ a {
   animation: fadeSlideUp 0.5s ease-out;
 }
 
+@keyframes heroKenBurns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.08);
+  }
+}
+
+.animate-hero-kenburns {
+  animation: heroKenBurns 5.5s ease-out forwards;
+}
+
+@keyframes imageDrift {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-image-drift {
+  animation: imageDrift 55s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-kenburns,
+  .animate-image-drift {
+    animation: none !important;
+  }
+}
+
 /* Google Translate widget styling */
 .google-translate-container {
   display: inline-block;
