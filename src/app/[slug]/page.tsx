@@ -64,7 +64,7 @@ export default async function CategoryPage({ params }: { params: { slug: string 
           )}
         </div>
         <div className="px-2 md:px-4 pb-20 md:pb-28">
-          <CategoryGallery images={images} title={category.title} />
+          <CategoryGallery images={images} title={category.title} shopHref={`/${category.slug}`} />
         </div>
       </main>
       <Footer />
