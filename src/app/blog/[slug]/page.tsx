@@ -21,11 +21,24 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   return {
     title: `${post.seoTitle || post.title} | Myy Space Furniture`,
     description: post.seoDescription || post.excerpt,
+    keywords: [
+      post.category,
+      ...(post.tags || []),
+      'Myy Space Furniture',
+      'Roseville furniture',
+      'furniture journal',
+    ].filter(Boolean),
     openGraph: {
       title: post.seoTitle || post.title,
       description: post.seoDescription || post.excerpt,
       type: 'article',
       images: post.coverImage ? [{ url: absoluteUrl(post.coverImage) }] : undefined,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.seoTitle || post.title,
+      description: post.seoDescription || post.excerpt,
+      images: post.coverImage ? [absoluteUrl(post.coverImage)] : undefined,
     },
   }
 }
@@ -70,7 +83,13 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
         <div className="max-w-3xl mx-auto px-6 py-12 md:py-16">
           <div className="mb-10">
-            <ShareButtons title={post.title} excerpt={post.excerpt} path={`/blog/${post.slug}`} image={post.coverImage} />
+            <ShareButtons
+              title={post.title}
+              excerpt={post.excerpt}
+              path={`/blog/${post.slug}`}
+              image={post.coverImage}
+              keywords={[post.category, ...(post.tags || [])].filter(Boolean)}
+            />
           </div>
 
           {post.excerpt && (
@@ -124,7 +143,13 @@ export default async function BlogPost({ params }: { params: { slug: string } })
           )}
 
           <div className="mt-12 pt-10 border-t border-black/10">
-            <ShareButtons title={post.title} excerpt={post.excerpt} path={`/blog/${post.slug}`} image={post.coverImage} />
+            <ShareButtons
+              title={post.title}
+              excerpt={post.excerpt}
+              path={`/blog/${post.slug}`}
+              image={post.coverImage}
+              keywords={[post.category, ...(post.tags || [])].filter(Boolean)}
+            />
           </div>
         </div>
 

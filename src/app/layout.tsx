@@ -11,8 +11,25 @@ import { getCategories } from '@/sanity/fetch';
 
 export const metadata: Metadata = {
   title: 'Myy Space Furniture - Quality Furniture for Every Room',
-  description: 'Transform your space with Myy Space Furniture. Explore premium mattresses, sectionals, sofas, bedroom sets, dining room furniture, and custom furniture solutions.',
-  keywords: 'furniture, mattresses, sofas, sectionals, bedroom sets, dining room, custom furniture, home decor',
+  description:
+    'Transform your space with Myy Space Furniture in Roseville, CA. Premium mattresses, sectionals, sofas, bedroom sets, dining furniture, vanities, bunk beds, and custom pieces for Sacramento and Northern California.',
+  keywords: [
+    'Myy Space Furniture',
+    'Roseville furniture store',
+    'Sacramento furniture',
+    'custom furniture Roseville',
+    'sectionals',
+    'sofas and loveseats',
+    'bedroom sets',
+    'dining tables',
+    'leather sectionals',
+    'fabric sectionals',
+    'mattresses Roseville',
+    'vanities',
+    'bunk beds',
+    'furniture financing',
+    'Northern California furniture',
+  ],
   authors: [{ name: 'Myy Space Furniture' }],
   openGraph: {
     type: 'website',
@@ -20,20 +37,21 @@ export const metadata: Metadata = {
     url: 'https://myyspacefurniture.com',
     siteName: 'Myy Space Furniture',
     title: 'Myy Space Furniture - Quality Furniture for Every Room',
-    description: 'Transform your space with premium furniture including mattresses, sofas, sectionals, and custom options.',
+    description:
+      'Premium furniture showroom in Roseville — mattresses, sofas, sectionals, bedroom and dining, plus custom builds.',
     images: [
       {
         url: '/og-image.jpg',
         width: 1200,
         height: 630,
-        alt: 'Myy Space Furniture',
+        alt: 'Myy Space Furniture Roseville showroom',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Myy Space Furniture',
-    description: 'Premium furniture solutions for every room',
+    title: 'Myy Space Furniture | Roseville, CA',
+    description: 'Premium furniture and custom pieces for every room — Roseville showroom.',
     images: ['/og-image.jpg'],
   },
   robots: 'index, follow',
@@ -76,15 +94,36 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               '@context': 'https://schema.org',
-              '@type': 'Organization',
+              '@type': 'FurnitureStore',
               name: 'Myy Space Furniture',
+              alternateName: 'MyySpace Furniture & Mattress',
               url: 'https://myyspacefurniture.com',
               logo: 'https://myyspacefurniture.com/logo.png',
-              description: 'Premium furniture retailer offering mattresses, sofas, sectionals, bedroom sets, and custom furniture solutions.',
+              image: 'https://myyspacefurniture.com/og-image.jpg',
+              description:
+                'Premium furniture retailer in Roseville, CA offering mattresses, sofas, sectionals, bedroom sets, dining furniture, and custom pieces for Sacramento and Northern California.',
+              telephone: '+1-916-661-1073',
+              email: 'info@myyspacefurniture.com',
               address: {
                 '@type': 'PostalAddress',
+                streetAddress: '1811 Douglas Blvd',
+                addressLocality: 'Roseville',
+                addressRegion: 'CA',
+                postalCode: '95661',
                 addressCountry: 'US',
               },
+              geo: {
+                '@type': 'GeoCoordinates',
+                latitude: 38.7465805,
+                longitude: -121.2606694,
+              },
+              sameAs: [
+                'https://www.facebook.com/Myyspacefurniture/',
+                'https://www.instagram.com/myyspacefurniture/',
+                'https://www.google.com/maps/place/MyySpace+Furniture+%26+Mattress/@38.7465805,-121.2606694,17z',
+              ],
+              keywords:
+                'Roseville furniture, Sacramento furniture, custom furniture, sectionals, mattresses, bedroom sets, dining tables',
             }),
           }}
         />

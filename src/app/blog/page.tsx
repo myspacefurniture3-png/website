@@ -8,7 +8,17 @@ export const revalidate = 60
 
 export const metadata = {
   title: 'Journal | Myy Space Furniture',
-  description: 'Furniture buying guides, interior design trends, and home styling tips from Myy Space Furniture in Roseville, CA.',
+  description:
+    'Furniture buying guides, interior design trends, styling tips, and care advice from Myy Space Furniture in Roseville, CA.',
+  keywords: [
+    'furniture buying guide',
+    'sofa buying tips',
+    'bedroom furniture trends',
+    'Roseville furniture blog',
+    'home styling',
+    'custom furniture tips',
+    'Myy Space Journal',
+  ],
 }
 
 export default async function BlogIndex() {

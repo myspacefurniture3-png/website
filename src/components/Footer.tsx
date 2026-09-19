@@ -2,9 +2,9 @@
 
 import React from 'react'
 import Link from 'next/link'
-import { GOOGLE_REVIEWS_SUMMARY } from '@/data/googleReviews'
 import { useCategories } from '@/components/CategoriesProvider'
 import { SHOWROOM_MAPS_URL } from '@/lib/site'
+import SocialFollowButtons from '@/components/SocialFollowButtons'
 
 const linkClass =
   'block text-[12px] uppercase tracking-[0.16em] text-[#1a1a1a]/85 hover:text-[#1a1a1a] leading-relaxed transition-colors'
@@ -109,33 +109,10 @@ export default function Footer() {
 
           <div>
             <h4 className="text-[12px] uppercase tracking-[0.2em] mb-7 font-medium text-[#1a1a1a]">Follow</h4>
-            <ul className="space-y-3.5">
-              <li>
-                <a
-                  href="https://www.facebook.com/Myyspacefurniture/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkClass}
-                >
-                  Facebook
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://www.instagram.com/myyspacefurniture/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={linkClass}
-                >
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href={GOOGLE_REVIEWS_SUMMARY.googleMapsUrl} target="_blank" rel="noopener noreferrer" className={linkClass}>
-                  Google Reviews
-                </a>
-              </li>
-            </ul>
+            <SocialFollowButtons />
+            <p className="mt-5 text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/70 leading-relaxed">
+              Facebook · Instagram · Google Reviews
+            </p>
           </div>
         </div>
 
