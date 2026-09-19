@@ -56,10 +56,10 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="/favicon.svg?v=4" type="image/svg+xml" />
-        <link rel="icon" href="/favicon.ico?v=4" sizes="any" />
-        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png?v=4" />
-        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=4" />
+        <link rel="icon" href="/favicon.svg?v=7" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico?v=7" sizes="any" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/icon.png?v=7" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png?v=7" />
         <link rel="manifest" href="/manifest.json" />
         <link rel="canonical" href="https://myyspacefurniture.com" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
