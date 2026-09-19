@@ -5,16 +5,22 @@ import Image from 'next/image';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
 import { useCategories } from '@/components/CategoriesProvider';
+import { SHOWROOM_MAPS_URL } from '@/lib/site';
 
 interface HeaderProps {
   transparent?: boolean;
 }
 
-const menuSections = [
+const menuSections: {
+  title: string
+  href: string
+  image: string
+  links: { href: string; label: string; external?: boolean }[]
+}[] = [
   {
     title: 'Our Products',
     href: '/loveseats',
-    image: '/products/loveseat (2).jpeg',
+    image: '/Website/IMG_4540.PNG',
     links: [
       { href: '/loveseats', label: 'Sofas & Loveseats' },
       { href: '/leather-sectionals', label: 'Leather Sectionals' },
@@ -27,18 +33,18 @@ const menuSections = [
   {
     title: 'Our Places',
     href: '/gallery',
-    image: '/products/gallery/gallery (1).jpeg',
+    image: '/Website/IMG_4546.PNG',
     links: [
       { href: '/', label: 'Home' },
       { href: '/gallery', label: 'Gallery' },
-      { href: '/about', label: 'Our Showroom' },
+      { href: SHOWROOM_MAPS_URL, label: 'Showroom', external: true },
       { href: '/contact', label: 'Find Us' },
     ],
   },
   {
     title: 'Our Services',
     href: '/custom-furniture',
-    image: '/products/custom-furniture/custom-new (1).jpeg',
+    image: '/Website/IMG_4296.PNG',
     links: [
       { href: '/custom-furniture', label: 'Custom Furniture' },
       { href: '/contact', label: 'Request a Consultation' },
@@ -47,7 +53,7 @@ const menuSections = [
   {
     title: 'Our Spaces',
     href: '/bedroom-sets',
-    image: '/products/gallery/gallery (5).jpeg',
+    image: '/Website/IMG_4500.PNG',
     links: [
       { href: '/loveseats', label: 'Living' },
       { href: '/bedroom-sets', label: 'Bedroom' },
@@ -92,6 +98,7 @@ export default function Header({ transparent = false }: HeaderProps) {
   const navLinks = [
     { href: '/', label: 'Home' },
     ...shopLinks,
+    { href: '/gallery', label: 'Gallery' },
   ];
   const productLinks = categories.map((item) => ({
     href: `/${item.slug}`,
@@ -116,6 +123,7 @@ export default function Header({ transparent = false }: HeaderProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
+  const [headerHovered, setHeaderHovered] = useState(false);
   const searchInputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
@@ -149,7 +157,7 @@ export default function Header({ transparent = false }: HeaderProps) {
     setSearchOpen(false);
   }, [pathname]);
 
-  const isTransparent = transparent && !menuOpen && !searchOpen;
+  const isTransparent = transparent && !menuOpen && !searchOpen && !headerHovered;
   const iconClass = isTransparent ? 'text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)]' : 'text-[#1a1a1a]';
   const searchResults = searchQuery.trim()
     ? allSearchLinks.filter((item) =>
@@ -173,9 +181,15 @@ export default function Header({ transparent = false }: HeaderProps) {
   return (
     <>
       <header
-        className={`w-full z-[60] relative ${
+        onMouseEnter={() => setHeaderHovered(true)}
+        onMouseLeave={() => setHeaderHovered(false)}
+        className={`w-full z-[60] relative transition-colors duration-300 ${
           transparent ? 'absolute top-0 left-0 right-0' : ''
-        } ${isTransparent ? 'bg-gradient-to-b from-black/55 via-black/20 to-transparent' : 'bg-[#f8f6f3]'}`}
+        } ${
+          isTransparent
+            ? 'bg-gradient-to-b from-black/55 via-black/20 to-transparent'
+            : 'bg-white'
+        }`}
       >
         <div className={`relative flex items-center justify-between h-[84px] sm:h-[96px] lg:h-[108px] px-4 sm:px-8 lg:px-10 ${
           isTransparent ? 'border-b border-white/25' : 'border-b border-black/10'
@@ -211,7 +225,14 @@ export default function Header({ transparent = false }: HeaderProps) {
           <BrandLogo invert={isTransparent} />
 
           <div className="flex items-center justify-end gap-5 lg:gap-7 flex-1">
-            <Link href="/about" className={linkClass}>Showroom</Link>
+            <a
+              href={SHOWROOM_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={linkClass}
+            >
+              Showroom
+            </a>
             <Link href="/financing" className={linkClass}>Financing</Link>
             <Link href="/contact" className={linkClass}>Contact</Link>
             <a href="tel:+19166611073" className={`${iconClass} p-1`} aria-label="Call us">
@@ -345,16 +366,18 @@ export default function Header({ transparent = false }: HeaderProps) {
                   </li>
                 ))}
                 <li>
-                  <Link
-                    href="/gallery"
+                  <a
+                    href={SHOWROOM_MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
                     onClick={() => setMenuOpen(false)}
                     className="flex items-center justify-between py-3.5 text-[16px] md:text-[17px] font-sans font-medium uppercase tracking-[0.14em] text-[#1a1a1a]"
                   >
-                    <span>Gallery</span>
+                    <span>Showroom</span>
                     <svg className="w-4 h-4 text-[#1a1a1a]/70" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
                     </svg>
-                  </Link>
+                  </a>
                 </li>
               </ul>
 
@@ -410,13 +433,15 @@ export default function Header({ transparent = false }: HeaderProps) {
           <BrandLogo onClick={() => setMenuOpen(false)} />
 
           <div className="flex items-center justify-end gap-6 flex-1">
-            <Link
-              href="/about"
+            <a
+              href={SHOWROOM_MAPS_URL}
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() => setMenuOpen(false)}
               className="hidden md:block text-[12px] lg:text-[13px] font-sans font-medium uppercase tracking-[0.18em] text-[#1a1a1a] hover:opacity-50"
             >
               Showroom
-            </Link>
+            </a>
             <Link
               href="/contact"
               onClick={() => setMenuOpen(false)}
@@ -475,13 +500,25 @@ export default function Header({ transparent = false }: HeaderProps) {
                 <ul className="space-y-2.5">
                   {section.links.map((item) => (
                     <li key={`${section.title}-${item.href}-${item.label}`}>
-                      <Link
-                        href={item.href}
-                        onClick={() => setMenuOpen(false)}
-                        className="font-sans text-[15px] lg:text-[16px] font-light text-[#1a1a1a] hover:opacity-50 transition-opacity"
-                      >
-                        {item.label}
-                      </Link>
+                      {'external' in item && item.external ? (
+                        <a
+                          href={item.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => setMenuOpen(false)}
+                          className="font-sans text-[15px] lg:text-[16px] font-light text-[#1a1a1a] hover:opacity-50 transition-opacity"
+                        >
+                          {item.label}
+                        </a>
+                      ) : (
+                        <Link
+                          href={item.href}
+                          onClick={() => setMenuOpen(false)}
+                          className="font-sans text-[15px] lg:text-[16px] font-light text-[#1a1a1a] hover:opacity-50 transition-opacity"
+                        >
+                          {item.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

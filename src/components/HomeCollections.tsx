@@ -13,6 +13,19 @@ type Panel = {
   tall?: boolean
 }
 
+/** Curated lifestyle heroes for homepage panels (best Website frames per collection). */
+const HOMEPAGE_HEROES: Record<string, string> = {
+  loveseats: '/Website/IMG_4543.PNG',
+  'bedroom-sets': '/Website/IMG_4500.PNG',
+  'dining-tables': '/Website/IMG_4654.PNG',
+  'leather-sectionals': '/Website/IMG_4390.PNG',
+  'fabric-sectionals': '/Website/IMG_4546.PNG',
+  mattresses: '/Website/IMG_4337.PNG',
+  vanities: '/Website/IMG_4335.PNG',
+  'bunk-beds': '/Website/IMG_4296.PNG',
+  'custom-furniture': '/Website/IMG_4365.PNG',
+}
+
 function CollectionPanel({ panel }: { panel: Panel }) {
   return (
     <Link
@@ -56,7 +69,6 @@ function CollectionPanel({ panel }: { panel: Panel }) {
 
 function splitTitle(title: string): { main: string; sub?: string } {
   const upper = title.toUpperCase()
-  // Prefer short display titles like RH (one strong word when possible)
   if (upper.includes('SOFAS')) return { main: 'SOFAS', sub: '& LOVESEATS' }
   if (upper.includes('BEDROOM')) return { main: 'BEDROOM', sub: 'SETS' }
   if (upper.includes('DINING')) return { main: 'DINING', sub: 'TABLES' }
@@ -80,12 +92,14 @@ export default function HomeCollections({ categories }: Props) {
   const ordered = [...categories].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
 
   const panels: Panel[] = ordered
-    .filter((item) => item.heroImage || item.menuImage)
     .map((item, index) => {
       const parts = splitTitle(item.title)
+      const image =
+        HOMEPAGE_HEROES[item.slug] || item.heroImage || item.menuImage || ''
+      if (!image) return null
       return {
         href: `/${item.slug}`,
-        image: item.heroImage || item.menuImage,
+        image,
         kicker: index === 0 ? 'Featured' : 'Collection',
         title: parts.main,
         subtitle: parts.sub,
@@ -93,6 +107,7 @@ export default function HomeCollections({ categories }: Props) {
         tall: index % 3 === 0,
       }
     })
+    .filter((panel): panel is Panel => Boolean(panel))
 
   if (!panels.length) return null
 
