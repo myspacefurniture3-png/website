@@ -9,6 +9,7 @@
     "lint": "next lint",
     "studio": "next dev",
     "seed:sanity": "npx tsx scripts/seed-sanity.ts",
+    "seed:posts": "npx tsx scripts/seed-posts.ts",
     "fix:categories": "npx tsx scripts/fix-categories.ts",
     "sync:categories": "npx tsx scripts/sync-categories.ts",
     "vercel-build": "next build"

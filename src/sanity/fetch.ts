@@ -83,10 +83,11 @@ export async function getPosts(): Promise<Post[]> {
   } catch (error) {
     console.error('Sanity posts fetch failed, using fallback', error)
   }
-  return blogs.map((item, index) =>
+  return blogs.map((item) =>
     formatPost({
       ...item,
-      featured: index === 0,
+      featured: item.featured ?? true,
+      publishedAt: item.date ? new Date(item.date).toISOString() : undefined,
       tags: item.tags || [item.category],
     })
   )

@@ -80,20 +80,30 @@ async function seed() {
     console.log('Upserted category', category.slug)
   }
 
-  for (const post of blogs) {
+  for (let index = 0; index < blogs.length; index += 1) {
+    const post = blogs[index]
     const id = `post-${post.slug}`
+    const publishedAt = Number.isNaN(Date.parse(post.date))
+      ? new Date(Date.UTC(2026, 0, 1 + index)).toISOString()
+      : new Date(post.date).toISOString()
     await client.createOrReplace({
       _id: id,
       _type: 'post',
       title: post.title,
       slug: { _type: 'slug', current: post.slug },
       excerpt: post.excerpt,
+      kicker: post.kicker || post.category,
       coverImageUrl: post.coverImage,
       category: post.category,
-      publishedAt: new Date(post.date).toISOString(),
+      tags: post.tags?.length ? post.tags : [post.category],
+      publishedAt,
       readTime: post.readTime,
-      author: post.author,
-      bodyHtml: post.content,
+      author: post.author || 'Myy Space Furniture',
+      bodyHtml: post.content.trim(),
+      featured: true,
+      published: true,
+      seoTitle: post.title.slice(0, 70),
+      seoDescription: post.excerpt.slice(0, 160),
     })
     console.log('Upserted post', post.slug)
   }

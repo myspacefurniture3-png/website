@@ -41,13 +41,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: 0.95,
     }))
 
+  // All published journal posts (featured posts get higher priority for discovery)
   const blogRoutes = posts
     .filter((post) => post.slug && isAllowed(`/blog/${post.slug}`))
     .map((post) => ({
       url: `${BASE}/blog/${post.slug}`,
       lastModified: post.publishedAt ? new Date(post.publishedAt) : today,
-      changeFrequency: 'monthly' as const,
-      priority: 0.7,
+      changeFrequency: 'weekly' as const,
+      priority: post.featured ? 0.85 : 0.75,
     }))
 
   return [...staticRoutes, ...categoryRoutes, ...blogRoutes]
