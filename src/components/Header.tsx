@@ -29,6 +29,7 @@ const menuSections = [
     href: '/gallery',
     image: '/products/gallery/gallery (1).jpeg',
     links: [
+      { href: '/', label: 'Home' },
       { href: '/gallery', label: 'Gallery' },
       { href: '/about', label: 'Our Showroom' },
       { href: '/contact', label: 'Find Us' },
@@ -40,7 +41,6 @@ const menuSections = [
     image: '/products/custom-furniture/custom-new (1).jpeg',
     links: [
       { href: '/custom-furniture', label: 'Custom Furniture' },
-      { href: '/financing', label: 'Financing' },
       { href: '/contact', label: 'Request a Consultation' },
     ],
   },
@@ -58,11 +58,11 @@ const menuSections = [
 ];
 
 const utilityLinks = [
+  { href: '/', label: 'Home' },
   { href: '/contact', label: 'Contact' },
   { href: '/blog', label: 'Blog' },
   { href: '/about', label: 'About Us' },
   { href: '/faq', label: 'FAQs' },
-  { href: '/financing', label: 'Financing' },
 ];
 
 function BrandLogo({ invert = false, onClick }: { invert?: boolean; onClick?: () => void }) {
@@ -74,7 +74,7 @@ function BrandLogo({ invert = false, onClick }: { invert?: boolean; onClick?: ()
           alt="Myy Space Furniture"
           fill
           sizes="280px"
-          className={`object-contain scale-[1.72] ${invert ? 'brightness-0 invert' : ''}`}
+          className={`object-contain scale-[1.72] ${invert ? 'brightness-0 invert drop-shadow-[0_2px_6px_rgba(0,0,0,0.45)]' : ''}`}
           priority
         />
       </span>
@@ -89,6 +89,10 @@ export default function Header({ transparent = false }: HeaderProps) {
     href: `/${item.slug}`,
     label: item.navLabel,
   }));
+  const navLinks = [
+    { href: '/', label: 'Home' },
+    ...shopLinks,
+  ];
   const productLinks = categories.map((item) => ({
     href: `/${item.slug}`,
     label: item.title,
@@ -103,6 +107,7 @@ export default function Header({ transparent = false }: HeaderProps) {
     ...menuSections.slice(1),
   ];
   const allSearchLinks = [
+    ...navLinks,
     ...shopLinks,
     ...productLinks,
     ...menuColumns.flatMap((section) => section.links),
@@ -145,7 +150,7 @@ export default function Header({ transparent = false }: HeaderProps) {
   }, [pathname]);
 
   const isTransparent = transparent && !menuOpen && !searchOpen;
-  const iconClass = isTransparent ? 'text-white' : 'text-[#1a1a1a]';
+  const iconClass = isTransparent ? 'text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)]' : 'text-[#1a1a1a]';
   const searchResults = searchQuery.trim()
     ? allSearchLinks.filter((item) =>
         item.label.toLowerCase().includes(searchQuery.trim().toLowerCase())
@@ -158,14 +163,19 @@ export default function Header({ transparent = false }: HeaderProps) {
   };
 
   const line = isTransparent ? 'bg-white' : 'bg-[#1a1a1a]';
-  const linkClass = `hidden md:inline text-[12px] lg:text-[13px] uppercase tracking-[0.16em] font-sans font-normal hover:opacity-60 ${iconClass}`;
+  const textShadow = isTransparent ? 'drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)]' : '';
+  const linkClass = `hidden md:inline text-[12px] lg:text-[13px] uppercase tracking-[0.18em] font-sans font-medium hover:opacity-70 ${iconClass} ${textShadow}`;
+  const categoryClass = (active: boolean) =>
+    `text-[13px] xl:text-[14px] uppercase tracking-[0.16em] font-sans font-medium hover:opacity-70 ${
+      active ? 'opacity-100' : 'opacity-95'
+    } ${textShadow}`;
 
   return (
     <>
       <header
         className={`w-full z-[60] relative ${
           transparent ? 'absolute top-0 left-0 right-0' : ''
-        } ${isTransparent ? 'bg-transparent' : 'bg-[#f8f6f3]'}`}
+        } ${isTransparent ? 'bg-gradient-to-b from-black/55 via-black/20 to-transparent' : 'bg-[#f8f6f3]'}`}
       >
         <div className={`relative flex items-center justify-between h-[84px] sm:h-[96px] lg:h-[108px] px-4 sm:px-8 lg:px-10 ${
           isTransparent ? 'border-b border-white/25' : 'border-b border-black/10'
@@ -202,6 +212,7 @@ export default function Header({ transparent = false }: HeaderProps) {
 
           <div className="flex items-center justify-end gap-5 lg:gap-7 flex-1">
             <Link href="/about" className={linkClass}>Showroom</Link>
+            <Link href="/financing" className={linkClass}>Financing</Link>
             <Link href="/contact" className={linkClass}>Contact</Link>
             <a href="tel:+19166611073" className={`${iconClass} p-1`} aria-label="Call us">
               <svg className="w-[18px] h-[18px]" fill="none" stroke="currentColor" strokeWidth="1.3" viewBox="0 0 24 24">
@@ -217,15 +228,13 @@ export default function Header({ transparent = false }: HeaderProps) {
           }`}
           aria-label="Shop categories"
         >
-          {shopLinks.map((item) => {
+          {navLinks.map((item) => {
             const active = pathname === item.href;
             return (
               <Link
                 key={item.href}
                 href={item.href}
-                className={`text-[13px] xl:text-[14px] uppercase tracking-[0.14em] font-sans font-normal hover:opacity-100 ${
-                  active ? 'opacity-100' : 'opacity-80'
-                }`}
+                className={categoryClass(active)}
               >
                 {item.label}
               </Link>
@@ -321,12 +330,12 @@ export default function Header({ transparent = false }: HeaderProps) {
           <div className="flex-1 overflow-y-auto px-6 pb-10">
             <nav>
               <ul>
-                {shopLinks.map((item) => (
+                {navLinks.map((item) => (
                   <li key={item.href}>
                     <Link
                       href={item.href}
                       onClick={() => setMenuOpen(false)}
-                      className="flex items-center justify-between py-3.5 text-[16px] md:text-[17px] font-sans font-normal uppercase tracking-[0.14em] text-[#1a1a1a]"
+                      className="flex items-center justify-between py-3.5 text-[16px] md:text-[17px] font-sans font-medium uppercase tracking-[0.14em] text-[#1a1a1a]"
                     >
                       <span>{item.label}</span>
                       <svg className="w-4 h-4 text-[#1a1a1a]/70" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
@@ -339,7 +348,7 @@ export default function Header({ transparent = false }: HeaderProps) {
                   <Link
                     href="/gallery"
                     onClick={() => setMenuOpen(false)}
-                    className="flex items-center justify-between py-3.5 text-[16px] md:text-[17px] font-sans font-normal uppercase tracking-[0.14em] text-[#1a1a1a]"
+                    className="flex items-center justify-between py-3.5 text-[16px] md:text-[17px] font-sans font-medium uppercase tracking-[0.14em] text-[#1a1a1a]"
                   >
                     <span>Gallery</span>
                     <svg className="w-4 h-4 text-[#1a1a1a]/70" fill="none" stroke="currentColor" strokeWidth="1.6" viewBox="0 0 24 24">
@@ -351,7 +360,7 @@ export default function Header({ transparent = false }: HeaderProps) {
 
               <div className="border-t border-black/15 mt-4 pt-4">
                 <ul>
-                  {utilityLinks.map((item) => (
+                  {utilityLinks.filter((item) => !navLinks.some((nav) => nav.href === item.href)).map((item) => (
                     <li key={item.href}>
                       <Link
                         href={item.href}
@@ -402,18 +411,18 @@ export default function Header({ transparent = false }: HeaderProps) {
 
           <div className="flex items-center justify-end gap-6 flex-1">
             <Link
-              href="/custom-furniture"
+              href="/about"
               onClick={() => setMenuOpen(false)}
-              className="hidden md:block text-[12px] lg:text-[13px] font-sans font-normal uppercase tracking-[0.16em] text-[#1a1a1a] hover:opacity-50"
+              className="hidden md:block text-[12px] lg:text-[13px] font-sans font-medium uppercase tracking-[0.18em] text-[#1a1a1a] hover:opacity-50"
             >
-              Custom
+              Showroom
             </Link>
             <Link
-              href="/gallery"
+              href="/contact"
               onClick={() => setMenuOpen(false)}
-              className="hidden md:block text-[12px] lg:text-[13px] font-sans font-normal uppercase tracking-[0.16em] text-[#1a1a1a] hover:opacity-50"
+              className="hidden md:block text-[12px] lg:text-[13px] font-sans font-medium uppercase tracking-[0.18em] text-[#1a1a1a] hover:opacity-50"
             >
-              Gallery
+              Contact
             </Link>
             <a href="tel:+19166611073" className="text-[#1a1a1a] p-1" aria-label="Call us">
               <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth="1.4" viewBox="0 0 24 24">
@@ -427,13 +436,13 @@ export default function Header({ transparent = false }: HeaderProps) {
           className="hidden lg:flex items-center justify-center flex-wrap gap-x-6 xl:gap-x-8 gap-y-2 px-8 py-3.5 text-[#1a1a1a] shrink-0"
           aria-label="Shop categories"
         >
-          {shopLinks.map((item) => (
+          {navLinks.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setMenuOpen(false)}
-              className={`text-[13px] xl:text-[14px] uppercase tracking-[0.14em] font-sans font-normal transition-opacity duration-300 hover:opacity-50 ${
-                pathname === item.href ? 'opacity-100' : 'opacity-80'
+              className={`text-[13px] xl:text-[14px] uppercase tracking-[0.16em] font-sans font-medium transition-opacity duration-300 hover:opacity-50 ${
+                pathname === item.href ? 'opacity-100' : 'opacity-95'
               }`}
             >
               {item.label}

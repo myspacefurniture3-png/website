@@ -27,14 +27,14 @@ export default function Home() {
           <source src="/videos/hero2.mp4" type="video/mp4" />
         </video>
 
-        <div className="absolute inset-0 bg-black/25 z-10 pointer-events-none" />
+        <div className="absolute inset-0 z-10 pointer-events-none bg-gradient-to-b from-black/50 via-black/20 to-black/35" />
 
         <div className="absolute inset-0 z-20 flex flex-col items-center justify-center text-center text-white px-6 pointer-events-none">
-          <p className="text-[12px] md:text-[14px] uppercase tracking-[0.36em] font-sans mb-5 text-white/80">Roseville</p>
-          <h1 className="font-serif font-light leading-none tracking-[0.16em] text-[56px] md:text-[92px] lg:text-[112px]">
+          <p className="text-[12px] md:text-[14px] uppercase tracking-[0.36em] font-sans font-medium mb-5 text-white drop-shadow-[0_1px_3px_rgba(0,0,0,0.45)]">Roseville</p>
+          <h1 className="font-serif font-light leading-none tracking-[0.16em] text-[56px] md:text-[92px] lg:text-[112px] drop-shadow-[0_2px_8px_rgba(0,0,0,0.35)]">
             MYY SPACE
           </h1>
-          <p className="mt-5 text-[16px] md:text-[22px] lg:text-[24px] uppercase tracking-[0.28em] font-serif font-light text-white/90">
+          <p className="mt-5 text-[16px] md:text-[22px] lg:text-[24px] uppercase tracking-[0.28em] font-serif font-light text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.4)]">
             Furniture
           </p>
         </div>

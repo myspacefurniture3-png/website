@@ -4,8 +4,8 @@
   "description": "Quality Furniture for Every Space - Premium mattresses, sectionals, sofas, bedroom sets, and custom furniture.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#b8845c",
+  "background_color": "#f8f6f3",
+  "theme_color": "#f8f6f3",
   "orientation": "portrait-primary",
   "categories": ["shopping", "lifestyle"],
   "icons": [
@@ -13,27 +13,10 @@
     { "src": "/icons/icon_32x32.png", "sizes": "32x32", "type": "image/png" },
     { "src": "/icons/icon_48x48.png", "sizes": "48x48", "type": "image/png" },
     { "src": "/icons/icon_64x64.png", "sizes": "64x64", "type": "image/png" },
-    { "src": "/icons/icon-128x128.png", "sizes": "128x128", "type": "image/png" },
     { "src": "/icons/icon_180x180.png", "sizes": "180x180", "type": "image/png" },
     { "src": "/icons/icon_192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
-    { "src": "/icons/icon_192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
+    { "src": "/icons/icon-192x192.png", "sizes": "192x192", "type": "image/png", "purpose": "maskable" },
     { "src": "/icons/icon_256x256.png", "sizes": "256x256", "type": "image/png" },
     { "src": "/icons/icon_512x512.png", "sizes": "512x512", "type": "image/png" }
-  ],
-  "screenshots": [
-    {
-      "src": "/icons/icon_512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "form_factor": "wide",
-      "label": "Myy Space Furniture - Desktop"
-    },
-    {
-      "src": "/icons/icon_512x512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "form_factor": "narrow",
-      "label": "Myy Space Furniture - Mobile"
-    }
   ]
 }
