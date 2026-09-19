@@ -177,7 +177,7 @@ export default function Header({ transparent = false }: HeaderProps) {
   const textShadow = isTransparent ? 'drop-shadow-[0_1px_3px_rgba(0,0,0,0.55)]' : '';
   const linkClass = `hidden md:inline text-[12px] lg:text-[13px] uppercase tracking-[0.18em] font-sans font-medium hover:opacity-70 ${iconClass} ${textShadow}`;
   const categoryClass = (active: boolean) =>
-    `text-[13px] xl:text-[14px] uppercase tracking-[0.16em] font-sans font-medium hover:opacity-70 ${
+    `text-[12px] xl:text-[13px] uppercase tracking-[0.14em] font-sans font-medium whitespace-nowrap hover:opacity-70 ${
       active ? 'opacity-100' : 'opacity-95'
     } ${textShadow}`;
 
@@ -248,33 +248,23 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         <nav
-          className={`hidden lg:flex items-center gap-x-6 xl:gap-x-8 px-6 lg:px-10 py-3.5 ${
+          className={`hidden lg:flex items-center justify-center flex-nowrap gap-x-4 xl:gap-x-6 px-4 lg:px-8 py-3.5 overflow-x-auto ${
             isTransparent ? 'text-white' : 'text-[#1a1a1a]'
           }`}
           aria-label="Shop categories"
         >
-          <div className="flex flex-wrap items-center justify-center gap-x-6 xl:gap-x-8 gap-y-2 flex-1 min-w-0">
-            {collectionLinks.map((item) => {
-              const active = pathname === item.href;
-              return (
-                <Link
-                  key={item.href}
-                  href={item.href}
-                  className={categoryClass(active)}
-                >
-                  {item.label}
-                </Link>
-              );
-            })}
-          </div>
-          <Link
-            href="/gallery"
-            className={`shrink-0 pl-4 border-l ${
-              isTransparent ? 'border-white/30' : 'border-black/15'
-            } ${categoryClass(pathname === '/gallery')}`}
-          >
-            Gallery
-          </Link>
+          {collectionLinks.map((item) => {
+            const active = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={categoryClass(active)}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div
@@ -472,32 +462,21 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         <nav
-          className="hidden lg:flex items-center gap-x-6 xl:gap-x-8 px-8 lg:px-10 py-3.5 text-[#1a1a1a] shrink-0"
+          className="hidden lg:flex items-center justify-center flex-nowrap gap-x-4 xl:gap-x-6 px-4 lg:px-8 py-3.5 text-[#1a1a1a] shrink-0 overflow-x-auto"
           aria-label="Shop categories"
         >
-          <div className="flex flex-wrap items-center justify-center gap-x-6 xl:gap-x-8 gap-y-2 flex-1 min-w-0">
-            {collectionLinks.map((item) => (
-              <Link
-                key={item.href}
-                href={item.href}
-                onClick={() => setMenuOpen(false)}
-                className={`text-[13px] xl:text-[14px] uppercase tracking-[0.16em] font-sans font-medium transition-opacity duration-300 hover:opacity-50 ${
-                  pathname === item.href ? 'opacity-100' : 'opacity-95'
-                }`}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </div>
-          <Link
-            href="/gallery"
-            onClick={() => setMenuOpen(false)}
-            className={`shrink-0 pl-4 border-l border-black/15 text-[13px] xl:text-[14px] uppercase tracking-[0.16em] font-sans font-medium transition-opacity duration-300 hover:opacity-50 ${
-              pathname === '/gallery' ? 'opacity-100' : 'opacity-95'
-            }`}
-          >
-            Gallery
-          </Link>
+          {collectionLinks.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => setMenuOpen(false)}
+              className={`text-[12px] xl:text-[13px] uppercase tracking-[0.14em] font-sans font-medium whitespace-nowrap transition-opacity duration-300 hover:opacity-50 ${
+                pathname === item.href ? 'opacity-100' : 'opacity-95'
+              }`}
+            >
+              {item.label}
+            </Link>
+          ))}
         </nav>
 
         <div className="flex-1 overflow-y-auto">
