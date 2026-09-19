@@ -41,7 +41,8 @@ loadEnvLocal()
 
 const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || 'p3lp3hwm'
 const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET || 'production'
-const token = process.env.SANITY_API_WRITE_TOKEN?.trim()
+const token =
+  process.env.SANITY_API_WRITE_TOKEN?.trim() || process.env.SANITY_API_READ_TOKEN?.trim()
 
 if (!token) {
   console.error(
@@ -54,6 +55,10 @@ if (!token) {
     ].join('\n')
   )
   process.exit(1)
+}
+
+if (!process.env.SANITY_API_WRITE_TOKEN?.trim()) {
+  console.warn('SANITY_API_WRITE_TOKEN empty — using SANITY_API_READ_TOKEN (needs Editor access).')
 }
 
 const client = createClient({
