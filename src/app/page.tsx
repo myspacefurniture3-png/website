@@ -40,7 +40,7 @@ export default function Home() {
         </div>
 
         <p className="absolute bottom-8 md:bottom-12 left-0 right-0 z-20 text-center px-6 text-[13px] md:text-[15px] uppercase tracking-[0.22em] text-white/85 font-sans">
-          Premium furniture for every room in your home
+          Roseville showroom · Furniture for every room
         </p>
       </section>
 
@@ -58,7 +58,7 @@ export default function Home() {
         <div className="bg-[#f8f6f3] px-2 md:px-3 py-2 md:py-3 space-y-2 md:space-y-3">
           <Link href="/custom-furniture" className="relative block w-full min-h-[52vh] md:min-h-[64vh] overflow-hidden group">
             <img
-              src="/products/custom-furniture/custom-new (1).jpeg"
+              src="/Website/IMG_4365.PNG"
               alt="Custom Furniture"
               className="absolute inset-0 w-full h-full object-cover"
               width={1920}
@@ -70,6 +70,9 @@ export default function Home() {
               <p className="text-[12px] uppercase tracking-[0.3em] text-white/70 mb-4 font-sans">Bespoke</p>
               <h2 className="text-5xl md:text-7xl font-serif font-light tracking-[0.14em]">CUSTOM</h2>
               <p className="mt-3 text-[16px] md:text-[18px] uppercase tracking-[0.26em] font-serif font-light text-white/85">Furniture</p>
+              <p className="mt-5 max-w-md text-[13px] md:text-[14px] font-light tracking-wide text-white/80 normal-case">
+                Designed for your room, your fabric, and how you live.
+              </p>
             </div>
           </Link>
 
@@ -109,7 +112,7 @@ export default function Home() {
 
           <Link href="/fabric-sectionals" className="relative block w-full h-[48vh] md:h-[62vh] overflow-hidden group">
             <img
-              src="/products/gallery/gallery (6).jpeg"
+              src="/Website/IMG_4546.PNG"
               alt="Fabric Selections"
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -119,6 +122,9 @@ export default function Home() {
                 <p className="text-[12px] uppercase tracking-[0.3em] text-white/70 mb-4 font-sans">Collection</p>
                 <h2 className="text-5xl md:text-7xl font-serif font-light tracking-[0.12em]">FABRIC</h2>
                 <p className="mt-3 text-[16px] md:text-[18px] uppercase tracking-[0.26em] font-serif font-light text-white/85">Selections</p>
+                <p className="mt-5 max-w-md mx-auto text-[13px] md:text-[14px] font-light tracking-wide text-white/80 normal-case">
+                  Soft textiles and modular shapes for rooms you live in every day.
+                </p>
               </div>
             </div>
           </Link>

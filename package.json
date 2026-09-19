@@ -10,6 +10,7 @@
     "studio": "next dev",
     "seed:sanity": "npx tsx scripts/seed-sanity.ts",
     "fix:categories": "npx tsx scripts/fix-categories.ts",
+    "sync:categories": "npx tsx scripts/sync-categories.ts",
     "vercel-build": "next build"
   },
   "dependencies": {
