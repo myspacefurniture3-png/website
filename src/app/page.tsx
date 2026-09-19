@@ -33,7 +33,7 @@ export default function Home() {
         <section className="py-20 md:py-28 bg-[#f8f6f3]">
           <div className="max-w-6xl mx-auto px-6 lg:px-12">
             <div className="text-center mb-16">
-              <p className="text-[12px] uppercase tracking-[0.26em] text-[#1a1a1a]/50 mb-4 font-sans">
+              <p className="text-[12px] uppercase tracking-[0.26em] text-[#1a1a1a]/75 mb-4 font-sans font-medium">
                 The Myy Space Difference
               </p>
               <h2 className="text-4xl md:text-5xl font-serif font-light text-[#1a1a1a] mb-4">Why Choose Us</h2>
@@ -70,7 +70,7 @@ export default function Home() {
                 <div key={feature.title} className="text-center">
                   <div className="w-10 h-px bg-[#1a1a1a]/30 mx-auto mb-6" />
                   <h3 className="text-xl font-serif font-light text-[#1a1a1a] mb-3">{feature.title}</h3>
-                  <p className="text-sm text-[#1a1a1a]/60 leading-relaxed font-light">{feature.description}</p>
+                  <p className="text-sm text-[#1a1a1a]/70 leading-relaxed font-light">{feature.description}</p>
                 </div>
               ))}
             </div>
@@ -81,11 +81,11 @@ export default function Home() {
 
         <section className="py-24 md:py-32 bg-[#f8f6f3] border-t border-black/10">
           <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="text-[12px] uppercase tracking-[0.26em] text-[#1a1a1a]/50 mb-6 font-sans">Visit</p>
+            <p className="text-[12px] uppercase tracking-[0.26em] text-[#1a1a1a]/75 mb-6 font-sans font-medium">Visit</p>
             <h2 className="text-3xl md:text-5xl font-serif font-light text-[#1a1a1a] mb-6 leading-tight">
               Ready to Transform Your Space?
             </h2>
-            <p className="text-base text-[#1a1a1a]/65 mb-10 font-light leading-relaxed">
+            <p className="text-base text-[#1a1a1a]/75 mb-10 font-light leading-relaxed">
               Visit our showroom or contact us today to explore our full collection of premium furniture.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -50,9 +50,9 @@ export default async function Gallery() {
       <Header />
       <main className="bg-[#f8f6f3] min-h-screen">
         <div className="text-center px-6 pt-16 md:pt-24 pb-8 md:pb-10">
-          <p className="text-[12px] uppercase tracking-[0.22em] text-[#1a1a1a]/50 mb-4 font-sans">Shop</p>
+          <p className="text-[12px] uppercase tracking-[0.22em] text-[#1a1a1a]/75 mb-4 font-sans font-medium">Shop</p>
           <h1 className="font-serif text-5xl md:text-7xl font-light tracking-wide">Gallery</h1>
-          <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/65 font-light leading-relaxed">
+          <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/75 font-light leading-relaxed">
             Filter by collection, then open a piece or shop the full category.
           </p>
         </div>

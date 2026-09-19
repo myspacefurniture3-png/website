@@ -37,10 +37,10 @@ export default function JournalList({ posts }: { posts: Post[] }) {
               key={name}
               type="button"
               onClick={() => setActive(name)}
-              className={`px-4 py-2 text-[10px] uppercase tracking-[0.18em] border transition ${
+              className={`px-4 py-2 text-[11px] uppercase tracking-[0.16em] font-sans font-medium border transition ${
                 active === name
                   ? 'border-[#1a1a1a] bg-[#1a1a1a] text-white'
-                  : 'border-black/15 text-[#1a1a1a]/70 hover:border-[#1a1a1a]'
+                  : 'border-black/25 text-[#1a1a1a]/85 hover:border-[#1a1a1a] hover:text-[#1a1a1a]'
               }`}
             >
               {name}
@@ -54,7 +54,7 @@ export default function JournalList({ posts }: { posts: Post[] }) {
             value={query}
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Search articles"
-            className="w-full bg-transparent border-b border-black/20 py-2 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/40 focus:outline-none focus:border-[#1a1a1a]"
+            className="w-full bg-transparent border-b border-black/30 py-2 text-sm text-[#1a1a1a] placeholder:text-[#1a1a1a]/55 focus:outline-none focus:border-[#1a1a1a]"
           />
         </label>
       </div>
@@ -72,14 +72,14 @@ export default function JournalList({ posts }: { posts: Post[] }) {
             />
           </div>
           <div>
-            <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/45 mb-4 font-sans">
+            <p className="text-[11px] uppercase tracking-[0.2em] text-[#1a1a1a]/75 mb-4 font-sans font-medium">
               {featured.kicker || 'Featured'} · {featured.category}
             </p>
             <h2 className="font-serif text-3xl md:text-5xl font-light leading-tight text-[#1a1a1a] mb-5">
               {featured.title}
             </h2>
-            <p className="text-[#1a1a1a]/65 font-light leading-relaxed mb-6 max-w-xl">{featured.excerpt}</p>
-            <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/45">
+            <p className="text-[#1a1a1a]/75 font-light leading-relaxed mb-6 max-w-xl">{featured.excerpt}</p>
+            <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/70 font-sans">
               {featured.date}
               {featured.readTime ? ` · ${featured.readTime}` : ''}
             </p>
@@ -94,12 +94,14 @@ export default function JournalList({ posts }: { posts: Post[] }) {
               <div className="relative h-56 w-full overflow-hidden mb-5 bg-[#eeeae4]">
                 <Image src={post.coverImage} alt={post.title} fill className="object-cover" sizes="(max-width: 768px) 100vw, 33vw" />
               </div>
-              <p className="text-[11px] uppercase tracking-[0.18em] text-[#1a1a1a]/45 mb-2 font-sans">{post.category}</p>
-              <h2 className="font-serif text-2xl font-light text-[#1a1a1a] mb-3 leading-snug group-hover:opacity-60 transition">
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/75 mb-2 font-sans font-medium">
+                {post.category}
+              </p>
+              <h2 className="font-serif text-2xl font-light text-[#1a1a1a] mb-3 leading-snug group-hover:opacity-70 transition">
                 {post.title}
               </h2>
-              <p className="text-sm text-[#1a1a1a]/60 leading-relaxed font-light line-clamp-3 mb-4">{post.excerpt}</p>
-              <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/40">
+              <p className="text-sm text-[#1a1a1a]/75 leading-relaxed font-light line-clamp-3 mb-4">{post.excerpt}</p>
+              <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/70 font-sans">
                 {post.date}
                 {post.readTime ? ` · ${post.readTime}` : ''}
               </p>
@@ -107,7 +109,7 @@ export default function JournalList({ posts }: { posts: Post[] }) {
           ))}
         </div>
       ) : (
-        <p className="text-center text-[#1a1a1a]/50 py-16 text-sm tracking-[0.16em] uppercase">
+        <p className="text-center text-[#1a1a1a]/70 py-16 text-sm tracking-[0.16em] uppercase font-sans">
           No articles match that search.
         </p>
       )}

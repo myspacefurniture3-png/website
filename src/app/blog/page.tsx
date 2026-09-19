@@ -19,9 +19,9 @@ export default async function BlogIndex() {
       <Header />
       <main className="min-h-screen bg-[#f8f6f3]">
         <section className="px-6 pt-16 md:pt-24 pb-12 md:pb-16 text-center">
-          <p className="uppercase tracking-[0.22em] text-[12px] mb-4 text-[#1a1a1a]/50 font-sans">Journal</p>
+          <p className="uppercase tracking-[0.22em] text-[12px] mb-4 text-[#1a1a1a]/75 font-sans font-medium">Journal</p>
           <h1 className="font-serif text-5xl md:text-7xl font-light text-[#1a1a1a] tracking-wide">Stories for the home</h1>
-          <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/65 font-light leading-relaxed">
+          <p className="mt-5 max-w-xl mx-auto text-sm md:text-base text-[#1a1a1a]/75 font-light leading-relaxed">
             Buying guides, styling notes, and care from the Roseville showroom.
           </p>
         </section>
@@ -32,9 +32,9 @@ export default async function BlogIndex() {
 
         <section className="border-t border-black/10 py-20 md:py-24">
           <div className="max-w-3xl mx-auto px-6 text-center">
-            <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/50 mb-4 font-sans">Visit</p>
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/75 mb-4 font-sans font-medium">Visit</p>
             <h2 className="font-serif text-3xl md:text-4xl font-light mb-5">See the pieces in person</h2>
-            <p className="text-[#1a1a1a]/65 font-light leading-relaxed mb-8">
+            <p className="text-[#1a1a1a]/75 font-light leading-relaxed mb-8">
               Our team can help you measure, choose fabrics, and plan a room around the ideas in these articles.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

@@ -48,7 +48,7 @@ export default function CategoryGallery({ images, title, shopHref }: Props) {
                 <h2 className="text-[12px] md:text-[13px] uppercase tracking-[0.18em] font-sans text-[#1a1a1a] font-medium px-4">
                   {label}
                 </h2>
-                <p className="mt-3 text-[10px] md:text-[11px] uppercase tracking-[0.16em] font-sans text-[#1a1a1a]/45 px-4">
+                <p className="mt-3 text-[10px] md:text-[11px] uppercase tracking-[0.16em] font-sans text-[#1a1a1a]/70 px-4">
                   Showroom pricing · Financing available
                 </p>
                 {shopHref ? (

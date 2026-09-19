@@ -64,7 +64,7 @@ export const journalPortableTextComponents: PortableTextComponents = {
       const label = tone === 'important' ? 'Important' : tone === 'note' ? 'Note' : 'Tip'
       return (
         <aside className={`my-8 px-5 py-4 not-prose ${calloutStyles[tone] || calloutStyles.tip}`}>
-          <p className="text-[10px] uppercase tracking-[0.2em] text-[#1a1a1a]/45 mb-2">{label}</p>
+          <p className="text-[10px] uppercase tracking-[0.2em] text-[#1a1a1a]/70 mb-2 font-medium">{label}</p>
           <p className="text-[#1a1a1a]/85 leading-relaxed font-light m-0">{value?.text}</p>
         </aside>
       )

@@ -49,7 +49,7 @@ export default function About() {
       <main className="py-20 md:py-28 bg-[#f8f6f3] text-[#1a1a1a]">
         <div className="max-w-6xl mx-auto px-6 lg:px-12">
           <section className="mb-20 text-center max-w-3xl mx-auto">
-            <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/50 mb-4">Est. 2016</p>
+            <p className="text-[11px] uppercase tracking-[0.28em] text-[#1a1a1a]/75 mb-4">Est. 2016</p>
             <h2 className="text-3xl md:text-4xl font-playfair font-light mb-6">About Myy Space Furniture</h2>
             <div className="w-12 h-px bg-[#1a1a1a]/30 mx-auto mb-8" />
             <p className="text-base md:text-lg text-[#1a1a1a]/75 mb-4 font-light leading-relaxed">

@@ -5,7 +5,7 @@ import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 
 const fieldClass =
-  'w-full px-0 py-3 text-base bg-transparent border-0 border-b border-black/20 focus:border-[#1a1a1a] focus:ring-0 outline-none text-[#1a1a1a] placeholder:text-[#1a1a1a]/40'
+  'w-full px-0 py-3 text-base bg-transparent border-0 border-b border-black/25 focus:border-[#1a1a1a] focus:ring-0 outline-none text-[#1a1a1a] placeholder:text-[#1a1a1a]/55'
 const labelClass = 'block text-[11px] uppercase tracking-[0.18em] text-[#1a1a1a] mb-2'
 
 export default function ContactForm() {

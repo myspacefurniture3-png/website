@@ -72,11 +72,11 @@ export default function Financing() {
                 className={`p-8 flex flex-col border ${option.featured ? 'border-[#1a1a1a]' : 'border-black/15'}`}
               >
                 {option.featured && (
-                  <p className="text-[10px] uppercase tracking-[0.22em] mb-4 text-[#1a1a1a]/50">Most Popular</p>
+                  <p className="text-[10px] uppercase tracking-[0.22em] mb-4 text-[#1a1a1a]/75">Most Popular</p>
                 )}
                 <h3 className="text-2xl font-playfair font-light mb-4">{option.title}</h3>
                 <p className="text-[11px] uppercase tracking-[0.16em] mb-2">{option.terms}</p>
-                <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/50 mb-6">{option.duration}</p>
+                <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/75 mb-6">{option.duration}</p>
                 <p className="text-[#1a1a1a]/70 mb-6 font-light">{option.description}</p>
                 <ul className="space-y-3 mb-8 flex-1">
                   {option.features.map((feature) => (

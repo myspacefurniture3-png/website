@@ -74,7 +74,7 @@ export default function GalleryExplorer({ products, filters }: Props) {
       </div>
 
       {visible.length === 0 ? (
-        <p className="text-center text-[#1a1a1a]/45 py-24 text-[11px] uppercase tracking-[0.2em] font-sans">
+        <p className="text-center text-[#1a1a1a]/70 py-24 text-[11px] uppercase tracking-[0.2em] font-sans">
           No pieces in this collection yet.
         </p>
       ) : (
@@ -99,7 +99,7 @@ export default function GalleryExplorer({ products, filters }: Props) {
                 <h2 className="text-[12px] md:text-[13px] uppercase tracking-[0.18em] font-sans text-[#1a1a1a] font-medium px-4">
                   {item.title}
                 </h2>
-                <p className="mt-3 text-[10px] md:text-[11px] uppercase tracking-[0.16em] font-sans text-[#1a1a1a]/45 px-4">
+                <p className="mt-3 text-[10px] md:text-[11px] uppercase tracking-[0.16em] font-sans text-[#1a1a1a]/70 px-4">
                   Showroom pricing · Financing available
                 </p>
                 <Link

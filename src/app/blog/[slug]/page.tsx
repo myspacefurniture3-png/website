@@ -108,7 +108,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
 
           {post.relatedCategories && post.relatedCategories.length > 0 && (
             <div className="mt-12 pt-10 border-t border-black/10">
-              <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/45 mb-4 font-sans">Shop the story</p>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/75 mb-4 font-sans font-medium">Shop the story</p>
               <div className="flex flex-wrap gap-3">
                 {post.relatedCategories.map((item) => (
                   <Link
@@ -138,7 +138,7 @@ export default async function BlogPost({ params }: { params: { slug: string } })
                     <div className="relative h-48 w-full overflow-hidden mb-4 bg-[#eeeae4]">
                       <Image src={item.coverImage} alt={item.title} fill className="object-cover" />
                     </div>
-                    <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/45 mb-2">{item.category}</p>
+                    <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/75 mb-2 font-medium">{item.category}</p>
                     <h3 className="font-serif text-xl font-light leading-snug group-hover:opacity-60 transition">{item.title}</h3>
                   </Link>
                 ))}

@@ -31,7 +31,7 @@ export default function Contact() {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-20">
             <div>
-              <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/50 mb-4">Showroom</p>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/75 mb-4">Showroom</p>
               <h2 className="text-3xl font-playfair font-light mb-10">Get In Touch</h2>
               <div className="space-y-8 text-[#1a1a1a]/75 font-light">
                 <div>
@@ -59,7 +59,7 @@ export default function Contact() {
             </div>
 
             <div>
-              <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/50 mb-4">Inquiry</p>
+              <p className="text-[11px] uppercase tracking-[0.22em] text-[#1a1a1a]/75 mb-4">Inquiry</p>
               <h2 className="text-3xl font-playfair font-light mb-10">Send us a Message</h2>
               <ContactForm />
             </div>

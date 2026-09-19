@@ -61,7 +61,7 @@ export default function ShareButtons({
 
   return (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-      <p className="text-[10px] uppercase tracking-[0.22em] text-[#1a1a1a]/45 font-sans">Share</p>
+      <p className="text-[10px] uppercase tracking-[0.22em] text-[#1a1a1a]/75 font-sans font-medium">Share</p>
       <button
         type="button"
         onClick={nativeShare}

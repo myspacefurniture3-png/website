@@ -95,9 +95,12 @@ export default function Header({ transparent = false }: HeaderProps) {
     href: `/${item.slug}`,
     label: item.navLabel,
   }));
-  const navLinks = [
+  const collectionLinks = [
     { href: '/', label: 'Home' },
     ...shopLinks,
+  ];
+  const navLinks = [
+    ...collectionLinks,
     { href: '/gallery', label: 'Gallery' },
   ];
   const productLinks = categories.map((item) => ({
@@ -233,6 +236,7 @@ export default function Header({ transparent = false }: HeaderProps) {
             >
               Showroom
             </a>
+            <Link href="/gallery" className={linkClass}>Gallery</Link>
             <Link href="/financing" className={linkClass}>Financing</Link>
             <Link href="/contact" className={linkClass}>Contact</Link>
             <a href="tel:+19166611073" className={`${iconClass} p-1`} aria-label="Call us">
@@ -244,23 +248,33 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         <nav
-          className={`hidden lg:flex items-center justify-center flex-wrap gap-x-6 xl:gap-x-8 gap-y-2 px-6 py-3.5 ${
+          className={`hidden lg:flex items-center gap-x-6 xl:gap-x-8 px-6 lg:px-10 py-3.5 ${
             isTransparent ? 'text-white' : 'text-[#1a1a1a]'
           }`}
           aria-label="Shop categories"
         >
-          {navLinks.map((item) => {
-            const active = pathname === item.href;
-            return (
-              <Link
-                key={item.href}
-                href={item.href}
-                className={categoryClass(active)}
-              >
-                {item.label}
-              </Link>
-            );
-          })}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 xl:gap-x-8 gap-y-2 flex-1 min-w-0">
+            {collectionLinks.map((item) => {
+              const active = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  className={categoryClass(active)}
+                >
+                  {item.label}
+                </Link>
+              );
+            })}
+          </div>
+          <Link
+            href="/gallery"
+            className={`shrink-0 pl-4 border-l ${
+              isTransparent ? 'border-white/30' : 'border-black/15'
+            } ${categoryClass(pathname === '/gallery')}`}
+          >
+            Gallery
+          </Link>
         </nav>
 
         <div
@@ -280,18 +294,18 @@ export default function Header({ transparent = false }: HeaderProps) {
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search collections"
-              className="w-full bg-transparent text-base tracking-wide text-[#1a1a1a] placeholder:text-black/40 outline-none"
+            className="w-full bg-transparent text-base tracking-wide text-[#1a1a1a] placeholder:text-[#1a1a1a]/55 outline-none"
             />
             <button
               onClick={() => setSearchOpen(false)}
-              className="text-[10px] uppercase tracking-[0.2em] text-black/50 hover:text-[#1a1a1a]"
+              className="text-[10px] uppercase tracking-[0.2em] text-[#1a1a1a]/70 hover:text-[#1a1a1a]"
             >
               Close
             </button>
           </div>
           <ul className="mt-6 space-y-1">
             {searchResults.length === 0 ? (
-              <li className="text-sm text-black/40 py-2">No matching collections</li>
+              <li className="text-sm text-[#1a1a1a]/70 py-2">No matching collections</li>
             ) : (
               searchResults.map((item) => (
                 <li key={item.href}>
@@ -458,21 +472,32 @@ export default function Header({ transparent = false }: HeaderProps) {
         </div>
 
         <nav
-          className="hidden lg:flex items-center justify-center flex-wrap gap-x-6 xl:gap-x-8 gap-y-2 px-8 py-3.5 text-[#1a1a1a] shrink-0"
+          className="hidden lg:flex items-center gap-x-6 xl:gap-x-8 px-8 lg:px-10 py-3.5 text-[#1a1a1a] shrink-0"
           aria-label="Shop categories"
         >
-          {navLinks.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
-              onClick={() => setMenuOpen(false)}
-              className={`text-[13px] xl:text-[14px] uppercase tracking-[0.16em] font-sans font-medium transition-opacity duration-300 hover:opacity-50 ${
-                pathname === item.href ? 'opacity-100' : 'opacity-95'
-              }`}
-            >
-              {item.label}
-            </Link>
-          ))}
+          <div className="flex flex-wrap items-center justify-center gap-x-6 xl:gap-x-8 gap-y-2 flex-1 min-w-0">
+            {collectionLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setMenuOpen(false)}
+                className={`text-[13px] xl:text-[14px] uppercase tracking-[0.16em] font-sans font-medium transition-opacity duration-300 hover:opacity-50 ${
+                  pathname === item.href ? 'opacity-100' : 'opacity-95'
+                }`}
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <Link
+            href="/gallery"
+            onClick={() => setMenuOpen(false)}
+            className={`shrink-0 pl-4 border-l border-black/15 text-[13px] xl:text-[14px] uppercase tracking-[0.16em] font-sans font-medium transition-opacity duration-300 hover:opacity-50 ${
+              pathname === '/gallery' ? 'opacity-100' : 'opacity-95'
+            }`}
+          >
+            Gallery
+          </Link>
         </nav>
 
         <div className="flex-1 overflow-y-auto">
