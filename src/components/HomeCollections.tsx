@@ -16,7 +16,7 @@ type Panel = {
 /** Curated lifestyle heroes for homepage panels (best Website frames per collection). */
 const HOMEPAGE_HEROES: Record<string, string> = {
   loveseats: '/Website/IMG_4543.PNG',
-  'bedroom-sets': '/Website/IMG_4500.PNG',
+  'bedroom-sets': '/Website/IMG_4365.PNG',
   'dining-tables': '/Website/IMG_4654.PNG',
   'leather-sectionals': '/Website/IMG_4390.PNG',
   'fabric-sectionals': '/Website/IMG_4546.PNG',

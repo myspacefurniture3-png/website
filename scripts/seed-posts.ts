@@ -143,7 +143,7 @@ async function seedPosts() {
       author: post.author || 'Myy Space Furniture',
       readTime: post.readTime,
       publishedAt,
-      featured: true,
+      featured: index === 0,
       published: true,
       bodyHtml: post.content.trim(),
       seoTitle: post.title.slice(0, 70),
@@ -169,7 +169,7 @@ async function seedPosts() {
         author: payload.author,
         readTime: payload.readTime,
         publishedAt: payload.publishedAt,
-        featured: true,
+        featured: index === 0,
         published: true,
         bodyHtml: payload.bodyHtml,
         seoTitle: payload.seoTitle,
@@ -184,10 +184,10 @@ async function seedPosts() {
       continue
     }
 
-    // Safe mode: never touch Studio content — only ensure visibility flags
+    // Safe mode: never touch Studio content — only ensure published
     const flagPatch: Record<string, unknown> = {}
     if (found.published === false) flagPatch.published = true
-    if (found.featured !== true) flagPatch.featured = true
+    // Only the newest local entry should stay featured by default; clear others later in a pass
     if (!found.coverImageUrl && !found.coverImage && post.coverImage) {
       flagPatch.coverImageUrl = post.coverImage
     }
@@ -199,6 +199,24 @@ async function seedPosts() {
     } else {
       skipped += 1
       console.log(`Skipped  ${post.slug} (keeping Studio content)`)
+    }
+  }
+
+  // Ensure exactly one featured post (newest by publishedAt)
+  const allPosts = await client.fetch<Array<{ _id: string; featured?: boolean }>>(
+    `*[_type == "post" && published != false] | order(publishedAt desc) { _id, featured }`
+  )
+  if (allPosts.length > 0) {
+    const [first, ...rest] = allPosts
+    if (first.featured !== true) {
+      await client.patch(first._id).set({ featured: true }).commit()
+      console.log(`Featured ${first._id}`)
+    }
+    for (const doc of rest) {
+      if (doc.featured) {
+        await client.patch(doc._id).set({ featured: false }).commit()
+        console.log(`Unfeatured ${doc._id}`)
+      }
     }
   }
 

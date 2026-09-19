@@ -4,15 +4,13 @@ import Link from 'next/link'
 
 const STRIP = [
   '/Website/IMG_4546.PNG',
-  '/Website/IMG_4500.PNG',
-  '/Website/IMG_4657.PNG',
+  '/Website/IMG_4365.PNG',
   '/Website/IMG_4540.PNG',
   '/Website/IMG_4335.PNG',
   '/Website/IMG_4549.PNG',
-  '/Website/IMG_4365.PNG',
   '/Website/IMG_4654.PNG',
-  '/Website/IMG_4580.PNG',
-  '/Website/IMG_4498.PNG',
+  '/Website/IMG_4337.PNG',
+  '/Website/IMG_4296.PNG',
 ]
 
 /** Slow horizontal drift of lifestyle frames — film-strip energy between sections */

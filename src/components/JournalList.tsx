@@ -18,13 +18,13 @@ export default function JournalList({ posts }: { posts: Post[] }) {
   const filtered = useMemo(() => {
     const needle = query.trim().toLowerCase()
     return posts.filter((item) => {
-      if (featured && item.slug === featured.slug && !needle && active === 'All') return false
+      // Keep featured in the grid so the visible count matches Sanity
       if (active !== 'All' && item.category !== active) return false
       if (!needle) return true
       const haystack = [item.title, item.excerpt, item.category, ...(item.tags || [])].join(' ').toLowerCase()
       return haystack.includes(needle)
     })
-  }, [posts, query, active, featured])
+  }, [posts, query, active])
 
   const showFeatured = featured && active === 'All' && !query.trim()
 
@@ -47,6 +47,9 @@ export default function JournalList({ posts }: { posts: Post[] }) {
             </button>
           ))}
         </div>
+        <p className="text-[11px] uppercase tracking-[0.16em] text-[#1a1a1a]/70 font-sans lg:mr-4 shrink-0">
+          {filtered.length} {filtered.length === 1 ? 'story' : 'stories'}
+        </p>
         <label className="relative w-full lg:w-72">
           <span className="sr-only">Search journal</span>
           <input

@@ -5,12 +5,12 @@ import Footer from '@/components/Footer'
 import Typewriter from '@/components/Typewriter'
 import { SHOWROOM_MAPS_URL, SITE_URL, absoluteUrl } from '@/lib/site'
 
-const ABOUT_IMAGE = '/Website/IMG_4580.PNG'
+const ABOUT_IMAGE = '/Website/IMG_4546.PNG'
 const ABOUT_IMAGE_ALT =
-  'Modern living room with gray sectional sofas at Myy Space Furniture in Roseville, CA'
-const SHOWROOM_IMAGE = '/Website/IMG_4498.PNG'
+  'Bright living room with cream sectional and garden views at Myy Space Furniture in Roseville, CA'
+const SHOWROOM_IMAGE = '/Website/IMG_4365.PNG'
 const SHOWROOM_IMAGE_ALT =
-  'Bright bedroom suite with tufted headboard on display at Myy Space Furniture Roseville'
+  'Modern bedroom with floating wood bed and accent chair at Myy Space Furniture Roseville'
 
 export const metadata: Metadata = {
   title: {

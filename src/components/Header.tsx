@@ -53,7 +53,7 @@ const menuSections: {
   {
     title: 'Our Spaces',
     href: '/bedroom-sets',
-    image: '/Website/IMG_4500.PNG',
+    image: '/Website/IMG_4365.PNG',
     links: [
       { href: '/loveseats', label: 'Living' },
       { href: '/bedroom-sets', label: 'Bedroom' },

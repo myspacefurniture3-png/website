@@ -5,12 +5,12 @@ import Header from '@/components/Header'
 
 const SLIDES = [
   { src: '/Website/IMG_4546.PNG', label: 'Living' },
-  { src: '/Website/IMG_4500.PNG', label: 'Bedroom' },
+  { src: '/Website/IMG_4365.PNG', label: 'Bedroom' },
   { src: '/Website/IMG_4654.PNG', label: 'Dining' },
   { src: '/Website/IMG_4549.PNG', label: 'Sectionals' },
-  { src: '/Website/IMG_4498.PNG', label: 'Suites' },
-  { src: '/Website/IMG_4365.PNG', label: 'Design' },
+  { src: '/Website/IMG_4337.PNG', label: 'Mattresses' },
   { src: '/Website/IMG_4540.PNG', label: 'Sofas' },
+  { src: '/Website/IMG_4335.PNG', label: 'Vanities' },
   { src: '/Website/IMG_4296.PNG', label: 'Custom' },
 ]
 

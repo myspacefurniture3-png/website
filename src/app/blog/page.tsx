@@ -7,7 +7,9 @@ import { getPosts } from '@/sanity/fetch'
 export const revalidate = 60
 
 export const metadata = {
-  title: 'Journal | Myy Space Furniture',
+  title: {
+    absolute: 'Journal | Myy Space Furniture',
+  },
   description:
     'Furniture buying guides, interior design trends, styling tips, and care advice from Myy Space Furniture in Roseville, CA.',
   keywords: [
