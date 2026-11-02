@@ -9,6 +9,13 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
+        brand: {
+          cream: '#F8F5F2',
+          sand: '#e8e0d8',
+          brown: '#8B6B56',
+          'brown-dark': '#7a5c49',
+          ink: '#2c241c',
+        },
         'primary-blue': '#1E3A8A',
         'secondary-blue': '#2563EB',
         'light-gray': '#F5F5F5',

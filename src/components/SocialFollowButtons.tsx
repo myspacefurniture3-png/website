@@ -4,9 +4,9 @@ import { SOCIAL_PROFILES } from '@/lib/social'
 import { IconFacebook, IconGoogleReviews, IconInstagram } from '@/components/SocialIcons'
 
 const FOLLOW = [
-  { key: 'facebook', label: 'Facebook', href: SOCIAL_PROFILES.facebook, Icon: IconFacebook },
-  { key: 'instagram', label: 'Instagram', href: SOCIAL_PROFILES.instagram, Icon: IconInstagram },
-  { key: 'google', label: 'Google Reviews', href: SOCIAL_PROFILES.googleReviews, Icon: IconGoogleReviews },
+  { key: 'facebook', label: 'Follow on Facebook', href: SOCIAL_PROFILES.facebook, Icon: IconFacebook },
+  { key: 'instagram', label: 'Follow on Instagram', href: SOCIAL_PROFILES.instagram, Icon: IconInstagram },
+  { key: 'google', label: 'Read our Google Reviews', href: SOCIAL_PROFILES.googleReviews, Icon: IconGoogleReviews },
 ] as const
 
 /**
@@ -17,10 +17,12 @@ export default function SocialFollowButtons({
   size = 'md',
 }: {
   className?: string
-  size?: 'sm' | 'md'
+  size?: 'sm' | 'md' | 'lg'
 }) {
-  const box = size === 'sm' ? 'h-10 w-10' : 'h-11 w-11'
-  const icon = size === 'sm' ? 'h-[18px] w-[18px]' : 'h-5 w-5'
+  const box =
+    size === 'sm' ? 'h-10 w-10' : size === 'lg' ? 'h-12 w-12' : 'h-11 w-11'
+  const icon =
+    size === 'sm' ? 'h-[18px] w-[18px]' : size === 'lg' ? 'h-5 w-5' : 'h-[18px] w-[18px]'
 
   return (
     <div className={`flex flex-wrap items-center gap-3 ${className}`}>
@@ -32,9 +34,13 @@ export default function SocialFollowButtons({
           rel="noopener noreferrer"
           aria-label={label}
           title={label}
-          className={`${box} inline-flex items-center justify-center border border-[#1a1a1a]/30 text-[#1a1a1a] hover:bg-[#1a1a1a] hover:text-white hover:border-[#1a1a1a] transition-colors`}
+          className={`${box} inline-flex items-center justify-center rounded-full border border-[#2c241c]/25 text-[#2c241c] hover:bg-[#8B6B56] hover:text-white hover:border-[#8B6B56] transition-colors`}
         >
-          <Icon className={icon} />
+          <Icon
+            className={`${icon} block shrink-0 ${
+              key === 'facebook' ? 'translate-x-[0.5px]' : ''
+            }`}
+          />
         </a>
       ))}
     </div>

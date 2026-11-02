@@ -3,128 +3,157 @@
 import Link from 'next/link'
 import type { Category } from '@/lib/types'
 
-type Panel = {
-  href: string
-  image: string
-  kicker: string
-  title: string
-  subtitle?: string
-  line?: string
-  tall?: boolean
-}
+/** Mockup: top row of 4, bottom row of 3 — equal tiles, labels under images */
+const SHOP_BY_CATEGORY = [
+  {
+    title: 'Living Room',
+    href: '/loveseats',
+    image: '/Website/IMG_4546.PNG',
+  },
+  {
+    title: 'Bedroom',
+    href: '/bedroom-sets',
+    image: '/Website/IMG_4365.PNG',
+  },
+  {
+    title: 'Kids & Teens',
+    href: '/bunk-beds',
+    image: '/Website/IMG_4296.PNG',
+  },
+  {
+    title: 'Dining Room',
+    href: '/dining-tables',
+    image: '/Website/IMG_4654.PNG',
+  },
+  {
+    title: 'Vanities & Mirrors',
+    href: '/vanities',
+    image: '/Website/IMG_4335.PNG',
+  },
+  {
+    title: 'Outdoor Furniture',
+    href: '/contact',
+    image: '/Website/IMG_4543.PNG',
+  },
+  {
+    title: 'Custom Furniture',
+    href: '/custom-furniture',
+    image: '/products/custom-furniture/custom-new (12).jpeg',
+  },
+]
 
-/** Curated lifestyle heroes for homepage panels (best Website frames per collection). */
-const HOMEPAGE_HEROES: Record<string, string> = {
-  loveseats: '/Website/IMG_4543.PNG',
-  'bedroom-sets': '/Website/IMG_4365.PNG',
-  'dining-tables': '/Website/IMG_4654.PNG',
-  'leather-sectionals': '/Website/IMG_4390.PNG',
-  'fabric-sectionals': '/Website/IMG_4546.PNG',
-  mattresses: '/Website/IMG_4337.PNG',
-  vanities: '/Website/IMG_4335.PNG',
-  'bunk-beds': '/Website/IMG_4296.PNG',
-  'custom-furniture': '/Website/IMG_4365.PNG',
-}
-
-function CollectionPanel({ panel }: { panel: Panel }) {
-  return (
-    <Link
-      href={panel.href}
-      className={`relative block w-full overflow-hidden group ${
-        panel.tall ? 'h-[72vh] md:h-[88vh] min-h-[520px]' : 'h-[58vh] md:h-[72vh] min-h-[420px]'
-      }`}
-    >
-      {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img
-        src={panel.image}
-        alt={panel.title}
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-[10s] ease-out group-hover:scale-[1.04]"
-        loading="lazy"
-      />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/25 via-black/15 to-black/45 transition-opacity duration-500 group-hover:from-black/35 group-hover:to-black/55" />
-      <div className="absolute inset-0 z-10 flex flex-col items-center justify-center text-center text-white px-6">
-        <p className="text-[11px] md:text-[12px] uppercase tracking-[0.32em] text-white/75 mb-4 md:mb-5 font-sans">
-          {panel.kicker}
-        </p>
-        <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-[5.5rem] font-serif font-light tracking-[0.12em] leading-none">
-          {panel.title}
-        </h2>
-        {panel.subtitle && (
-          <p className="mt-3 md:mt-4 text-[15px] md:text-[18px] uppercase tracking-[0.26em] font-serif font-light text-white/85">
-            {panel.subtitle}
-          </p>
-        )}
-        {panel.line && (
-          <p className="mt-5 max-w-lg text-[13px] md:text-[14px] font-light tracking-wide text-white/80 normal-case leading-relaxed">
-            {panel.line}
-          </p>
-        )}
-        <span className="mt-8 text-[11px] uppercase tracking-[0.22em] font-sans text-white/90 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500">
-          Explore
-        </span>
-      </div>
-    </Link>
-  )
-}
-
-function splitTitle(title: string): { main: string; sub?: string } {
-  const upper = title.toUpperCase()
-  if (upper.includes('SOFAS')) return { main: 'SOFAS', sub: '& LOVESEATS' }
-  if (upper.includes('BEDROOM')) return { main: 'BEDROOM', sub: 'SETS' }
-  if (upper.includes('DINING')) return { main: 'DINING', sub: 'TABLES' }
-  if (upper.includes('LEATHER')) return { main: 'LEATHER', sub: 'SECTIONALS' }
-  if (upper.includes('FABRIC')) return { main: 'FABRIC', sub: 'SELECTIONS' }
-  if (upper.includes('MATTRESS')) return { main: 'MATTRESSES' }
-  if (upper.includes('VANIT')) return { main: 'VANITIES' }
-  if (upper.includes('BUNK')) return { main: 'BUNK BEDS' }
-  if (upper.includes('CUSTOM')) return { main: 'CUSTOM', sub: 'FURNITURE' }
-  return { main: upper }
-}
+/** Mockup: single row of 6 popular tiles */
+const POPULAR = [
+  { title: 'Beds', href: '/bedroom-sets', image: '/Website/IMG_4365.PNG' },
+  { title: 'Bunk Beds', href: '/bunk-beds', image: '/Website/IMG_4300.PNG' },
+  { title: 'Recliners', href: '/loveseats', image: '/Website/IMG_4540.PNG' },
+  { title: 'Vanities', href: '/vanities', image: '/Website/IMG_4335.PNG' },
+  { title: 'Mattresses', href: '/mattresses', image: '/products/mattress-18.jpeg' },
+  { title: 'Outdoor Swings', href: '/contact', image: '/Website/IMG_4549.PNG' },
+]
 
 type Props = {
   categories: Category[]
 }
 
-/**
- * RH-style homepage: stacked full-bleed collection panels (not a mosaic grid).
- */
+function CategoryTile({
+  title,
+  href,
+  image,
+  aspect = 'aspect-[4/3]',
+}: {
+  title: string
+  href: string
+  image: string
+  aspect?: string
+}) {
+  return (
+    <Link href={href} className="group block text-center">
+      <div className={`relative ${aspect} overflow-hidden rounded-xl bg-[#e8e0d8]`}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={image}
+          alt={title}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          loading="lazy"
+        />
+      </div>
+      <p className="mt-3.5 text-[14px] md:text-[15px] font-sans font-medium text-[#2c241c] tracking-wide group-hover:text-[#8B6B56] transition-colors">
+        {title}
+      </p>
+    </Link>
+  )
+}
+
 export default function HomeCollections({ categories }: Props) {
-  const ordered = [...categories].sort((a, b) => (a.order ?? 0) - (b.order ?? 0))
+  const customImage =
+    categories.find((c) => c.slug === 'custom-furniture')?.menuImage ||
+    categories.find((c) => c.slug === 'custom-furniture')?.heroImage
 
-  const panels: Panel[] = []
-  ordered.forEach((item, index) => {
-    const parts = splitTitle(item.title)
-    const image = HOMEPAGE_HEROES[item.slug] || item.heroImage || item.menuImage || ''
-    if (!image) return
-    panels.push({
-      href: `/${item.slug}`,
-      image,
-      kicker: index === 0 ? 'Featured' : 'Collection',
-      title: parts.main,
-      subtitle: parts.sub,
-      line: item.subtitle || undefined,
-      tall: index % 3 === 0,
-    })
-  })
+  const shopItems = SHOP_BY_CATEGORY.map((item) =>
+    item.href === '/custom-furniture' && customImage
+      ? { ...item, image: customImage }
+      : item
+  )
 
-  if (!panels.length) return null
+  const topRow = shopItems.slice(0, 4)
+  const bottomRow = shopItems.slice(4)
 
   return (
-    <section className="bg-[#1a1a1a]">
-      <div className="space-y-0">
-        {panels.map((panel) => (
-          <CollectionPanel key={panel.href} panel={panel} />
-        ))}
-      </div>
+    <>
+      <section className="bg-white py-16 md:py-24">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="flex items-end justify-between gap-4 mb-10 md:mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl lg:text-[2.75rem] text-[#2c241c] font-light tracking-tight">
+              Shop by Category
+            </h2>
+            <Link
+              href="/gallery"
+              className="shrink-0 text-[12px] uppercase tracking-[0.16em] font-sans font-medium text-[#8B6B56] hover:text-[#7a5c49] transition-colors mb-1"
+            >
+              Explore All →
+            </Link>
+          </div>
 
-      <div className="bg-[#f8f6f3] text-center py-14 md:py-16 px-6">
-        <Link
-          href="/gallery"
-          className="inline-block text-[11px] uppercase tracking-[0.24em] font-sans text-[#1a1a1a] hover:opacity-55 transition"
-        >
-          View the entire gallery →
-        </Link>
-      </div>
-    </section>
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
+            {topRow.map((item) => (
+              <CategoryTile key={item.title} {...item} />
+            ))}
+          </div>
+
+          <div className="mt-5 md:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
+            {bottomRow.map((item) => (
+              <CategoryTile key={item.title} {...item} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="bg-[#F8F5F2] py-16 md:py-20">
+        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
+          <div className="flex items-end justify-between gap-4 mb-10 md:mb-12">
+            <h2 className="font-serif text-3xl md:text-4xl text-[#2c241c] font-light tracking-tight">
+              Shop Our Popular Categories
+            </h2>
+            <Link
+              href="/gallery"
+              className="shrink-0 text-[12px] uppercase tracking-[0.16em] font-sans font-medium text-[#8B6B56] hover:text-[#7a5c49] transition-colors mb-1"
+            >
+              View All →
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 md:gap-6">
+            {POPULAR.map((item) => (
+              <CategoryTile
+                key={item.title}
+                {...item}
+                aspect="aspect-square"
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    </>
   )
 }

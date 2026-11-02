@@ -146,8 +146,8 @@ html {
 
 body {
   font-family: 'Jost', Helvetica Neue, Arial, sans-serif;
-  color: #1a1a1a;
-  background-color: #f8f6f3;
+  color: #2c241c;
+  background-color: #ffffff;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -288,14 +288,14 @@ button {
 }
 
 ::-webkit-scrollbar-track {
-  background: #b8845c;
+  background: #F8F5F2;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #ffffff;
+  background: #8B6B56;
   border-radius: 5px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #ebebeb;
+  background: #7a5c49;
 }

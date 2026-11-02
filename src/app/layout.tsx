@@ -92,7 +92,7 @@ export default async function RootLayout({
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
         <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Jost:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet" />
-        <meta name="theme-color" content="#f8f6f3" />
+        <meta name="theme-color" content="#F8F5F2" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="apple-mobile-web-app-title" content="Myy Space Furniture" />
@@ -137,7 +137,7 @@ export default async function RootLayout({
           }}
         />
       </head>
-      <body className="bg-[#f8f6f3] text-[#1a1a1a] font-sans font-light antialiased">
+      <body className="bg-white text-[#2c241c] font-sans font-light antialiased">
         <CategoriesProvider categories={categories}>
           <GoogleAnalytics />
           <PWAInstallPrompt />
