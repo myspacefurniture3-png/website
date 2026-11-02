@@ -1,5 +1,6 @@
 'use client'
 
+import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { SHOWROOM_MAPS_URL } from '@/lib/site'
 
@@ -161,6 +162,66 @@ export function ServiceHighlights() {
   )
 }
 
+function ShowroomVideo() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    video.muted = true
+    video.defaultMuted = true
+    video.playsInline = true
+
+    const tryPlay = () => {
+      const playPromise = video.play()
+      if (playPromise && typeof playPromise.catch === 'function') {
+        playPromise.catch(() => {
+          // Autoplay may be blocked until the next user gesture; keep muted for retry.
+        })
+      }
+    }
+
+    tryPlay()
+    video.addEventListener('loadeddata', tryPlay)
+    video.addEventListener('canplay', tryPlay)
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) tryPlay()
+        })
+      },
+      { threshold: 0.2 }
+    )
+    observer.observe(video)
+
+    return () => {
+      video.removeEventListener('loadeddata', tryPlay)
+      video.removeEventListener('canplay', tryPlay)
+      observer.disconnect()
+    }
+  }, [])
+
+  return (
+    <div className="relative min-h-[260px] lg:min-h-[340px] overflow-hidden rounded-xl bg-[#2c241c]">
+      <video
+        ref={videoRef}
+        className="absolute inset-0 h-full w-full object-cover"
+        src="/videos/hero2.mp4"
+        muted
+        loop
+        playsInline
+        autoPlay
+        preload="auto"
+        poster="/Website/IMG_4546.PNG"
+        aria-label="MyySpace Furniture showroom video"
+      />
+      <div className="absolute inset-0 bg-black/15 pointer-events-none" />
+    </div>
+  )
+}
+
 export function ShowroomSection() {
   return (
     <section className="bg-white py-16 md:py-24">
@@ -210,24 +271,7 @@ export function ShowroomSection() {
             </div>
           </div>
 
-          <div className="relative min-h-[260px] lg:min-h-[340px] overflow-hidden rounded-xl bg-[#2c241c]">
-            <video
-              className="absolute inset-0 h-full w-full object-cover opacity-90"
-              src="/videos/hero2.mp4"
-              muted
-              loop
-              playsInline
-              autoPlay
-              poster="/Website/IMG_4546.PNG"
-            />
-            <div className="absolute inset-0 bg-black/25 flex items-center justify-center pointer-events-none">
-              <span className="flex h-14 w-14 items-center justify-center rounded-full bg-white/90 text-[#2c241c] shadow-lg">
-                <svg className="w-5 h-5 ml-0.5" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M8 5.14v14l11-7-11-7z" />
-                </svg>
-              </span>
-            </div>
-          </div>
+          <ShowroomVideo />
         </div>
       </div>
     </section>
