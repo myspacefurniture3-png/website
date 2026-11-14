@@ -108,7 +108,7 @@ function mergeSofaGalleries(categories: Category[]): Category[] {
 
 function finalizeCategories(categories: Category[]): Category[] {
   const merged = mergeSofaGalleries(categories)
-  const allowed = new Set(MAIN_CATEGORIES.map((item) => item.slug))
+  const allowed = new Set<string>(MAIN_CATEGORIES.map((item) => item.slug))
   const bySlug = new Map<string, Category>()
 
   for (const item of merged) {
