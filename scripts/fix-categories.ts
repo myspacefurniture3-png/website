@@ -128,7 +128,7 @@ function buildCreateDoc(category: (typeof FALLBACK_CATEGORIES)[number]) {
     order: category.order,
     showInNav: category.showInNav,
     gallery: category.gallery.map((item, index) => ({
-      _type: 'galleryItem' as const,
+      _type: 'image' as const,
       _key: `${category.slug}-${index}`,
       localSrc: item.src,
       alt: item.alt,
@@ -196,7 +196,7 @@ async function main() {
       }
       if (isEmptyGallery(doc.gallery) && category.gallery?.length) {
         setFields.gallery = category.gallery.map((item, index) => ({
-          _type: 'galleryItem',
+          _type: 'image',
           _key: `${slug}-${index}`,
           localSrc: item.src,
           alt: item.alt,

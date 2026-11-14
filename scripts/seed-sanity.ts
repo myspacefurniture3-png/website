@@ -71,7 +71,7 @@ async function seed() {
       order: category.order,
       showInNav: category.showInNav,
       gallery: category.gallery.map((item, index) => ({
-        _type: 'galleryItem',
+        _type: 'image',
         _key: `${category.slug}-${index}`,
         localSrc: item.src,
         alt: item.alt,

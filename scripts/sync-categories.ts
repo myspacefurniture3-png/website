@@ -56,7 +56,7 @@ async function sync() {
     const id = `category-${category.slug}`
     const pageUrl = `https://myyspacefurniture.com/${category.slug}`
     const gallery = category.gallery.map((item, index) => ({
-      _type: 'galleryItem',
+      _type: 'image',
       _key: `${category.slug}-${index}`,
       localSrc: item.src,
       alt: item.alt,

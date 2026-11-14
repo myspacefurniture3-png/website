@@ -1,6 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 import CategoryUrlInput from '../components/CategoryUrlInput'
-import GalleryBulkInput from '../components/GalleryBulkInput'
+import { GalleryImageItem, GalleryImagePreview } from '../components/GalleryImagePreview'
 
 export const category = defineType({
   name: 'category',
@@ -93,43 +93,30 @@ export const category = defineType({
       title: 'Gallery images',
       type: 'array',
       group: 'gallery',
-      description: 'Product photos for this collection. Use “Choose images” to upload a whole batch at once. localSrc remains a fallback for a single photo.',
-      components: { input: GalleryBulkInput },
+      description:
+        'Drop photos onto this grid, or click Upload and select many files at once. Each file is added to the gallery.',
       options: { layout: 'grid' },
       of: [
         defineArrayMember({
-          type: 'object',
-          name: 'galleryItem',
+          type: 'image',
           title: 'Gallery image',
+          options: { hotspot: true },
           fields: [
-            defineField({
-              name: 'image',
-              title: 'Image',
-              type: 'image',
-              options: { hotspot: true },
-              description: 'Upload the photo shown in the category gallery.',
-            }),
-            defineField({
-              name: 'localSrc',
-              title: 'Local / existing URL',
-              type: 'string',
-              description: 'Fallback path e.g. /products/loveseat (2).jpeg if not uploading.',
-            }),
             defineField({
               name: 'alt',
               title: 'Alt text',
               type: 'string',
             }),
+            defineField({
+              name: 'localSrc',
+              title: 'Local / existing URL',
+              type: 'string',
+              description: 'Only for a photo that already lives on the site, such as /Website/IMG_4500.PNG.',
+            }),
           ],
-          preview: {
-            select: { title: 'alt', media: 'image', subtitle: 'localSrc' },
-            prepare({ title, media, subtitle }) {
-              return {
-                title: title || 'Gallery image',
-                subtitle: subtitle || (media ? 'Uploaded image' : 'Add image or local path'),
-                media,
-              }
-            },
+          components: {
+            item: GalleryImageItem,
+            preview: GalleryImagePreview,
           },
         }),
       ],

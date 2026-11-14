@@ -10,7 +10,7 @@ export const categoriesQuery = `*[_type == "category" && showInNav != false] | o
   order,
   showInNav,
   "gallery": gallery[]{
-    "src": coalesce(image.asset->url, localSrc),
+    "src": coalesce(asset->url, image.asset->url, localSrc),
     "alt": coalesce(alt, ^.title)
   }
 }`
@@ -27,7 +27,7 @@ export const categoryBySlugQuery = `*[_type == "category" && slug.current == $sl
   order,
   showInNav,
   "gallery": gallery[]{
-    "src": coalesce(image.asset->url, localSrc),
+    "src": coalesce(asset->url, image.asset->url, localSrc),
     "alt": coalesce(alt, ^.title)
   }
 }`

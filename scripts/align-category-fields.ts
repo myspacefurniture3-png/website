@@ -105,7 +105,7 @@ async function align() {
       order: outdoor.order,
       showInNav: true,
       gallery: outdoor.gallery.map((item, index) => ({
-        _type: 'galleryItem',
+        _type: 'image',
         _key: `outdoor-${index}`,
         localSrc: item.src,
         alt: item.alt,
