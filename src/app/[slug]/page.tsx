@@ -40,15 +40,12 @@ export default async function CategoryPage({ params }: { params: { slug: string 
   const category = await getCategoryBySlug(params.slug)
   if (!category) notFound()
 
-  const images = filterAvailableImages(
-    [
-      ...(category.heroImage && !category.gallery.some((item) => item.src === category.heroImage)
-        ? [{ src: category.heroImage, alt: category.title }]
-        : []),
-      ...category.gallery,
-    ],
-    12
-  )
+  const images = filterAvailableImages([
+    ...(category.heroImage && !category.gallery.some((item) => item.src === category.heroImage)
+      ? [{ src: category.heroImage, alt: category.title }]
+      : []),
+    ...category.gallery,
+  ])
 
   return (
     <>
