@@ -1,5 +1,6 @@
 import { defineArrayMember, defineField, defineType } from 'sanity'
 import CategoryUrlInput from '../components/CategoryUrlInput'
+import GalleryBulkInput from '../components/GalleryBulkInput'
 
 export const category = defineType({
   name: 'category',
@@ -92,7 +93,9 @@ export const category = defineType({
       title: 'Gallery images',
       type: 'array',
       group: 'gallery',
-      description: 'Product photos for this collection. Prefer uploading images; localSrc is a fallback.',
+      description: 'Product photos for this collection. Use “Choose images” to upload a whole batch at once. localSrc remains a fallback for a single photo.',
+      components: { input: GalleryBulkInput },
+      options: { layout: 'grid' },
       of: [
         defineArrayMember({
           type: 'object',
