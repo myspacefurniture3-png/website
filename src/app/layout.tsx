@@ -7,6 +7,7 @@ import ScrollToTop from '@/components/ScrollToTop';
 import PWAInstallPrompt from '@/components/PWAInstallPrompt';
 import { CategoriesProvider } from '@/components/CategoriesProvider';
 import { getCategories } from '@/sanity/fetch';
+import { SOCIAL_PROFILES } from '@/lib/social';
 
 
 export const metadata: Metadata = {
@@ -127,9 +128,9 @@ export default async function RootLayout({
                 longitude: -121.2606694,
               },
               sameAs: [
-                'https://www.facebook.com/Myyspacefurniture/',
-                'https://www.instagram.com/myyspacefurniture/',
-                'https://www.google.com/maps/place/MyySpace+Furniture+%26+Mattress/@38.7465805,-121.2606694,17z',
+                SOCIAL_PROFILES.instagram,
+                SOCIAL_PROFILES.tiktok,
+                SOCIAL_PROFILES.google,
               ],
               keywords:
                 'Roseville furniture, Sacramento furniture, custom furniture, sectionals, mattresses, bedroom sets, dining tables',

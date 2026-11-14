@@ -24,7 +24,7 @@ export const category = defineType({
       title: 'Nav label (short)',
       type: 'string',
       group: 'content',
-      description: 'Short label used in the header (e.g. Sofas, Bedroom).',
+      description: 'Short label. Live collections: Sofas & Sectionals, Bedroom Sets, Dining Sets, Kids & Bunk Beds, Outdoor.',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -33,7 +33,8 @@ export const category = defineType({
       type: 'slug',
       group: 'content',
       options: { source: 'title', maxLength: 96 },
-      description: 'Used in the page URL: myyspacefurniture.com/[slug]',
+      description:
+        'Live slugs: sofas-sectionals, bedroom-sets, dining-sets, kids-bunk-beds, outdoor. Retired slugs redirect and should stay unpublished.',
       validation: (rule) => rule.required(),
     }),
     defineField({
@@ -75,7 +76,7 @@ export const category = defineType({
       type: 'image',
       group: 'images',
       options: { hotspot: true },
-      description: 'Image shown in the desktop mega menu card for this collection.',
+      description: 'Collection card image used when a menu or category tile needs a photo.',
       fields: [{ name: 'alt', type: 'string', title: 'Alt text' }],
     }),
     defineField({
@@ -137,13 +138,15 @@ export const category = defineType({
       type: 'number',
       group: 'settings',
       initialValue: 0,
-      description: 'Lower numbers appear first in the header.',
+      description: 'Lower numbers appear first. Live order: 1 Sofas, 2 Bedroom, 3 Dining, 4 Kids, 5 Outdoor.',
     }),
     defineField({
       name: 'showInNav',
       title: 'Show in navigation',
       type: 'boolean',
       group: 'settings',
+      description:
+        'Turn off for retired collections (mattresses, vanities, custom, leather sectionals, fabric sectionals). Only the five live slugs are published on the site and in the sitemap.',
       initialValue: true,
     }),
   ],

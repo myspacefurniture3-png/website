@@ -1,3 +1,5 @@
+import { SHOWROOM_MAPS_URL } from '@/lib/site'
+
 export interface GoogleReview {
   author: string
   rating: number
@@ -9,7 +11,7 @@ export interface GoogleReview {
 export const GOOGLE_REVIEWS_SUMMARY = {
   totalReviews: '100+',
   averageRating: 5.0,
-  googleMapsUrl: 'https://maps.app.goo.gl/ng8ENb6grLjczfCL8?g_st=ac',
+  googleMapsUrl: SHOWROOM_MAPS_URL,
   businessName: 'MyySpace Furniture & Mattress',
 }
 

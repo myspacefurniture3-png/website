@@ -1,31 +1,37 @@
 'use client'
 
 import { SOCIAL_PROFILES } from '@/lib/social'
-import { IconFacebook, IconGoogleReviews, IconInstagram } from '@/components/SocialIcons'
+import { IconGoogleReviews, IconInstagram, IconTikTok } from '@/components/SocialIcons'
 
 const FOLLOW = [
-  { key: 'facebook', label: 'Follow on Facebook', href: SOCIAL_PROFILES.facebook, Icon: IconFacebook },
   { key: 'instagram', label: 'Follow on Instagram', href: SOCIAL_PROFILES.instagram, Icon: IconInstagram },
-  { key: 'google', label: 'Read our Google Reviews', href: SOCIAL_PROFILES.googleReviews, Icon: IconGoogleReviews },
+  { key: 'tiktok', label: 'Follow on TikTok', href: SOCIAL_PROFILES.tiktok, Icon: IconTikTok },
+  { key: 'google', label: 'Find us on Google Maps', href: SOCIAL_PROFILES.google, Icon: IconGoogleReviews },
 ] as const
 
 /**
- * Branded follow buttons for Facebook, Instagram, and Google Reviews.
+ * Branded follow buttons for Instagram, TikTok, and Google Maps.
  */
 export default function SocialFollowButtons({
   className = '',
   size = 'md',
+  tone = 'dark',
 }: {
   className?: string
-  size?: 'sm' | 'md' | 'lg'
+  size?: 'xs' | 'sm' | 'md' | 'lg'
+  tone?: 'dark' | 'light'
 }) {
   const box =
-    size === 'sm' ? 'h-10 w-10' : size === 'lg' ? 'h-12 w-12' : 'h-11 w-11'
+    size === 'xs' ? 'h-8 w-8' : size === 'sm' ? 'h-10 w-10' : size === 'lg' ? 'h-12 w-12' : 'h-11 w-11'
   const icon =
-    size === 'sm' ? 'h-[18px] w-[18px]' : size === 'lg' ? 'h-5 w-5' : 'h-[18px] w-[18px]'
+    size === 'xs' ? 'h-3.5 w-3.5' : size === 'lg' ? 'h-5 w-5' : 'h-[18px] w-[18px]'
+  const toneClass =
+    tone === 'light'
+      ? 'border-white/35 text-white hover:bg-white hover:text-[#2c241c] hover:border-white'
+      : 'border-[#2c241c]/25 text-[#2c241c] hover:bg-[#8B6B56] hover:text-white hover:border-[#8B6B56]'
 
   return (
-    <div className={`flex flex-wrap items-center gap-3 ${className}`}>
+    <div className={`flex flex-wrap items-center ${size === 'lg' ? 'gap-3' : 'gap-2'} ${className}`}>
       {FOLLOW.map(({ key, label, href, Icon }) => (
         <a
           key={key}
@@ -34,13 +40,9 @@ export default function SocialFollowButtons({
           rel="noopener noreferrer"
           aria-label={label}
           title={label}
-          className={`${box} inline-flex items-center justify-center rounded-full border border-[#2c241c]/25 text-[#2c241c] hover:bg-[#8B6B56] hover:text-white hover:border-[#8B6B56] transition-colors`}
+          className={`${box} inline-flex items-center justify-center rounded-full border transition-colors ${toneClass}`}
         >
-          <Icon
-            className={`${icon} block shrink-0 ${
-              key === 'facebook' ? 'translate-x-[0.5px]' : ''
-            }`}
-          />
+          <Icon className={`${icon} block shrink-0`} />
         </a>
       ))}
     </div>

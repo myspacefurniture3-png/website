@@ -1,7 +1,9 @@
 import { MetadataRoute } from 'next'
-import { getCategories, getPosts } from '@/sanity/fetch'
+import { MAIN_CATEGORIES } from '@/lib/catalog'
+import { SITE_URL } from '@/lib/site'
+import { getPosts } from '@/sanity/fetch'
 
-const BASE = 'https://myyspacefurniture.com'
+const BASE = SITE_URL
 
 /** Routes that must never appear in the sitemap (CMS / private tools). */
 const BLOCKED_PATH_PREFIXES = ['/studio', '/api', '/admin']
@@ -12,7 +14,6 @@ function isAllowed(path: string) {
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const today = new Date()
-  const categories = await getCategories()
   const posts = await getPosts()
 
   const staticRoutes = [
@@ -32,14 +33,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       priority: item.priority,
     }))
 
-  const categoryRoutes = categories
-    .filter((item) => item.slug && isAllowed(`/${item.slug}`))
-    .map((item) => ({
-      url: `${BASE}/${item.slug}`,
-      lastModified: today,
-      changeFrequency: 'weekly' as const,
-      priority: 0.95,
-    }))
+  const categoryRoutes = MAIN_CATEGORIES.filter((item) => isAllowed(item.href)).map((item) => ({
+    url: `${BASE}${item.href}`,
+    lastModified: today,
+    changeFrequency: 'weekly' as const,
+    priority: 0.95,
+  }))
 
   // All published journal posts (featured posts get higher priority for discovery)
   const blogRoutes = posts

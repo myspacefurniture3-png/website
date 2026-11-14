@@ -13,15 +13,6 @@ const StarIcon = ({ filled = true }: { filled?: boolean }) => (
   </svg>
 )
 
-const TESTIMONIAL_IMAGES = [
-  '/Website/IMG_4546.PNG',
-  '/Website/IMG_4365.PNG',
-  '/Website/IMG_4654.PNG',
-  '/Website/IMG_4540.PNG',
-  '/Website/IMG_4335.PNG',
-  '/Website/IMG_4296.PNG',
-]
-
 export default function GoogleReviews() {
   const [showAll, setShowAll] = useState(false)
   const featured = googleReviews.slice(0, 3)
@@ -34,7 +25,7 @@ export default function GoogleReviews() {
           <h2 className="font-serif text-3xl md:text-4xl lg:text-[2.75rem] text-[#2c241c] font-light tracking-tight">
             What Our Customers Say
           </h2>
-          <p className="mt-3 text-[15px] text-[#2c241c]/65 font-light">
+          <p className="mt-3 text-[15px] text-[#2c241c] font-light">
             {GOOGLE_REVIEWS_SUMMARY.averageRating.toFixed(1)} stars from {GOOGLE_REVIEWS_SUMMARY.totalReviews} Google reviews
           </p>
         </div>
@@ -45,29 +36,14 @@ export default function GoogleReviews() {
               key={`${review.author}-${index}`}
               className="bg-white rounded-xl overflow-hidden border border-[#e8e0d8] flex flex-col"
             >
-              {index < 3 && (
-                <div className="relative aspect-[16/10] overflow-hidden">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={TESTIMONIAL_IMAGES[index % TESTIMONIAL_IMAGES.length]}
-                    alt=""
-                    className="absolute inset-0 h-full w-full object-cover"
-                    loading="lazy"
-                  />
-                </div>
-              )}
               <div className="p-6 flex flex-col flex-1">
                 <div className="flex mb-3">
                   {[1, 2, 3, 4, 5].map((star) => (
                     <StarIcon key={star} filled={star <= review.rating} />
                   ))}
                 </div>
-                <p className="text-[14px] text-[#2c241c]/75 leading-relaxed font-light flex-1">
-                  &ldquo;
-                  {index < 3 && review.text.length > 160
-                    ? `${review.text.slice(0, 160).trim()}…`
-                    : review.text}
-                  &rdquo;
+                <p className="text-[14px] text-[#2c241c] leading-relaxed font-light flex-1">
+                  &ldquo;{review.text}&rdquo;
                 </p>
                 <p className="mt-5 text-[13px] font-sans font-medium text-[#2c241c] tracking-wide">
                   {review.author}

@@ -29,6 +29,19 @@ const nextConfig = {
     ],
   },
 
+  async redirects() {
+    return [
+      { source: "/loveseats", destination: "/sofas-sectionals", permanent: true },
+      { source: "/leather-sectionals", destination: "/sofas-sectionals", permanent: true },
+      { source: "/fabric-sectionals", destination: "/sofas-sectionals", permanent: true },
+      { source: "/dining-tables", destination: "/dining-sets", permanent: true },
+      { source: "/bunk-beds", destination: "/kids-bunk-beds", permanent: true },
+      { source: "/mattresses", destination: "/bedroom-sets", permanent: true },
+      { source: "/vanities", destination: "/gallery", permanent: true },
+      { source: "/custom-furniture", destination: "/contact", permanent: true },
+    ];
+  },
+
   async headers() {
     return [
       {

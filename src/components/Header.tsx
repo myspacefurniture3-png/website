@@ -6,6 +6,8 @@ import { useState, useEffect, useRef } from 'react'
 import { usePathname } from 'next/navigation'
 import { useCategories } from '@/components/CategoriesProvider'
 import { SHOWROOM_MAPS_URL } from '@/lib/site'
+import { MAIN_CATEGORIES } from '@/lib/catalog'
+import SocialFollowButtons from '@/components/SocialFollowButtons'
 
 const ANNOUNCEMENTS = [
   { label: 'Delivery Across California & Nevada', icon: 'delivery' as const },
@@ -14,7 +16,7 @@ const ANNOUNCEMENTS = [
 ]
 
 function AnnouncementIcon({ name }: { name: (typeof ANNOUNCEMENTS)[number]['icon'] }) {
-  const common = 'w-3.5 h-3.5 shrink-0 text-white/75'
+  const common = 'w-3.5 h-3.5 shrink-0 text-white'
   if (name === 'delivery') {
     return (
       <svg className={common} fill="none" stroke="currentColor" strokeWidth="1.5" viewBox="0 0 24 24" aria-hidden>
@@ -54,17 +56,14 @@ function AnnouncementIcon({ name }: { name: (typeof ANNOUNCEMENTS)[number]['icon
 }
 
 const PRIMARY_NAV = [
-  { href: '/loveseats', label: 'Living Room' },
-  { href: '/bedroom-sets', label: 'Bedroom' },
-  { href: '/bunk-beds', label: 'Kids & Teens' },
-  { href: '/dining-tables', label: 'Dining Room' },
-  { href: '/vanities', label: 'Vanities & Mirrors' },
-  { href: '/contact', label: 'Outdoor' },
-  { href: '/custom-furniture', label: 'Custom' },
+  { href: '/', label: 'Home' },
+  ...MAIN_CATEGORIES.map((item) => ({
+    href: item.href,
+    label: item.title,
+  })),
 ]
 
 const utilityLinks = [
-  { href: '/', label: 'Home' },
   { href: '/gallery', label: 'Gallery' },
   { href: '/financing', label: 'Financing' },
   { href: '/about', label: 'About Us' },
@@ -135,20 +134,40 @@ export default function Header() {
     <>
       <div className="sticky top-0 z-[60] relative">
       <div className="bg-[#2c241c] text-white">
-        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-2.5 flex flex-wrap items-center justify-center gap-x-5 sm:gap-x-8 gap-y-2 text-[10px] sm:text-[11px] uppercase tracking-[0.18em] font-sans font-medium">
-          {ANNOUNCEMENTS.map((item) => (
-            <span key={item.label} className="inline-flex items-center gap-2 text-white/90">
-              <AnnouncementIcon name={item.icon} />
-              <span>{item.label}</span>
-            </span>
-          ))}
+        <div className="max-w-[1400px] mx-auto px-4 sm:px-6 py-2.5 flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2.5">
+          <div className="flex flex-wrap items-center justify-center lg:justify-start gap-x-5 sm:gap-x-8 gap-y-2 text-[10px] sm:text-[11px] uppercase tracking-[0.18em] font-sans font-medium">
+            {ANNOUNCEMENTS.map((item) => (
+              <span key={item.label} className="inline-flex items-center gap-2 text-white">
+                <AnnouncementIcon name={item.icon} />
+                <span>{item.label}</span>
+              </span>
+            ))}
+          </div>
+          <div className="flex flex-wrap items-center justify-center gap-2.5 sm:gap-3">
+            <SocialFollowButtons size="xs" tone="light" />
+            <a
+              href="tel:+19166611073"
+              className="inline-flex h-8 items-center gap-1.5 rounded-full bg-white px-3.5 text-[11px] font-sans font-medium uppercase tracking-[0.14em] text-[#2c241c] hover:bg-[#f3ebe3] transition-colors"
+              aria-label="Call MyySpace Furniture at (916) 661-1073"
+            >
+              <svg className="h-3.5 w-3.5" fill="none" stroke="currentColor" strokeWidth="1.8" viewBox="0 0 24 24" aria-hidden>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 002.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 01-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 00-1.091-.852H4.5A2.25 2.25 0 002.25 4.5v2.25z"
+                />
+              </svg>
+              <span>Call</span>
+              <span className="hidden sm:inline normal-case tracking-normal">(916) 661-1073</span>
+            </a>
+          </div>
         </div>
       </div>
 
       <header className="relative w-full bg-white/95 backdrop-blur-md border-b border-[#e8e0d8]">
         <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="relative flex items-center justify-between h-[72px] lg:h-[84px]">
-            <div className="flex items-center gap-3 lg:w-[200px]">
+          <div className="relative flex items-center justify-between gap-3 h-[72px] lg:h-[84px]">
+            <div className="flex items-center gap-3 shrink-0">
               <button
                 className="lg:hidden p-1.5 -ml-1"
                 onClick={() => {
@@ -178,17 +197,17 @@ export default function Header() {
             </div>
 
             <nav
-              className="hidden lg:flex absolute left-1/2 -translate-x-1/2 items-center gap-x-5 xl:gap-x-7"
+              className="hidden lg:flex flex-1 items-center justify-center gap-x-3 xl:gap-x-6 min-w-0"
               aria-label="Shop categories"
             >
               {PRIMARY_NAV.map((item) => (
                 <Link
                   key={item.href}
                   href={item.href}
-                  className={`text-[11px] xl:text-[12px] uppercase tracking-[0.14em] font-sans font-medium whitespace-nowrap transition-colors duration-300 ${
+                  className={`text-[10px] xl:text-[11px] uppercase tracking-[0.08em] xl:tracking-[0.12em] font-sans font-medium whitespace-nowrap transition-colors duration-300 ${
                     isActive(item.href)
                       ? 'text-[#8B6B56]'
-                      : 'text-[#2c241c]/80 hover:text-[#8B6B56]'
+                      : 'text-[#2c241c] hover:text-[#8B6B56]'
                   }`}
                 >
                   {item.label}
@@ -196,7 +215,7 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="flex items-center justify-end gap-1 sm:gap-2 lg:w-[200px]">
+            <div className="flex items-center justify-end gap-1 sm:gap-2 shrink-0">
               <button
                 onClick={() => {
                   setMenuOpen(false)
@@ -349,7 +368,7 @@ export default function Header() {
                       <Link
                         href={item.href}
                         onClick={() => setMenuOpen(false)}
-                        className="block py-2.5 text-[13px] uppercase tracking-[0.14em] text-[#2c241c]/70"
+                        className="block py-2.5 text-[13px] uppercase tracking-[0.14em] text-[#2c241c]"
                       >
                         {item.label}
                       </Link>
@@ -361,7 +380,7 @@ export default function Header() {
                       target="_blank"
                       rel="noopener noreferrer"
                       onClick={() => setMenuOpen(false)}
-                      className="block py-2.5 text-[13px] uppercase tracking-[0.14em] text-[#2c241c]/70"
+                      className="block py-2.5 text-[13px] uppercase tracking-[0.14em] text-[#2c241c]"
                     >
                       Showroom
                     </a>

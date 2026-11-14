@@ -1,7 +1,12 @@
+import { SHOWROOM_MAPS_URL } from '@/lib/site'
+
 export const SOCIAL_PROFILES = {
-  facebook: 'https://www.facebook.com/Myyspacefurniture/',
-  instagram: 'https://www.instagram.com/myyspacefurniture/',
-  googleReviews: 'https://maps.app.goo.gl/ng8ENb6grLjczfCL8?g_st=ac',
+  instagram:
+    'https://www.instagram.com/myyspacefurniture?psln=MW1pMTh1dzRneGV6NQ%3D%3D&utm_source=qr',
+  tiktok: 'https://www.tiktok.com/@myyspacefurniture?_r=1&_t=ZP-9BLxkE76QXe',
+  /** Google icon opens the Roseville showroom pin. */
+  google: SHOWROOM_MAPS_URL,
+  googleReviews: SHOWROOM_MAPS_URL,
 } as const
 
 /** Default hashtags / keywords appended to share copy for discovery */

@@ -9,10 +9,10 @@ const w = (name: string) => `/Website/${name}`
  */
 export const FALLBACK_CATEGORIES: Category[] = [
   {
-    title: 'Sofas & Loveseats',
-    navLabel: 'Sofas',
-    slug: 'loveseats',
-    subtitle: 'Sofa and loveseat pairings for living rooms that gather.',
+    title: 'Sofas & Sectionals',
+    navLabel: 'Sofas & Sectionals',
+    slug: 'sofas-sectionals',
+    subtitle: 'Sofas, loveseats, and sectionals for living rooms that gather.',
     heroImage: w('IMG_4540.PNG'),
     menuImage: w('IMG_4581.PNG'),
     order: 1,
@@ -35,7 +35,7 @@ export const FALLBACK_CATEGORIES: Category[] = [
   },
   {
     title: 'Bedroom Sets',
-    navLabel: 'Bedroom',
+    navLabel: 'Bedroom Sets',
     slug: 'bedroom-sets',
     subtitle: 'Complete bedroom suites — statement headboards, nightstands, and soft light.',
     heroImage: w('IMG_4365.PNG'),
@@ -95,10 +95,10 @@ export const FALLBACK_CATEGORIES: Category[] = [
     ),
   },
   {
-    title: 'Dining Tables',
-    navLabel: 'Dining',
-    slug: 'dining-tables',
-    subtitle: 'Dining tables and chairs for everyday meals and evening company.',
+    title: 'Dining Sets',
+    navLabel: 'Dining Sets',
+    slug: 'dining-sets',
+    subtitle: 'Dining sets for everyday meals and evening company.',
     heroImage: w('IMG_4657.PNG'),
     menuImage: w('IMG_4654.PNG'),
     order: 3,
@@ -128,7 +128,7 @@ export const FALLBACK_CATEGORIES: Category[] = [
     heroImage: w('IMG_4390.PNG'),
     menuImage: w('IMG_4390.PNG'),
     order: 4,
-    showInNav: true,
+    showInNav: false,
     gallery: items(
       [w('IMG_4390.PNG'), '/products/custom-furniture/custom-new (22).jpeg'],
       'Leather Sectional'
@@ -142,7 +142,7 @@ export const FALLBACK_CATEGORIES: Category[] = [
     heroImage: w('IMG_4546.PNG'),
     menuImage: w('IMG_4549.PNG'),
     order: 5,
-    showInNav: true,
+    showInNav: false,
     gallery: items(
       [
         w('IMG_4546.PNG'),
@@ -179,7 +179,7 @@ export const FALLBACK_CATEGORIES: Category[] = [
     heroImage: '/products/mattress-18.jpeg',
     menuImage: '/products/mattress.jpeg',
     order: 6,
-    showInNav: true,
+    showInNav: false,
     gallery: items(
       [
         '/products/mattress-18.jpeg',
@@ -199,7 +199,7 @@ export const FALLBACK_CATEGORIES: Category[] = [
     heroImage: w('IMG_4335.PNG'),
     menuImage: w('IMG_4102.PNG'),
     order: 7,
-    showInNav: true,
+    showInNav: false,
     gallery: items(
       [
         w('IMG_4335.PNG'),
@@ -211,10 +211,10 @@ export const FALLBACK_CATEGORIES: Category[] = [
     ),
   },
   {
-    title: 'Bunk Beds',
-    navLabel: 'Bunk Beds',
-    slug: 'bunk-beds',
-    subtitle: 'Bunks, lofts, and space-smart sleepers for shared rooms.',
+    title: 'Kids & Bunk Beds',
+    navLabel: 'Kids & Bunk Beds',
+    slug: 'kids-bunk-beds',
+    subtitle: 'Kids beds, bunks, and lofts for shared rooms.',
     heroImage: w('IMG_4296.PNG'),
     menuImage: w('IMG_4300.PNG'),
     order: 8,
@@ -235,6 +235,17 @@ export const FALLBACK_CATEGORIES: Category[] = [
     ),
   },
   {
+    title: 'Outdoor',
+    navLabel: 'Outdoor',
+    slug: 'outdoor',
+    subtitle: 'Outdoor seating for patios and poolsides — see the collection in our Roseville showroom.',
+    heroImage: w('IMG_4543.PNG'),
+    menuImage: w('IMG_4543.PNG'),
+    order: 5,
+    showInNav: true,
+    gallery: items([w('IMG_4543.PNG')], 'Outdoor furniture'),
+  },
+  {
     title: 'Custom Furniture',
     navLabel: 'Custom',
     slug: 'custom-furniture',
@@ -243,7 +254,7 @@ export const FALLBACK_CATEGORIES: Category[] = [
     heroImage: w('IMG_4296.PNG'),
     menuImage: '/products/custom-furniture/custom-new (1).jpeg',
     order: 9,
-    showInNav: true,
+    showInNav: false,
     gallery: items(
       [
         w('IMG_4296.PNG'),

@@ -1,80 +1,52 @@
 'use client'
 
 import Link from 'next/link'
-import type { Category } from '@/lib/types'
+import { MAIN_CATEGORIES } from '@/lib/catalog'
 
-/** Mockup: top row of 4, bottom row of 3 — equal tiles, labels under images */
-const SHOP_BY_CATEGORY = [
-  {
-    title: 'Living Room',
-    href: '/loveseats',
-    image: '/Website/IMG_4546.PNG',
-  },
-  {
-    title: 'Bedroom',
-    href: '/bedroom-sets',
-    image: '/Website/IMG_4365.PNG',
-  },
-  {
-    title: 'Kids & Teens',
-    href: '/bunk-beds',
-    image: '/Website/IMG_4296.PNG',
-  },
-  {
-    title: 'Dining Room',
-    href: '/dining-tables',
-    image: '/Website/IMG_4654.PNG',
-  },
-  {
-    title: 'Vanities & Mirrors',
-    href: '/vanities',
-    image: '/Website/IMG_4335.PNG',
-  },
-  {
-    title: 'Outdoor Furniture',
-    href: '/contact',
-    image: '/Website/IMG_4543.PNG',
-  },
-  {
-    title: 'Custom Furniture',
-    href: '/custom-furniture',
-    image: '/products/custom-furniture/custom-new (12).jpeg',
-  },
-]
-
-/** Mockup: single row of 6 popular tiles */
-const POPULAR = [
-  { title: 'Beds', href: '/bedroom-sets', image: '/Website/IMG_4365.PNG' },
-  { title: 'Bunk Beds', href: '/bunk-beds', image: '/Website/IMG_4300.PNG' },
-  { title: 'Recliners', href: '/loveseats', image: '/Website/IMG_4540.PNG' },
-  { title: 'Vanities', href: '/vanities', image: '/Website/IMG_4335.PNG' },
-  { title: 'Mattresses', href: '/mattresses', image: '/products/mattress-18.jpeg' },
-  { title: 'Outdoor Swings', href: '/contact', image: '/Website/IMG_4549.PNG' },
-]
-
-type Props = {
-  categories: Category[]
-}
+const SHOP_BY_CATEGORY = MAIN_CATEGORIES.map((item) => ({
+  title: item.title,
+  href: item.href,
+  image: item.image,
+}))
 
 function CategoryTile({
   title,
   href,
   image,
   aspect = 'aspect-[4/3]',
+  motionIndex,
+  wide = false,
 }: {
   title: string
   href: string
   image: string
   aspect?: string
+  motionIndex?: number
+  wide?: boolean
 }) {
+  const driftClass =
+    motionIndex === undefined
+      ? ''
+      : motionIndex % 2 === 0
+        ? 'category-kenburns'
+        : 'category-kenburns category-kenburns-alt'
+
   return (
-    <Link href={href} className="group block text-center">
-      <div className={`relative ${aspect} overflow-hidden rounded-xl bg-[#e8e0d8]`}>
+    <Link
+      href={href}
+      className={`group block text-center ${
+        wide ? 'col-span-2 md:col-span-1 max-w-sm mx-auto w-full md:max-w-none' : ''
+      }`}
+    >
+      <div
+        className={`relative ${aspect} overflow-hidden rounded-xl bg-[#e8e0d8] shadow-sm transition-shadow duration-500 group-hover:shadow-xl`}
+      >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={image}
           alt={title}
-          className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+          className={`absolute inset-0 h-full w-full object-cover ${driftClass}`}
+          style={motionIndex === undefined ? undefined : { animationDelay: `${motionIndex * -2.4}s` }}
           loading="lazy"
         />
       </div>
@@ -85,19 +57,8 @@ function CategoryTile({
   )
 }
 
-export default function HomeCollections({ categories }: Props) {
-  const customImage =
-    categories.find((c) => c.slug === 'custom-furniture')?.menuImage ||
-    categories.find((c) => c.slug === 'custom-furniture')?.heroImage
-
-  const shopItems = SHOP_BY_CATEGORY.map((item) =>
-    item.href === '/custom-furniture' && customImage
-      ? { ...item, image: customImage }
-      : item
-  )
-
-  const topRow = shopItems.slice(0, 4)
-  const bottomRow = shopItems.slice(4)
+export default function HomeCollections() {
+  const shopItems = SHOP_BY_CATEGORY
 
   return (
     <>
@@ -105,7 +66,7 @@ export default function HomeCollections({ categories }: Props) {
         <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
           <div className="flex items-end justify-between gap-4 mb-10 md:mb-12">
             <h2 className="font-serif text-3xl md:text-4xl lg:text-[2.75rem] text-[#2c241c] font-light tracking-tight">
-              Shop by Category
+              Shop Our Popular Categories
             </h2>
             <Link
               href="/gallery"
@@ -115,40 +76,13 @@ export default function HomeCollections({ categories }: Props) {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
-            {topRow.map((item) => (
-              <CategoryTile key={item.title} {...item} />
-            ))}
-          </div>
-
-          <div className="mt-5 md:mt-6 grid grid-cols-1 sm:grid-cols-3 gap-5 md:gap-6">
-            {bottomRow.map((item) => (
-              <CategoryTile key={item.title} {...item} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="bg-[#F8F5F2] py-16 md:py-20">
-        <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
-          <div className="flex items-end justify-between gap-4 mb-10 md:mb-12">
-            <h2 className="font-serif text-3xl md:text-4xl text-[#2c241c] font-light tracking-tight">
-              Shop Our Popular Categories
-            </h2>
-            <Link
-              href="/gallery"
-              className="shrink-0 text-[12px] uppercase tracking-[0.16em] font-sans font-medium text-[#8B6B56] hover:text-[#7a5c49] transition-colors mb-1"
-            >
-              View All →
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-5 md:gap-6">
-            {POPULAR.map((item) => (
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-5 md:gap-6">
+            {shopItems.map((item, index) => (
               <CategoryTile
                 key={item.title}
                 {...item}
-                aspect="aspect-square"
+                motionIndex={index}
+                wide={index === shopItems.length - 1}
               />
             ))}
           </div>

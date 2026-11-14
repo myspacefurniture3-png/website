@@ -1,6 +1,5 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { SHOWROOM_MAPS_URL } from '@/lib/site'
 
@@ -49,7 +48,7 @@ export function CustomFurnitureBanner() {
               <br />
               Custom Made.
             </h2>
-            <p className="mt-4 text-[15px] text-[#2c241c]/65 font-light leading-relaxed max-w-md">
+            <p className="mt-4 text-[15px] text-[#2c241c] font-light leading-relaxed max-w-md">
               Choose fabric, color, and size — we build furniture that fits your home perfectly.
             </p>
 
@@ -72,7 +71,7 @@ export function CustomFurnitureBanner() {
             </div>
 
             <Link
-              href="/custom-furniture"
+              href="/contact"
               className="mt-10 inline-flex items-center justify-center gap-2 self-start bg-[#8B6B56] hover:bg-[#7a5c49] text-white text-[12px] uppercase tracking-[0.16em] font-sans font-medium px-7 py-3.5 transition-colors duration-300"
             >
               Customize Your Furniture <span aria-hidden>→</span>
@@ -126,7 +125,7 @@ export function ServiceHighlights() {
               </svg>
             </span>
             <h3 className="font-serif text-2xl text-[#2c241c] font-light tracking-tight">Flexible Financing Options</h3>
-            <p className="mt-3 text-[14px] text-[#2c241c]/65 font-light leading-relaxed">
+            <p className="mt-3 text-[14px] text-[#2c241c] font-light leading-relaxed">
               Make premium furniture fit your budget with easy financing plans.
             </p>
             <Link
@@ -146,7 +145,7 @@ export function ServiceHighlights() {
             <h3 className="font-serif text-2xl text-[#2c241c] font-light tracking-tight">
               Delivery Across California & Nevada
             </h3>
-            <p className="mt-3 text-[14px] text-[#2c241c]/65 font-light leading-relaxed">
+            <p className="mt-3 text-[14px] text-[#2c241c] font-light leading-relaxed">
               Professional delivery and setup across California and Nevada.
             </p>
             <Link
@@ -162,82 +161,12 @@ export function ServiceHighlights() {
   )
 }
 
-function ShowroomVideo() {
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    video.muted = true
-    video.defaultMuted = true
-    video.playsInline = true
-
-    const tryPlay = () => {
-      const playPromise = video.play()
-      if (playPromise && typeof playPromise.catch === 'function') {
-        playPromise.catch(() => {
-          // Autoplay may be blocked until the next user gesture; keep muted for retry.
-        })
-      }
-    }
-
-    tryPlay()
-    video.addEventListener('loadeddata', tryPlay)
-    video.addEventListener('canplay', tryPlay)
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) tryPlay()
-        })
-      },
-      { threshold: 0.2 }
-    )
-    observer.observe(video)
-
-    return () => {
-      video.removeEventListener('loadeddata', tryPlay)
-      video.removeEventListener('canplay', tryPlay)
-      observer.disconnect()
-    }
-  }, [])
-
-  return (
-    <div className="relative min-h-[260px] lg:min-h-[340px] overflow-hidden rounded-xl bg-[#2c241c]">
-      <video
-        ref={videoRef}
-        className="absolute inset-0 h-full w-full object-cover"
-        src="/videos/hero2.mp4"
-        muted
-        loop
-        playsInline
-        autoPlay
-        preload="auto"
-        poster="/Website/IMG_4546.PNG"
-        aria-label="MyySpace Furniture showroom video"
-      />
-      <div className="absolute inset-0 bg-black/15 pointer-events-none" />
-    </div>
-  )
-}
-
 export function ShowroomSection() {
   return (
     <section className="bg-white py-16 md:py-24">
       <div className="max-w-[1400px] mx-auto px-6 sm:px-8 lg:px-10">
-        <div className="grid lg:grid-cols-3 gap-5 items-stretch">
-          <div className="relative min-h-[260px] lg:min-h-[340px] overflow-hidden rounded-xl">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/Website/IMG_4543.PNG"
-              alt="MyySpace Furniture showroom"
-              className="absolute inset-0 h-full w-full object-cover"
-              loading="lazy"
-            />
-          </div>
-
-          <div className="rounded-xl bg-[#F8F5F2] px-8 py-10 flex flex-col justify-center text-center lg:text-left">
+        <div className="max-w-3xl mx-auto">
+          <div className="rounded-xl bg-[#F8F5F2] px-8 py-12 md:py-16 flex flex-col justify-center text-center">
             <p className="text-[11px] uppercase tracking-[0.22em] text-[#8B6B56] font-sans font-medium mb-3">
               Visit Our Showroom
             </p>
@@ -246,14 +175,14 @@ export function ShowroomSection() {
               <br />
               Roseville, CA
             </h2>
-            <div className="mt-5 space-y-1 text-[14px] text-[#2c241c]/70 font-light">
+            <div className="mt-5 space-y-1 text-[14px] text-[#2c241c] font-light">
               <p>Mon – Sat: 10:00 AM – 7:00 PM</p>
               <p>Sunday: 11:00 AM – 6:00 PM</p>
               <a href="tel:+19166611073" className="block pt-2 text-[#2c241c] hover:text-[#8B6B56] transition-colors">
                 (916) 661-1073
               </a>
             </div>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <div className="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
               <a
                 href={SHOWROOM_MAPS_URL}
                 target="_blank"
@@ -270,8 +199,6 @@ export function ShowroomSection() {
               </Link>
             </div>
           </div>
-
-          <ShowroomVideo />
         </div>
       </div>
     </section>

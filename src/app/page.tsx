@@ -11,19 +11,16 @@ import {
   ServiceHighlights,
   ShowroomSection,
 } from '@/components/HomePromoSections'
-import { useCategories } from '@/components/CategoriesProvider'
 
 export default function Home() {
-  const categories = useCategories()
-
   return (
     <>
       <Header />
       <HomeHeroCinema />
       <PromoBanner />
       <main>
-        <HomeCollections categories={categories} />
         <CustomFurnitureBanner />
+        <HomeCollections />
         <ServiceHighlights />
         <GoogleReviews />
         <ShowroomSection />
