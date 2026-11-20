@@ -12,6 +12,7 @@ export function publicImageExists(src: string) {
   // Known static folders shipped with the app — always allow
   if (
     src.startsWith('/Website/') ||
+    src.startsWith('/homepage/') ||
     src.startsWith('/products/') ||
     src.startsWith('/images/') ||
     src.startsWith('/videos/') ||

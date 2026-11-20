@@ -36,8 +36,8 @@ export function CustomFurnitureBanner() {
           <div className="relative min-h-[280px] lg:min-h-[420px]">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/products/custom-furniture/custom-new (12).jpeg"
-              alt="Custom fabric and furniture options"
+              src="/homepage/IMG_4543.PNG"
+              alt="Custom curved sectional and lounge seating"
               className="absolute inset-0 h-full w-full object-cover"
               loading="lazy"
             />
