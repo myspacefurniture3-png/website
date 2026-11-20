@@ -113,6 +113,58 @@ function StepIcon({ name }: { name: string }) {
   )
 }
 
+const WHY_CHOOSE_US = [
+  {
+    title: 'Premium Quality',
+    description: 'Carefully curated furniture that meets our high standards for quality and durability.',
+  },
+  {
+    title: 'Expert Team',
+    description: 'Our knowledgeable staff is ready to help you find the perfect piece for your space.',
+  },
+  {
+    title: 'Custom Design',
+    description: 'Design your own furniture exactly as you envision it with our custom services.',
+  },
+  {
+    title: 'Competitive Prices',
+    description: 'Premium quality at fair prices with flexible financing options available.',
+  },
+  {
+    title: 'Fast Delivery',
+    description: 'Professional delivery service with white-glove handling and setup.',
+  },
+  {
+    title: 'Customer Support',
+    description: 'Exceptional customer service and comprehensive warranty coverage.',
+  },
+]
+
+export function WhyChooseUs() {
+  return (
+    <section className="py-20 md:py-28 bg-[#f8f6f3]">
+      <div className="max-w-6xl mx-auto px-6 lg:px-12">
+        <div className="text-center mb-16">
+          <p className="text-[12px] uppercase tracking-[0.26em] text-[#2c241c] mb-4 font-sans font-medium">
+            The Myy Space Difference
+          </p>
+          <h2 className="text-4xl md:text-5xl font-serif font-light text-[#2c241c] mb-4">Why Choose Us</h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+          {WHY_CHOOSE_US.map((feature) => (
+            <div key={feature.title} className="text-center">
+              <div className="w-10 h-px bg-[#2c241c]/30 mx-auto mb-6" />
+              <h3 className="text-xl font-serif font-light text-[#2c241c] mb-3">{feature.title}</h3>
+              <p className="text-sm text-[#2c241c] leading-relaxed font-light">{feature.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )
+}
+
 export function ServiceHighlights() {
   return (
     <section className="bg-[#F8F5F2] py-12 md:py-16">

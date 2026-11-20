@@ -10,6 +10,7 @@ import {
   CustomFurnitureBanner,
   ServiceHighlights,
   ShowroomSection,
+  WhyChooseUs,
 } from '@/components/HomePromoSections'
 
 export default function Home() {
@@ -22,6 +23,7 @@ export default function Home() {
         <CustomFurnitureBanner />
         <HomeCollections />
         <ServiceHighlights />
+        <WhyChooseUs />
         <GoogleReviews />
         <ShowroomSection />
       </main>
